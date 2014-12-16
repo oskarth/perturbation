@@ -6,8 +6,8 @@
 
 % \usepackage[utf8]{inputenc}
 % \usepackage{mathtools}
-% \usepackage[parfill]{parskip} % line skip paragraphs
-% \linespread{1.5} % linespacing 1.5
+\usepackage[parfill]{parskip} % line skip paragraphs
+\linespread{1.5} % linespacing 1.5
 
 \begin{document}
 
@@ -21,19 +21,82 @@
 \chapter{Singular perturbation theory}
 
 \section{History and introduction}
+
+\textit{It causeth my head to ache} -- Newton on the orbits of the moon. Three
+body problem. Discovery Neptunus, but also Vulcan. Poincare and Prandtl.
+
+Many phenomena can be modelled by ODEs, but only a subset of ODEs can be solved
+exactly. We need approximate solutions that are justified in a rigorous manner.
+
 \section{Simple regular perturbation}
+
+\begin{equation}
+  z^2 - 2z + \epsilon
+\end{equation}
+
+Assume we don't know exact solution to this quadratic equation. For small
+$\epsilon$, how does the solution change? If we set $\epsilon$ to zero we get
+two solutions.
+
+In this case we know that $z=1 \pm \sqrt{1 - \epsilon}$, so it's easy to see what happens to the solution for any given small $\epsilon$, solutions will be around 0 and 2.
+
+Expand $\sqrt{1 - \epsilon}$ as a Taylor series: $1 - \frac 1 2 \epsilon - \frac 1 8 \epsilon^2$
+
+This gives $z_1 = \frac 1 2 \epsilon + O(\epsilon^2)$ and $z_2 = 2 - \frac 1 2 \epsilon + O(\epsilon^2)$ etc.
+
 \section{Simple singular perturbation}
+
+\begin{equation}
+  \epsilon z^2 - 2z + 1
+\end{equation}
+
+In this example we have $z = \frac{(1 \pm \sqrt{1-\epsilon})}{\epsilon}$. Note
+that $\epsilon=0$ removes one of the roots. This is indicative of a singular
+perturbation problem - we are missing something when we remove the error term.
+
+Unlike in the last section, $z(\epsilon) = \frac 2 \epsilon + ...$, obviously a
+problem here.
+
+Perturbation series $z(\epsilon) = a_0 + a_1 \epsilon + a_2 \epsilon^2 + ... +
+R^{n+1}, R^{n+1} = O(\epsilon{N+1})$
+
+Procedure for this:
+
+1. Substitute
+2. Expand
+3. Collect
+4. Substitute original IC/BC
+5. ...
+
 \section{ODE example}
 
+ODE with BC. Can't fulfil both conditions at once. So two solutions, oe inner
+$O(\epsilon)$ and one other $O(1)$. Then combine (match) these to get a uniform
+solution.
 
+Read BV chapter for this.
 
 \chapter{TQSSA}
 
 \section{Biological problem}
+
+Thing and enzyme. Combines fast. QSSA two time scales. TQSSA similar.
+
 \section{Scaling}
+
+Scale dimensionless. Two periods. Basics of dimensionaless.
+
 \section{Inner solution}
+
+$0 < \epsilon \leq 1, \epsilon = \frac{t_{\epsilon}}{t_{s}}$
+
 \section{Outer solution}
+
 \section{Matching and uniform approximation}
+
+\section{Applying it}
+
+See Verdugo.
 
 \bibliography{references}
 
