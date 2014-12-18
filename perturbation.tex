@@ -28,6 +28,10 @@ body problem. Discovery Neptunus, but also Vulcan. Poincare and Prandtl.
 Many phenomena can be modelled by ODEs, but only a subset of ODEs can be solved
 exactly. We need approximate solutions that are justified in a rigorous manner.
 
+This text is heavily inspired by two source. The first is \textit{A first look
+at Perturbation Theory} by Simmonds. The other is \textit{Applied mathematics
+in...} by Lin and Segel.
+
 \section{Simple regular perturbation}
 
 Let's start with a simple quadratic equation.
@@ -70,18 +74,62 @@ approximations to the solutions, given that $\epsilon$ is very small. The
 reduced equation corresponds to setting $\epsilon$ to $0$. This is called
 something like the 0th order perturbation. If we want the first order
 perturbation, we get the solutions as seen above. You can imagine
-substituting$ $\epsilon$ for a very small number, and you have some idea for how
+substituting $\epsilon$ for a very small number, and you have some idea for how
 the solutions behaves.
 
 Let's assume we don't know exact solution to this quadratic equation. Instead
-we'll assume that we can express the solution using a perturbation series. How
-do we go about doing this?
+we'll assume that we can express the solution using a perturbation series, that
+is every root of $P_\epsilon(z) = z^2 - 2z + \epsilon$ has a perturbation
+expansion for some N. A perturbation expansion is defined as follows:
 
-We'll use
+\begin{equation}
+  z(\epsilon) = a_0 + a_1 \epsilon + a_2 \epsilon^2 + ...  + R^{n+1}, R^{n+1} = O(\epsilon^{N+1})
+\end{equation}
 
-[this is great, you kind of know what's coming but not enough to write it on
-your own]
+How do we go about doing this? What we want to do is to determine the
+coefficients $a_0$, $a_1$ etc. We do this by writing
 
+$$P_\epsilon(z(\epsilon)) = P_\epsilon(a_0 + a_1\epsilon + ... +
+O(\epsilon^{N+1})) = (a_0 + a_1\epsilon + ...)^2 - 2(a_0 + a1_\epsilon + ...) +
+\epsilon = 0$$
+
+It's identically equal as $\epsilon \to 0$. Now we simply
+collect the $\epsilon$ terms and do some Big-oh algebra to put it in the
+required form for some N.
+
+For example, if N=1 we have $z(\epsilon) = a_0 + a_1\epsilon + O(\epsilon^2)$
+and $z^2(\epsilon) = ... = a_0^2 + 2 a_0 a_1 \epsilon + O(\epsilon^2)$.
+
+Skipping over a lot of steps here.
+
+We finally get, for $N=2$, something like
+
+$$P_\epsilon(z_\epsilon) = (a_0^2 - 2_{a_0}) + (2 a_0 a_1 - 2 a_1 +1)\epsilon + (a_1^2 + 2 a_0 a_2 -
+2 a_2)\epsilon^2 + O(\epsilon^3) = 0$$
+
+$(a_0^2 - 2_{a_0}) = 0$, since expression must be identically equal to zero as
+$\epsilon \to 0$. If $P_\epsilon(z(\epsilon)) = 0$ for small $\epsilon$... (skipping this part).
+
+Fundamental theorem of perturbation theory says that if we have such an
+expansion, identically equal to 0, for $\epsilon$ sufficiently small, and all
+the coefficients are independent of $\epsilon$ (i.e. factored out), then the
+coefficients $A_0 = A_1 = ... = A_N = 0$. What this means for us that we get a
+system of equations consisting of the following two equations:
+
+$$ a_0^2 - 2_{a_0} = 0$$
+$$ 2 a_0 a_1 - 2 a_1 +1 = 0 $$
+$$ a_1^2 + 2 a_0 a_2 -2 a_2 = 0$$
+
+We simple solve this like we normall would. $a_0 = 0$ or $a_0 = 2$. If we pick
+the first solution, we get $a_1=\frac 1 2$, and that gives $a_2 = \frac 1 8$.
+
+This gives us the same perturbation series as when we knew the solution of the
+quadratic equation, without actually knowing the exact solution. That is, we
+could do the same on any polynomial of any degree, giving us an approximate
+solution without knowing an exact one.
+
+
+- Write down definition of Big Oh
 
 \section{Simple singular perturbation}
 
