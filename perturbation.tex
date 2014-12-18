@@ -30,19 +30,58 @@ exactly. We need approximate solutions that are justified in a rigorous manner.
 
 \section{Simple regular perturbation}
 
+Let's start with a simple quadratic equation.
+
 \begin{equation}
   z^2 - 2z + \epsilon
 \end{equation}
 
-Assume we don't know exact solution to this quadratic equation. For small
-$\epsilon$, how does the solution change? If we set $\epsilon$ to zero we get
-two solutions.
 
-In this case we know that $z=1 \pm \sqrt{1 - \epsilon}$, so it's easy to see what happens to the solution for any given small $\epsilon$, solutions will be around 0 and 2.
+For small $\epsilon$, how does the solution change? The first thought we might
+have is that we simply set $\epsilon$ to zero. If we do that we get two
+solutions, $z_1 = 2$ and $z_2 = 0$. In this case, since we know the exact
+solution to the full equationis $z = 1 \pm \sqrt{1-\epsilon}$, it's easy to see
+that changing $\epsilon$ a bit only changes the solution a bit. The solutions to
+the equation will be around $0$ and $2$.
 
-Expand $\sqrt{1 - \epsilon}$ as a Taylor series: $1 - \frac 1 2 \epsilon - \frac 1 8 \epsilon^2$
+When we say that $\epsilon$ is small, we mean something like $0 < \epsilon
+\ll 1$. The symbol $\ll$ means that the limit of $\epsilon$ over unity
+approaches $0$.
 
-This gives $z_1 = \frac 1 2 \epsilon + O(\epsilon^2)$ and $z_2 = 2 - \frac 1 2 \epsilon + O(\epsilon^2)$ etc.
+One way to do this more rigorously is to expand $\sqrt{1-\epsilon}$ part as a
+Taylor series around $\epsilon = 0$. In this case, we could've used a binominal series expansion as
+well.
+
+$\sqrt{1 - \epsilon}$ = $1 - \frac 1 2 \epsilon - \frac 1 8 \epsilon^2 +
+O(\epsilon^3)$
+
+The Big-oh notation is just a way to sweep irrelevant arithmetic details under
+the rug. What it's saying is that the following terms won't grow faster than on
+the order of $\epsilon^2$ (which, as $\epsilon$ is close to zero, is essentially
+insignificant).
+
+Using that Taylor expansion in our original solution, and performing some basic
+Big-Oh algebra, we get $z_1 = \frac 1 2 \epsilon + O(\epsilon^2)$ and $z_2 = 2 -
+\frac 1 2 \epsilon + O(\epsilon^2)$. Here I'm content with the $O(\epsilon^2)$
+term at the end, as more details aren't necessary for our current purposes.
+
+What does this tell us? What've established is a way to get successively better
+approximations to the solutions, given that $\epsilon$ is very small. The
+reduced equation corresponds to setting $\epsilon$ to $0$. This is called
+something like the 0th order perturbation. If we want the first order
+perturbation, we get the solutions as seen above. You can imagine
+substituting$ $\epsilon$ for a very small number, and you have some idea for how
+the solutions behaves.
+
+Let's assume we don't know exact solution to this quadratic equation. Instead
+we'll assume that we can express the solution using a perturbation series. How
+do we go about doing this?
+
+We'll use
+
+[this is great, you kind of know what's coming but not enough to write it on
+your own]
+
 
 \section{Simple singular perturbation}
 
