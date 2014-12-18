@@ -202,34 +202,50 @@ Procedure for this:
 
 \section{ODE example}
 
-ODE with BC. Can't fulfil both conditions at once. So two solutions, oe inner
-$O(\epsilon)$ and one other $O(1)$. Then combine (match) these to get a uniform
-solution.
+Let's take an ODE example with some boundary conditions.
 
-Lin and Segel example:
 
-$$\epsilon \frac{d^2 y}{d x^2} + 2 \frac{dy}{dx} = 0; y(0)=0, y(1)=1, 0 <
-\epsilon \ll 1.$$
+\begin{equation}
+    \epsilon \frac{d^2y}{dx^2} + 2 \frac{dy}{dx} + y = 0; 0 < x < 1, 0 <
+\epsilon \ll 1,
+\end{equation}
 
-If we take the reduced problem, see that the solution loses a dimension, and
-can't satisfy both BCs at once. Is it still a useful approximation somewhere?
+and boundary conditions $y(0)=0, y(1) =1$.
 
-Introduce inner and outer layer. Assume outer equation is approximated by
-reduced solution, except for in a thin layer of width $\epsilon$, around the
-boundary layer. For simplicity, let's also assume this outer approximation
-$y_o$ should satisfy the boundary condition at $x=1$ (in this example we can
-figure out the exact solution, so we already know the boundary layer is near
-$x=0$).
+The naive reduced version, $\epsilon = 0$ gives $2 \frac{dy}{dx} + y = 0$, with
+general solution $y=K \exp(-\frac{1}{2} x)$
 
-We then have eqn 23-24 from Lin and Segel.
+The problem here is that we can't satisfy both boundary conditions. Either the
+approximation leads to $y=0$ or $y=exp(\frac 1 2 - \frac 1 2 x)$. So what does
+this mean? Is either approximation good, and if so in which part of the
+interval?
 
-Rescaling.
+Here Lin and Segel show the logic of this by solving it exactly. We are gonna
+jump straight into the approximation part. [Unclear if this makes sense,
+considering the introduction of boundary layer etc].
 
-Inner equation.
+Let's assume that we can that solution to the outer equation (the one we have),
+approximates the exact solution everywhere but a small layer near a boundary.
+Let's also assume that this boundary layer near located near $x=0$ (as opposed to near $x=1$).
 
-Matching/intermediate region/matching.
+We require that the outer approximation $y_O$ satisfy the boundary condition at
+$x=1$. Then we have
 
-Uniform aproximation.
+$$2 \frac{dy_O}{dx} + y_O = 0, y_O(1)=1$$
+
+$$y_O(x) = exp[\frac 1 2 (1-x)]$$
+
+We let the boundary layer near $x=0$ have a thickness of order of magnitude
+$\delta(\epsilon)$. This layer thickness approaches zero as $\epsilon \to 0$, so
+$\delta \to 0$ as $\epsilon \to 0$.
+
+We introduce a change of variable as a rescaling for the scale appropriate for
+the boundary layer. Having a scale of order unity wouldn't be appropriate here,
+which is why we introduce another scale with the following change of variable:
+
+$$\xi = \frac x \delta$$
+
+We now replace... (at page 292).
 
 \chapter{TQSSA}
 
