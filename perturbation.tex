@@ -133,19 +133,64 @@ solution without knowing an exact one.
 
 \section{Simple singular perturbation}
 
+Let's look at a slightly more interesting example.
+
 \begin{equation}
   \epsilon z^2 - 2z + 1
 \end{equation}
 
-In this example we have $z = \frac{(1 \pm \sqrt{1-\epsilon})}{\epsilon}$. Note
-that $\epsilon=0$ removes one of the roots. This is indicative of a singular
-perturbation problem - we are missing something when we remove the error term.
+In this example, assuming we are aware of the quadratic equation for
+polynomials, we have $z = \frac{(1 \pm \sqrt{1-\epsilon})}{\epsilon}$. As
+$\epsilon \to 0$ we have a singularity. If we don't know the exact solution, and
+simply try to set $\epsilon=$, we note that we are removing one of the roots. This is indicative of a singular perturbation problem - we are missing something when we remove the error term.
 
-Unlike in the last section, $z(\epsilon) = \frac 2 \epsilon + ...$, obviously a
-problem here.
+If we proceed as we did in the last section, assuming we don't know the exact
+solution, we get an expression of one of the roots, but we don't get the other
+one. Why not? Because the exact root (if we Taylor expand the exact solution,
+starts with $\frac 2 \epsilon$, which is not on the form of a perturbation
+series) [This is a messy paragraph].
 
-Perturbation series $z(\epsilon) = a_0 + a_1 \epsilon + a_2 \epsilon^2 + ... +
-R^{n+1}, R^{n+1} = O(\epsilon{N+1})$
+If we don't know the exact solution, we can still get that the missing root
+$z_2(\epsilon)$ approaches $\infty$. We know that there must be two roots, since
+the polynomial is of degree two. We got
+
+$$Q_\epsilon(z) = \epsilon z^2 - 2z +1 = \epsilon[z - z_1(\epsilon)][z -
+z_2(\epsilon)] = \epsilon z^2 - \epsilon [z_1(\epsilon) + z_2(\epsilon)]z +
+\epsilon z_1(\epsilon)z_2(\epsilon)$$
+
+If $z=0$, we have $1 = \epsilon z_1(\epsilon) z_2(\epsilon)$, so as $\epsilon
+\to 0$, $z_2 \to \infty$ (inverse of $\epsilon$), since the other root approaches a finite value.
+
+We can make a simplification here: when $z_2(\epsilon)$ is large, $-2
+z_2(\epsilon) + 1 \sim -2 z_2(\epsilon)$ ($f \sim g$ means f asymptotic to g as
+$\epsilon$ approaches 0, $\frac f g \to 1$).
+
+We then have $z_2 \sim \epsilon z_2^2 - 2 z_2$ leads to $z_2 \sim \frac 2 \epsilon$
+(sloppy writing). Just a heuristic, not rigorous argument, but it leads to the
+conjecture:
+
+$$\epsilon z_2(\epsilon) \sim b_0 \neq 0$$
+
+$b_0 = 2$ doesn't matter, just that it's $\neq 0$. This suggest a change of
+variable:
+
+$$\epsilon z (\epsilon) = \omega (\epsilon)$$
+
+A lot of notation missing. Essence is that we turn a singular behavior, with the
+change of a varible, and reduce it into a regular perturbation problem.
+
+$$\epsilon Q(\frac \omega \epsilon) = \omega^2 - 2\omega + \epsilon$$
+
+Now we get essentially the same as before with the regular problem.
+
+$$\omega_2(\epsilon) = 2 - \frac 1 2 \epsilon + O(\epsilon^2)$$
+
+which gives
+
+$$z_2(\epsilon) = \frac 2 \epsilon - \frac 1 2 + O(\epsilon)$$
+
+We have thus found an approximate expression of the other root, by turning the
+singular problem into a regular one.
 
 Procedure for this:
 
