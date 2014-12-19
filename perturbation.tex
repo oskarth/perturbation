@@ -245,7 +245,114 @@ which is why we introduce another scale with the following change of variable:
 
 $$\xi = \frac x \delta$$
 
-We now replace... (at page 292).
+We now use this change of variable in our DE.
+
+We use this function instead: $Y(\xi, \epsilon) = y(\xi \epsilon, \epsilon)$ and
+get:
+
+$$\frac \epsilon \delta^2 \frac{d^2Y}{d\xi^2} + \frac 2 \delta \frac{dY}{d\xi}
++ Y = 0$$
+
+We now do something called pairwise balancing, to determine the relative
+magnitudes. $\delta$ is the length scale in the boundary layer, and the various
+'differentials' are O(1) there. The order of magnitudes are
+
+$$\frac \epsilon \delta^2, \frac 1 \delta, 1.$$
+
+If two of these balance out, and the third is negliable, we can neglect
+the last one and simply the problem. We know that one term of the balaning pair
+must be $\frac \epsilon \delta^2$, since we've seen that an approximation valid
+everywhere in $(0,1]$ isn't obtainable without it.
+
+If this first expression balances the third, then obviously $\delta =
+\epsilon^{\frac 1 2}$, which implies $\frac 1 \delta$ is large and not
+negliable. Alternatively, if the first expression balances the second, $\delta =
+\epsilon$ and the third expression is negligable, and we have found a so called
+scaling, $\delta = \epsilon, \xi=\frac x \epsilon$.
+
+All together we now have the inner equation, with a scale appropriate at the
+boundary/inner layer.
+
+$$\frac{d^2Y}{d\xi^2} + \frac{2dY}{d\xi} + \epsilon Y = 0$$
+
+As a first approximation, like before, we neglect the term with $\epsilon$ in it
+and get an approximate equation for the boundary layer. As $\epsilon \to 0$, we
+get it in terms of $y_i$:
+
+$$\frac{d^2y_I}{d\xi^2} + \frac{2dy_I}{d\xi} = 0$$
+
+We apply the boundary condition $y_I(0) = 0$. The second one we discard for now,
+since x=1 is not on the same scale as the one we are operating on now,
+$\delta=\epsilon$.
+
+$$y_I(\xi) = C(1-exp^{-2\xi})$$
+
+Now we turn to the matter of matching these two approximations, each valid at
+their own scale. This is done by overlaping the two solutions at some edge or
+intermediate region, where both solutions are good approximations.
+
+According to Lin and Segel, this is an area of continuous study, but the way we
+will do it is by noticing that when $x=O(\delta)$, x is within boundary layer,
+and when $x=O(1)$ it's outside it. How to do we x to be in the intermediate
+region? We let $x=O[\Theta(\epsilon)]$ where $O(\Theta)$ is between the two
+magnitudes,
+
+$$\lim \epsilon \to 0 \frac \Theta \delta = \infty, \lim \epsilon \to 0 \Theta =
+0$$ [what does this mean exactly?]
+
+page 294, a lot of symbols here, not grokking all of it.
+
+We find a limit which has to hold for both of them, a matching requirement. To
+get a uniform approximat valid for $[0,1]$, we add the inner and outer solution
+and remove the common part.
+
+Earlier with $x=O(\delta)$, in the boundary layer, we introduced a new variable
+$\xi$ and let $\epsilon \to 0$ with $\xi$ fixed. We now do something similar for
+the intermediate region.
+
+$$n = \frac x \Theta  (x = n \Theta, \xi = \frac{n \Theta}{\delta})$$
+
+The inner and outer approximations match if they have a common limit. Matching
+requires that
+
+$$\lim \epsilon \to 0[y_O(x) |_{x=n \Theta}] = lim \epsilon \to
+0[y_I(\xi)|_{xi=n \frac \Theta \delta}], n fixed$$
+
+Left-hand side:
+
+$$\lim \epsilon \to 0[exp^{(\frac 1 2)(1-x)} |_{x=n \Theta}] = \lim \epsilon \to
+0[exp^{(\frac 1 2)(1- n \Theta)}] = exp^{\frac 1 2} $$ [why $n \Theta \to 0$?
+cause n is fixed and other $\to 0$.]
+
+Right-hand side:
+
+$$\lim \epsilon \to 0[C(1-\exp^{-\frac{2n \Theta}{\delta}})] = C$$
+
+So we have requirement that $C = \exp^{\frac 1 2}$
+
+We thus have a C for our inner equation, $y_I(\xi) = e^{\frac 1
+2}(1-e^{-2\xi})$
+
+Now that we have an inner approximation and an outer approximation, we would
+like to put them together into one uniform approximation $y_U$, valid everywhere
+in $[0,1]$. We add them together and remove common part.
+
+$$y_U(x) = y_O(x) + y_I(\frac x \delta) - \lim \epsilon \to 0 y_O(n \Theta)$$
+[what's up with the common part being that limit?
+
+Sanity check should show that it produces inner approximation for inner region,
+rest negliable etc. It should reduce to the right approximation depending on
+region.
+
+In total, $$y_U(x) = e^{(\frac 1 2)(1-x)} + e^{\frac 1 2}(1 - e^{-2\frac x
+\epsilon}) - e^{\frac 1 2} = e^{\frac 1 2}(e^{\frac -x 2} - e^{\frac -2x
+\epsilon})$$
+
+Confirm numerically? It works on exact solution though.
+
+
+- Write limits properly
+- Special n
 
 \chapter{TQSSA}
 
