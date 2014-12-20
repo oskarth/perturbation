@@ -13,7 +13,7 @@
 
 \bibliographystyle{plain}
 
-\title{Singular Pertubation Theory and TQSSA}
+\title{DRAFT: Singular Pertubation Theory and TQSSA}
 \author{Oskar Thor\'{e}n}
 
 \maketitle
@@ -23,14 +23,15 @@
 \section{History and introduction}
 
 \textit{It causeth my head to ache} -- Newton on the orbits of the moon. Three
-body problem. Discovery Neptunus, but also Vulcan. Poincare and Prandtl.
+body problem. Discovery Neptunus, but also Vulcan (GR fixed that). Poincare and Prandtl.
 
 Many phenomena can be modelled by ODEs, but only a subset of ODEs can be solved
 exactly. We need approximate solutions that are justified in a rigorous manner.
 
 This text is heavily inspired by two source. The first is \textit{A first look
 at Perturbation Theory} by Simmonds. The other is \textit{Applied mathematics
-in...} by Lin and Segel.
+in...} by Lin and Segel. Also taking some inspiration from Holmes
+\textit{Introduction to Perturbation methods}
 
 \section{Simple regular perturbation}
 
@@ -107,6 +108,10 @@ We finally get, for $N=2$, something like
 $$P_\epsilon(z_\epsilon) = (a_0^2 - 2_{a_0}) + (2 a_0 a_1 - 2 a_1 +1)\epsilon + (a_1^2 + 2 a_0 a_2 -
 2 a_2)\epsilon^2 + O(\epsilon^3) = 0$$
 
+$\textbf{NOTE: this part was confusing with the identically=0 part. Include proof of theorem?}$
+
+$\textbf{NOTE: make procedural nature step (a)-(e) (Lin and Segel) more clear}$
+
 $(a_0^2 - 2_{a_0}) = 0$, since expression must be identically equal to zero as
 $\epsilon \to 0$. If $P_\epsilon(z(\epsilon)) = 0$ for small $\epsilon$... (skipping this part).
 
@@ -158,12 +163,16 @@ $$Q_\epsilon(z) = \epsilon z^2 - 2z +1 = \epsilon[z - z_1(\epsilon)][z -
 z_2(\epsilon)] = \epsilon z^2 - \epsilon [z_1(\epsilon) + z_2(\epsilon)]z +
 \epsilon z_1(\epsilon)z_2(\epsilon)$$
 
+$\textbf{NOTE: equality doesn't anove with $\epsilon$, what's up with that?}$
+
 If $z=0$, we have $1 = \epsilon z_1(\epsilon) z_2(\epsilon)$, so as $\epsilon
 \to 0$, $z_2 \to \infty$ (inverse of $\epsilon$), since the other root approaches a finite value.
 
 We can make a simplification here: when $z_2(\epsilon)$ is large, $-2
 z_2(\epsilon) + 1 \sim -2 z_2(\epsilon)$ ($f \sim g$ means f asymptotic to g as
 $\epsilon$ approaches 0, $\frac f g \to 1$).
+
+$\textbf{NOTE: things missing here}$
 
 We then have $z_2 \sim \epsilon z_2^2 - 2 z_2$ leads to $z_2 \sim \frac 2 \epsilon$
 (sloppy writing). Just a heuristic, not rigorous argument, but it leads to the
@@ -204,6 +213,10 @@ Procedure for this:
 
 Let's take an ODE example with some boundary conditions.
 
+$\textbf{NOTE: this section will be re-written with procedure and notation a la
+Holmes page 58-63 - more clear wrt boundary-layer coordinates and scales, and
+less notation generally. Following is not clear at all, especially towards the
+end.}$
 
 \begin{equation}
     \epsilon \frac{d^2y}{dx^2} + 2 \frac{dy}{dx} + y = 0; 0 < x < 1, 0 <
@@ -269,6 +282,8 @@ If this first expression balances the third, then obviously $\delta =
 negliable. Alternatively, if the first expression balances the second, $\delta =
 \epsilon$ and the third expression is negligable, and we have found a so called
 scaling, $\delta = \epsilon, \xi=\frac x \epsilon$.
+
+$\textbf{NOTE: def of balance as f~g missing, and algebra to get result}$
 
 All together we now have the inner equation, with a scale appropriate at the
 boundary/inner layer.
@@ -356,9 +371,16 @@ Confirm numerically? It works on exact solution though.
 
 \chapter{TQSSA}
 
+$\textbf{NOTE: rough outline of topics. Once ODE section above is clearer, all
+components there except for scaling and translating the chemical reactions.
+Section based on Lin/Segel chapter 10 (primarily), YZ-notes on QSSA and Khoo
+TQSSA-justification}$
+
 \section{Biological problem}
 
-Thing and enzyme. Combines fast. QSSA two time scales. TQSSA similar.
+Substrate and enzyme. Combines fast, experimentally. QSSA two time scales
+(Ingalls). TQSSA similar. Justification by singular perturbation theory, similar
+to ODE example above.
 
 \section{Scaling}
 
@@ -375,6 +397,9 @@ $0 < \epsilon \leq 1, \epsilon = \frac{t_{\epsilon}}{t_{s}}$
 \section{Applying it}
 
 See Verdugo.
+
+\textbf{NOTE: possibly add numerical simulation sanity check, or second-term or
+something? later.}
 
 \bibliography{references}
 
