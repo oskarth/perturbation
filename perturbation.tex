@@ -28,10 +28,10 @@ body problem. Discovery Neptunus, but also Vulcan (GR fixed that). Poincare and 
 Many phenomena can be modelled by ODEs, but only a subset of ODEs can be solved
 exactly. We need approximate solutions that are justified in a rigorous manner.
 
-This text is heavily inspired by two source. The first is \textit{A first look
-at Perturbation Theory} by Simmonds. The other is \textit{Applied mathematics
-in...} by Lin and Segel. Also taking some inspiration from Holmes
-\textit{Introduction to Perturbation methods}
+This text is heavily inspired by two source. The first is
+\textit{A first look at Perturbation Theory} by Simmonds. The other is
+\textit{Applied mathematics in...} by Lin and Segel. Also taking some
+inspiration from Holmes \textit{Introduction to Perturbation methods...}
 
 \section{Simple regular perturbation}
 
@@ -41,29 +41,29 @@ Let's start with a simple quadratic equation.
   z^2 - 2z + \epsilon
 \end{equation}
 
-
-For small $\epsilon$, how does the solution change? The first thought we might
-have is that we simply set $\epsilon$ to zero. If we do that we get two
-solutions, $z_1 = 2$ and $z_2 = 0$. In this case, since we know the exact
-solution to the full equationis $z = 1 \pm \sqrt{1-\epsilon}$, it's easy to see
-that changing $\epsilon$ a bit only changes the solution a bit. The solutions to
-the equation will be around $0$ and $2$.
+For small $\epsilon$, how does the solution change? The first thought
+we might have is that we simply set $\epsilon$ to zero. If we do that
+we get two solutions, $z_1 = 2$ and $z_2 = 0$. In this case, since we
+know the exact solution to the full equationis $z = 1 \pm
+\sqrt{1-\epsilon}$, it's easy to see that changing $\epsilon$ a bit
+only changes the solution a bit. The solutions to the equation will be
+around $0$ and $2$.
 
 When we say that $\epsilon$ is small, we mean something like $0 < \epsilon
 \ll 1$. The symbol $\ll$ means that the limit of $\epsilon$ over unity
 approaches $0$.
 
-One way to do this more rigorously is to expand $\sqrt{1-\epsilon}$ part as a
-Taylor series around $\epsilon = 0$. In this case, we could've used a binominal series expansion as
-well.
+One way to do this more rigorously is to expand $\sqrt{1-\epsilon}$
+part as a Taylor series around $\epsilon = 0$. In this case, we
+could've used a binominal series expansion as well.
 
-$\sqrt{1 - \epsilon}$ = $1 - \frac 1 2 \epsilon - \frac 1 8 \epsilon^2 +
-O(\epsilon^3)$
+$\sqrt{1 - \epsilon}$ = $1 - \frac 1 2 \epsilon - \frac 1 8 \epsilon^2
++ O(\epsilon^3)$
 
-The Big-oh notation is just a way to sweep irrelevant arithmetic details under
-the rug. What it's saying is that the following terms won't grow faster than on
-the order of $\epsilon^2$ (which, as $\epsilon$ is close to zero, is essentially
-insignificant).
+The Big-oh notation is just a way to sweep irrelevant arithmetic
+details under the rug. What it's saying is that the following terms
+won't grow faster than on the order of $\epsilon^2$
+(which, as $\epsilon$ is close to zero, is essentially insignificant).
 
 Using that Taylor expansion in our original solution, and performing some basic
 Big-Oh algebra, we get $z_1 = \frac 1 2 \epsilon + O(\epsilon^2)$ and $z_2 = 2 -
@@ -84,22 +84,23 @@ is every root of $P_\epsilon(z) = z^2 - 2z + \epsilon$ has a perturbation
 expansion for some N. A perturbation expansion is defined as follows:
 
 \begin{equation}
-  z(\epsilon) = a_0 + a_1 \epsilon + a_2 \epsilon^2 + ...  + R^{n+1}, R^{n+1} = O(\epsilon^{N+1})
+  z(\epsilon) = a_0 + a_1 \epsilon + a_2 \epsilon^2 + ...  + R^{n+1}, R^{n+1} = O(\epsilon^{N+1}
 \end{equation}
 
 How do we go about doing this? What we want to do is to determine the
 coefficients $a_0$, $a_1$ etc. We do this by writing
 
 $$P_\epsilon(z(\epsilon)) = P_\epsilon(a_0 + a_1\epsilon + ... +
-O(\epsilon^{N+1})) = (a_0 + a_1\epsilon + ...)^2 - 2(a_0 + a1_\epsilon + ...) +
-\epsilon = 0$$
+O(\epsilon^{N+1})) = (a_0 + a_1\epsilon + ...)^2 - 2(a_0 + a1_\epsilon
++ ...) + \epsilon = 0$$
 
-It's identically equal as $\epsilon \to 0$. Now we simply
-collect the $\epsilon$ terms and do some Big-oh algebra to put it in the
-required form for some N.
+It's identically equal as $\epsilon \to 0$. Now we simply collect the
+$\epsilon$ terms and do some Big-oh algebra to put it in the required
+form for some N.
 
-For example, if N=1 we have $z(\epsilon) = a_0 + a_1\epsilon + O(\epsilon^2)$
-and $z^2(\epsilon) = ... = a_0^2 + 2 a_0 a_1 \epsilon + O(\epsilon^2)$.
+For example, if N=1 we have $z(\epsilon) = a_0 + a_1\epsilon +
+O(\epsilon^2)$ and $z^2(\epsilon) = ... = a_0^2 + 2 a_0 a_1 \epsilon +
+O(\epsilon^2)$.
 
 Skipping over a lot of steps here.
 
@@ -125,13 +126,15 @@ $$ a_0^2 - 2_{a_0} = 0$$
 $$ 2 a_0 a_1 - 2 a_1 +1 = 0 $$
 $$ a_1^2 + 2 a_0 a_2 -2 a_2 = 0$$
 
-We simple solve this like we normall would. $a_0 = 0$ or $a_0 = 2$. If we pick
-the first solution, we get $a_1=\frac 1 2$, and that gives $a_2 = \frac 1 8$.
+We simple solve this like we normall would. $a_0 = 0$ or $a_0 = 2$. If
+we pick the first solution, we get $a_1=\frac 1 2$, and that gives
+$a_2 = \frac 1 8$.
 
-This gives us the same perturbation series as when we knew the solution of the
-quadratic equation, without actually knowing the exact solution. That is, we
-could do the same on any polynomial of any degree, giving us an approximate
-solution without knowing an exact one.
+This gives us the same perturbation series as when we knew the
+solution of the quadratic equation, without actually knowing the exact
+solution. That is, we could do the same on any polynomial of any
+degree, giving us an approximate solution without knowing an exact
+one.
 
 
 - Write down definition of Big Oh
@@ -145,48 +148,54 @@ Let's look at a slightly more interesting example.
 \end{equation}
 
 In this example, assuming we are aware of the quadratic equation for
-polynomials, we have $z = \frac{(1 \pm \sqrt{1-\epsilon})}{\epsilon}$. As
-$\epsilon \to 0$ we have a singularity. If we don't know the exact solution, and
-simply try to set $\epsilon=$, we note that we are removing one of the roots. This is indicative of a singular perturbation problem - we are missing something when we remove the error term.
+polynomials, we have $z = \frac{(1 \pm
+  \sqrt{1-\epsilon})}{\epsilon}$. As $\epsilon \to 0$ we have a
+singularity. If we don't know the exact solution, and simply try to
+set $\epsilon=$, we note that we are removing one of the roots. This
+is indicative of a singular perturbation problem - we are missing
+something when we remove the error term.
 
-If we proceed as we did in the last section, assuming we don't know the exact
-solution, we get an expression of one of the roots, but we don't get the other
-one. Why not? Because the exact root (if we Taylor expand the exact solution,
-starts with $\frac 2 \epsilon$, which is not on the form of a perturbation
-series) [This is a messy paragraph].
+If we proceed as we did in the last section, assuming we don't know
+the exact solution, we get an expression of one of the roots, but we
+don't get the other one. Why not? Because the exact root (if we Taylor
+expand the exact solution, starts with $\frac 2 \epsilon$, which is
+not on the form of a perturbation series) [This is a messy paragraph].
 
-If we don't know the exact solution, we can still get that the missing root
-$z_2(\epsilon)$ approaches $\infty$. We know that there must be two roots, since
-the polynomial is of degree two. We got
+If we don't know the exact solution, we can still get that the missing
+root $z_2(\epsilon)$ approaches $\infty$. We know that there must be
+two roots, since the polynomial is of degree two. We got
 
-$$Q_\epsilon(z) = \epsilon z^2 - 2z +1 = \epsilon[z - z_1(\epsilon)][z -
-z_2(\epsilon)] = \epsilon z^2 - \epsilon [z_1(\epsilon) + z_2(\epsilon)]z +
-\epsilon z_1(\epsilon)z_2(\epsilon)$$
+$$Q_\epsilon(z) = \epsilon z^2 - 2z +1 = \epsilon[z - z_1(\epsilon)][z
+  - z_2(\epsilon)] = \epsilon z^2 - \epsilon [z_1(\epsilon) +
+  z_2(\epsilon)]z + \epsilon z_1(\epsilon)z_2(\epsilon)$$
 
-\textbf{NOTE:} equality doesn't anove with $\epsilon$, what's up with that?
+\textbf{NOTE:} equality doesn't anove with $\epsilon$, what's up with
+that?
 
-If $z=0$, we have $1 = \epsilon z_1(\epsilon) z_2(\epsilon)$, so as $\epsilon
-\to 0$, $z_2 \to \infty$ (inverse of $\epsilon$), since the other root approaches a finite value.
+If $z=0$, we have $1 = \epsilon z_1(\epsilon) z_2(\epsilon)$, so as
+$\epsilon \to 0$, $z_2 \to \infty$ (inverse of $\epsilon$), since the
+other root approaches a finite value.
 
 We can make a simplification here: when $z_2(\epsilon)$ is large, $-2
-z_2(\epsilon) + 1 \sim -2 z_2(\epsilon)$ ($f \sim g$ means f asymptotic to g as
-$\epsilon$ approaches 0, $\frac f g \to 1$).
+z_2(\epsilon) + 1 \sim -2 z_2(\epsilon)$ ($f \sim g$ means f
+asymptotic to g as $\epsilon$ approaches 0, $\frac f g \to 1$).
 
 \textbf{NOTE: }things missing here
 
-We then have $z_2 \sim \epsilon z_2^2 - 2 z_2$ leads to $z_2 \sim \frac 2 \epsilon$
-(sloppy writing). Just a heuristic, not rigorous argument, but it leads to the
-conjecture:
+We then have $z_2 \sim \epsilon z_2^2 - 2 z_2$ leads to $z_2 \sim
+\frac 2 \epsilon$ (sloppy writing). Just a heuristic, not rigorous
+argument, but it leads to the conjecture:
 
 $$\epsilon z_2(\epsilon) \sim b_0 \neq 0$$
 
-$b_0 = 2$ doesn't matter, just that it's $\neq 0$. This suggest a change of
-variable:
+$b_0 = 2$ doesn't matter, just that it's $\neq 0$. This suggest a
+change of variable:
 
 $$\epsilon z (\epsilon) = \omega (\epsilon)$$
 
-A lot of notation missing. Essence is that we turn a singular behavior, with the
-change of a varible, and reduce it into a regular perturbation problem.
+A lot of notation missing. Essence is that we turn a singular
+behavior, with the change of a varible, and reduce it into a regular
+perturbation problem.
 
 $$\epsilon Q(\frac \omega \epsilon) = \omega^2 - 2\omega + \epsilon$$
 
@@ -198,146 +207,146 @@ which gives
 
 $$z_2(\epsilon) = \frac 2 \epsilon - \frac 1 2 + O(\epsilon)$$
 
-We have thus found an approximate expression of the other root, by turning the
-singular problem into a regular one.
+We have thus found an approximate expression of the other root, by
+turning the singular problem into a regular one.
 
 Procedure for this:
 
-1. Substitute
-2. Expand
-3. Collect
-4. Substitute original IC/BC
-5. ...
+1. Substitute 2. Expand 3. Collect 4. Substitute original IC/BC 5. ...
 
 \section{ODE example}
 
 Let's take an ODE example with some boundary conditions.
 
-\textbf{NOTE:} this section will be re-written with procedure and notation a la
-Holmes page 58-63 - more clear wrt boundary-layer coordinates and scales, and
-less notation generally. Following is not clear at all, especially towards the
-end.
+\textbf{NOTE:} this section will be re-written with procedure and
+notation a la Holmes page 58-63 - more clear wrt boundary-layer
+coordinates and scales, and less notation generally. Following is not
+clear at all, especially towards the end.
 
 \begin{equation}
-    \epsilon \frac{d^2y}{dx^2} + 2 \frac{dy}{dx} + y = 0; 0 < x < 1, 0 <
-\epsilon \ll 1,
+  \epsilon \frac{d^2y}{dx^2} + 2 \frac{dy}{dx} + y = 0; 0 < x < 1, 0
+  < \epsilon \ll 1,
 \end{equation}
 
 and boundary conditions $y(0)=0, y(1) =1$.
 
-The naive reduced version, $\epsilon = 0$ gives $2 \frac{dy}{dx} + y = 0$, with
-general solution $y=K \exp(-\frac{1}{2} x)$
+The naive reduced version, $\epsilon = 0$ gives $2 \frac{dy}{dx} + y =
+0$, with general solution $y=K \exp(-\frac{1}{2} x)$
 
-The problem here is that we can't satisfy both boundary conditions. Either the
-approximation leads to $y=0$ or $y=exp(\frac 1 2 - \frac 1 2 x)$. So what does
-this mean? Is either approximation good, and if so in which part of the
-interval?
+The problem here is that we can't satisfy both boundary
+conditions. Either the approximation leads to $y=0$ or $y=exp(\frac 1
+2 - \frac 1 2 x)$. So what does this mean? Is either approximation
+good, and if so in which part of the interval?
 
-Here Lin and Segel show the logic of this by solving it exactly. We are gonna
-jump straight into the approximation part. [Unclear if this makes sense,
-considering the introduction of boundary layer etc].
+Here Lin and Segel show the logic of this by solving it exactly. We
+are gonna jump straight into the approximation part. [Unclear if this
+  makes sense, considering the introduction of boundary layer etc].
 
-Let's assume that we can that solution to the outer equation (the one we have),
-approximates the exact solution everywhere but a small layer near a boundary.
-Let's also assume that this boundary layer near located near $x=0$ (as opposed to near $x=1$).
+Let's assume that we can that solution to the outer equation (the one
+we have), approximates the exact solution everywhere but a small layer
+near a boundary.  Let's also assume that this boundary layer near
+located near $x=0$ (as opposed to near $x=1$).
 
-We require that the outer approximation $y_O$ satisfy the boundary condition at
-$x=1$. Then we have
+We require that the outer approximation $y_O$ satisfy the boundary
+condition at $x=1$. Then we have
 
 $$2 \frac{dy_O}{dx} + y_O = 0, y_O(1)=1$$
 
 $$y_O(x) = exp[\frac 1 2 (1-x)]$$
 
-We let the boundary layer near $x=0$ have a thickness of order of magnitude
-$\delta(\epsilon)$. This layer thickness approaches zero as $\epsilon \to 0$, so
-$\delta \to 0$ as $\epsilon \to 0$.
+We let the boundary layer near $x=0$ have a thickness of order of
+magnitude $\delta(\epsilon)$. This layer thickness approaches zero as
+$\epsilon \to 0$, so $\delta \to 0$ as $\epsilon \to 0$.
 
-We introduce a change of variable as a rescaling for the scale appropriate for
-the boundary layer. Having a scale of order unity wouldn't be appropriate here,
-which is why we introduce another scale with the following change of variable:
+We introduce a change of variable as a rescaling for the scale
+appropriate for the boundary layer. Having a scale of order unity
+wouldn't be appropriate here, which is why we introduce another scale
+with the following change of variable:
 
 $$\xi = \frac x \delta$$
 
 We now use this change of variable in our DE.
 
-We use this function instead: $Y(\xi, \epsilon) = y(\xi \epsilon, \epsilon)$ and
-get:
+We use this function instead: $Y(\xi, \epsilon) = y(\xi \epsilon,
+\epsilon)$ and get:
 
-$$\frac \epsilon \delta^2 \frac{d^2Y}{d\xi^2} + \frac 2 \delta \frac{dY}{d\xi}
-+ Y = 0$$
+$$\frac \epsilon \delta^2 \frac{d^2Y}{d\xi^2} + \frac 2 \delta
+\frac{dY}{d\xi} + Y = 0$$
 
-We now do something called pairwise balancing, to determine the relative
-magnitudes. $\delta$ is the length scale in the boundary layer, and the various
-'differentials' are O(1) there. The order of magnitudes are
+We now do something called pairwise balancing, to determine the
+relative magnitudes. $\delta$ is the length scale in the boundary
+layer, and the various 'differentials' are O(1) there. The order of
+magnitudes are
 
 $$\frac \epsilon \delta^2, \frac 1 \delta, 1.$$
 
-If two of these balance out, and the third is negliable, we can neglect
-the last one and simply the problem. We know that one term of the balaning pair
-must be $\frac \epsilon \delta^2$, since we've seen that an approximation valid
-everywhere in $(0,1]$ isn't obtainable without it.
+If two of these balance out, and the third is negliable, we can
+neglect the last one and simply the problem. We know that one term of
+the balaning pair must be $\frac \epsilon \delta^2$, since we've seen
+that an approximation valid everywhere in $(0,1]$ isn't obtainable
+  without it.
 
 If this first expression balances the third, then obviously $\delta =
 \epsilon^{\frac 1 2}$, which implies $\frac 1 \delta$ is large and not
-negliable. Alternatively, if the first expression balances the second, $\delta =
-\epsilon$ and the third expression is negligable, and we have found a so called
-scaling, $\delta = \epsilon, \xi=\frac x \epsilon$.
+negliable. Alternatively, if the first expression balances the second,
+$\delta = \epsilon$ and the third expression is negligable, and wehave
+found a so called scaling, $\delta = \epsilon, \xi=\frac x \epsilon$.
 
-\textbf{NOTE:} def of balance as f~g missing, and algebra to get result
+\textbf{NOTE:} def of balance as f~g missing, and algebra to get
+result
 
-All together we now have the inner equation, with a scale appropriate at the
-boundary/inner layer.
+All together we now have the inner equation, with a scale appropriate
+at the boundary/inner layer.
 
 $$\frac{d^2Y}{d\xi^2} + \frac{2dY}{d\xi} + \epsilon Y = 0$$
 
-As a first approximation, like before, we neglect the term with $\epsilon$ in it
-and get an approximate equation for the boundary layer. As $\epsilon \to 0$, we
-get it in terms of $y_i$:
+As a first approximation, like before, we neglect the term with
+$\epsilon$ in it and get an approximate equation for the boundary
+layer. As $\epsilon \to 0$, we get it in terms of $y_i$:
 
 $$\frac{d^2y_I}{d\xi^2} + \frac{2dy_I}{d\xi} = 0$$
 
-We apply the boundary condition $y_I(0) = 0$. The second one we discard for now,
-since x=1 is not on the same scale as the one we are operating on now,
-$\delta=\epsilon$.
+We apply the boundary condition $y_I(0) = 0$. The second one we
+discard for now, since x=1 is not on the same scale as the one we are
+operating on now, $\delta=\epsilon$.
 
 $$y_I(\xi) = C(1-exp^{-2\xi})$$
 
-Now we turn to the matter of matching these two approximations, each valid at
-their own scale. This is done by overlaping the two solutions at some edge or
-intermediate region, where both solutions are good approximations.
+Now we turn to the matter of matching these two approximations, each
+valid at their own scale. This is done by overlaping the two solutions
+at some edge or intermediate region, where both solutions are good
+approximations.
 
-According to Lin and Segel, this is an area of continuous study, but the way we
-will do it is by noticing that when $x=O(\delta)$, x is within boundary layer,
-and when $x=O(1)$ it's outside it. How to do we x to be in the intermediate
-region? We let $x=O[\Theta(\epsilon)]$ where $O(\Theta)$ is between the two
-magnitudes,
-
-$$\lim \epsilon \to 0 \frac \Theta \delta = \infty, \lim \epsilon \to 0 \Theta =
-0$$ [what does this mean exactly?]
+According to Lin and Segel, this is an area of continuous study, but
+the way we will do it is by noticing that when $x=O(\delta)$, x is
+within boundary layer, and when $x=O(1)$ it's outside it. How to do we
+x to be in the intermediate region? We let $x=O[\Theta(\epsilon)]$
+where $O(\Theta)$ is between the two magnitudes $$\lim \epsilon \to 0 \frac \Theta \delta = \infty, \lim \epsilon \to
+0 \Theta = 0$$ [what does this mean exactly?]
 
 page 294, a lot of symbols here, not grokking all of it.
 
-We find a limit which has to hold for both of them, a matching requirement. To
-get a uniform approximat valid for $[0,1]$, we add the inner and outer solution
-and remove the common part.
+We find a limit which has to hold for both of them, a matching
+requirement. To get a uniform approximat valid for $[0,1]$, we add the
+inner and outer solution and remove the common part.
 
-Earlier with $x=O(\delta)$, in the boundary layer, we introduced a new variable
-$\xi$ and let $\epsilon \to 0$ with $\xi$ fixed. We now do something similar for
-the intermediate region.
+Earlier with $x=O(\delta)$, in the boundary layer, we introduced a new
+variable $\xi$ and let $\epsilon \to 0$ with $\xi$ fixed. We now do
+something similar for the intermediate region.
 
-$$n = \frac x \Theta  (x = n \Theta, \xi = \frac{n \Theta}{\delta})$$
+$$n = \frac x \Theta (x = n \Theta, \xi = \frac{n \Theta}{\delta})$$
 
-The inner and outer approximations match if they have a common limit. Matching
-requires that
+The inner and outer approximations match if they have a common
+limit. Matching requires that
 
 $$\lim \epsilon \to 0[y_O(x) |_{x=n \Theta}] = lim \epsilon \to
 0[y_I(\xi)|_{xi=n \frac \Theta \delta}], n fixed$$
 
 Left-hand side:
 
-$$\lim \epsilon \to 0[exp^{(\frac 1 2)(1-x)} |_{x=n \Theta}] = \lim \epsilon \to
-0[exp^{(\frac 1 2)(1- n \Theta)}] = exp^{\frac 1 2} $$ [why $n \Theta \to 0$?
-cause n is fixed and other $\to 0$.]
+$$\lim \epsilon \to 0[exp^{(\frac 1 2)(1-x)} |_{x=n \Theta}] = \lim
+\epsilon \to 0[exp^{(\frac 1 2)(1- n \Theta)}] = exp^{\frac 1 2} $$
+[why $n \Theta \to 0$?  cause n is fixed and other $\to 0$.]
 
 Right-hand side:
 
@@ -345,42 +354,75 @@ $$\lim \epsilon \to 0[C(1-\exp^{-\frac{2n \Theta}{\delta}})] = C$$
 
 So we have requirement that $C = \exp^{\frac 1 2}$
 
-We thus have a C for our inner equation, $y_I(\xi) = e^{\frac 1
-2}(1-e^{-2\xi})$
+We thus have a C for our inner equation,
+$y_I(\xi) = e^{\frac 1 2}(1-e^{-2\xi})$
 
-Now that we have an inner approximation and an outer approximation, we would
-like to put them together into one uniform approximation $y_U$, valid everywhere
-in $[0,1]$. We add them together and remove common part.
+Now that we have an inner approximation and an outer approximation, we
+would like to put them together into one uniform approximation $y_U$,
+valid everywhere in $[0,1]$. We add them together and remove common part.
 
 $$y_U(x) = y_O(x) + y_I(\frac x \delta) - \lim \epsilon \to 0 y_O(n \Theta)$$
 [what's up with the common part being that limit?
 
-Sanity check should show that it produces inner approximation for inner region,
-rest negliable etc. It should reduce to the right approximation depending on
-region.
+Sanity check should show that it produces inner approximation for
+inner region, rest negliable etc. It should reduce to the right
+approximation depending on region.
 
-In total, $$y_U(x) = e^{(\frac 1 2)(1-x)} + e^{\frac 1 2}(1 - e^{-2\frac x
-\epsilon}) - e^{\frac 1 2} = e^{\frac 1 2}(e^{\frac -x 2} - e^{\frac -2x
-\epsilon})$$
+In total, $$y_U(x) = e^{(\frac 1 2)(1-x)} + e^{\frac 1 2}(1 -
+		e^{-2\frac x \epsilon}) - e^{\frac 1 2} = e^{\frac 1 2}(e^{\frac -x 2}
+			- e^{\frac -2x \epsilon})$$
 
 Confirm numerically? It works on exact solution though.
 
 
-- Write limits properly
-- Special n
+- Write limits properly Special n
 
-\chapter{TQSSA}
+\chapter{Biological application - TQSSA et al}
 
-\textbf{NOTE:} rough outline of topics. Once ODE section above is clearer, all
-components there except for scaling and translating the chemical reactions.
-Section based on Lin/Segel chapter 10 (primarily), YZ-notes on QSSA and Khoo
-TQSSA-justification
+\textbf{NOTE:} rough outline of topics. Once ODE section above is
+clearer, all components there except for scaling and translating the
+chemical reactions.  Section based on Lin/Segel chapter 10
+(primarily), YZ-notes on QSSA and Khoo TQSSA-justification
+
+In the paper there are three main model assumptions being made: law of
+mass action, Michaelis-menten mechanics, and Total Quasi Steady
+State. We will now attempt to justify these with singular perturbation
+theory [all? TQSSA only?].
+
+Let's start with a short description of them all [unclear if this should be included].
+
+\section{Law of mass action}
+
+States that \textit{the rate of a chemical reaction is proportional to the
+product of the concentrations of the reactants}. Depends on the continuum
+hypothesis and the well-stirred assumption \cite{Ingalls}.
+
+\begin{equation}
+a+b \rightarrow c
+\end{equation}
+
+\begin{equation}
+\dot{c} = k_1 ab
+\end{equation}
+
+\section{Michaelis-Menten Mechanics}
+
+In an enzyme-catalyzed reaction $$ s^* + e^* \leftarrow \rightarrow
+c^* \rightarrow p*+e* $$
+
+we often see that the enyzyme concentration is very small compared to
+the substrate concentration, which according to MMM leads to a very small amount
+of complex compared to the substrate.
+
+
+
+\section{Total Quasi Steady State Assumption}
 
 \section{Biological problem}
 
-Substrate and enzyme. Combines fast, experimentally. QSSA two time scales
-(Ingalls). TQSSA similar. Justification by singular perturbation theory, similar
-to ODE example above.
+Substrate and enzyme. Combines fast, experimentally. QSSA two time
+scales (Ingalls). TQSSA similar. Justification by singular
+perturbation theory, similar to ODE example above.
 
 \section{Scaling}
 
