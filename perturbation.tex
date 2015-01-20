@@ -9,6 +9,8 @@
 \usepackage[parfill]{parskip} % line skip paragraphs
 \linespread{1.5} % linespacing 1.5
 
+\usepackage{amsmath} % good standards
+
 \begin{document}
 
 \bibliographystyle{plain}
@@ -126,7 +128,7 @@ $$ a_0^2 - 2_{a_0} = 0$$
 $$ 2 a_0 a_1 - 2 a_1 +1 = 0 $$
 $$ a_1^2 + 2 a_0 a_2 -2 a_2 = 0$$
 
-We simple solve this like we normall would. $a_0 = 0$ or $a_0 = 2$. If
+We simple solve this like we normally would. $a_0 = 0$ or $a_0 = 2$. If
 we pick the first solution, we get $a_1=\frac 1 2$, and that gives
 $a_2 = \frac 1 8$.
 
@@ -216,12 +218,12 @@ Procedure for this:
 
 \section{ODE example}
 
-Let's take an ODE example with some boundary conditions.
+Let's take an ODE example with some boundary conditions. We can divide this into multiple steps: finding the outer solution, boundary, layer, matching, and composite expansion.
 
 \textbf{NOTE:} this section will be re-written with procedure and
 notation a la Holmes page 58-63 - more clear wrt boundary-layer
 coordinates and scales, and less notation generally. Following is not
-clear at all, especially towards the end.
+clear at all, especially towards the end. -- is it really? Only major difference I see is the matching limit, where Holmes seems to use a more simplistic/naive version of lim yo(0+)=yi(inf). The pairwise balancing is also different. I feel like Lin and Segel is the more grown up version, possibly. Holmes seem to confuse, me at least, the O(epsilon) and the length scale? O?(1/epsilon)
 
 \begin{equation}
   \epsilon \frac{d^2y}{dx^2} + 2 \frac{dy}{dx} + y = 0; 0 < x < 1, 0
@@ -229,6 +231,8 @@ clear at all, especially towards the end.
 \end{equation}
 
 and boundary conditions $y(0)=0, y(1) =1$.
+
+\subsection{Outer solution}
 
 The naive reduced version, $\epsilon = 0$ gives $2 \frac{dy}{dx} + y =
 0$, with general solution $y=K \exp(-\frac{1}{2} x)$
@@ -239,13 +243,11 @@ conditions. Either the approximation leads to $y=0$ or $y=exp(\frac 1
 good, and if so in which part of the interval?
 
 Here Lin and Segel show the logic of this by solving it exactly. We
-are gonna jump straight into the approximation part. [Unclear if this
-  makes sense, considering the introduction of boundary layer etc].
+are gonna jump straight into the approximation part.
 
-Let's assume that we can that solution to the outer equation (the one
-we have), approximates the exact solution everywhere but a small layer
-near a boundary.  Let's also assume that this boundary layer near
-located near $x=0$ (as opposed to near $x=1$).
+Let's assume that we can use that solution is an outer solution(the one
+we have), that approximates the exact solution everywhere but a small layer
+near a boundary.  Let's also assume that this boundary layer is near $x=0$ (as opposed to near $x=1$).
 
 We require that the outer approximation $y_O$ satisfy the boundary
 condition at $x=1$. Then we have
@@ -254,6 +256,8 @@ $$2 \frac{dy_O}{dx} + y_O = 0, y_O(1)=1$$
 
 $$y_O(x) = exp[\frac 1 2 (1-x)]$$
 
+\subsection{Boundary layer}
+
 We let the boundary layer near $x=0$ have a thickness of order of
 magnitude $\delta(\epsilon)$. This layer thickness approaches zero as
 $\epsilon \to 0$, so $\delta \to 0$ as $\epsilon \to 0$.
@@ -261,7 +265,7 @@ $\epsilon \to 0$, so $\delta \to 0$ as $\epsilon \to 0$.
 We introduce a change of variable as a rescaling for the scale
 appropriate for the boundary layer. Having a scale of order unity
 wouldn't be appropriate here, which is why we introduce another scale
-with the following change of variable:
+with the following change of variable (\textbf{NOTE}: This is what Holmes calls a boundary-layer coordinate, I think).
 
 $$\xi = \frac x \delta$$
 
@@ -281,8 +285,8 @@ magnitudes are
 $$\frac \epsilon \delta^2, \frac 1 \delta, 1.$$
 
 If two of these balance out, and the third is negliable, we can
-neglect the last one and simply the problem. We know that one term of
-the balaning pair must be $\frac \epsilon \delta^2$, since we've seen
+neglect the last one and simplify the problem. We know that one term of
+the balancing pair must be $\frac \epsilon \delta^2$, since we've seen
 that an approximation valid everywhere in $(0,1]$ isn't obtainable
   without it.
 
@@ -293,7 +297,7 @@ $\delta = \epsilon$ and the third expression is negligable, and wehave
 found a so called scaling, $\delta = \epsilon, \xi=\frac x \epsilon$.
 
 \textbf{NOTE:} def of balance as f~g missing, and algebra to get
-result
+result. -- a balancing is simply a consequence of the logic of the assumption of relative magnitudes, like a perturbation series goes O(1)+O(e) etc.
 
 All together we now have the inner equation, with a scale appropriate
 at the boundary/inner layer.
@@ -312,6 +316,8 @@ operating on now, $\delta=\epsilon$.
 
 $$y_I(\xi) = C(1-exp^{-2\xi})$$
 
+\subsection{Matching}
+
 Now we turn to the matter of matching these two approximations, each
 valid at their own scale. This is done by overlaping the two solutions
 at some edge or intermediate region, where both solutions are good
@@ -327,7 +333,7 @@ where $O(\Theta)$ is between the two magnitudes $$\lim \epsilon \to 0 \frac \The
 page 294, a lot of symbols here, not grokking all of it.
 
 We find a limit which has to hold for both of them, a matching
-requirement. To get a uniform approximat valid for $[0,1]$, we add the
+requirement. To get a uniform approximation valid for $[0,1]$, we add the
 inner and outer solution and remove the common part.
 
 Earlier with $x=O(\delta)$, in the boundary layer, we introduced a new
@@ -352,10 +358,12 @@ Right-hand side:
 
 $$\lim \epsilon \to 0[C(1-\exp^{-\frac{2n \Theta}{\delta}})] = C$$
 
-So we have requirement that $C = \exp^{\frac 1 2}$
+So we have a requirement that $C = \exp^{\frac 1 2}$
 
 We thus have a C for our inner equation,
 $y_I(\xi) = e^{\frac 1 2}(1-e^{-2\xi})$
+
+\subsection{Composite expansion}
 
 Now that we have an inner approximation and an outer approximation, we
 would like to put them together into one uniform approximation $y_U$,
@@ -374,10 +382,13 @@ In total, $$y_U(x) = e^{(\frac 1 2)(1-x)} + e^{\frac 1 2}(1 -
 
 Confirm numerically? It works on exact solution though.
 
-
 - Write limits properly Special n
 
 \chapter{Biological application - TQSSA et al}
+
+We will proceed similarly to how we did in the previous section. After the preliminary notes, we start off by stating the problem, and then turning it from a biological form to a mathematical form, which we can solve as before. We turn it from its biological form with the help of dimensional analysis and scaling.
+
+\section{Preliminary notes (possibly temporary)}
 
 \textbf{NOTE:} rough outline of topics. Once ODE section above is
 clearer, all components there except for scaling and translating the
@@ -391,7 +402,7 @@ theory [all? TQSSA only?].
 
 Let's start with a short description of them all [unclear if this should be included].
 
-\section{Law of mass action}
+\subsection{Law of mass action}
 
 States that \textit{the rate of a chemical reaction is proportional to the
 product of the concentrations of the reactants}. Depends on the continuum
@@ -405,7 +416,7 @@ a+b \rightarrow c
 \dot{c} = k_1 ab
 \end{equation}
 
-\section{Michaelis-Menten Mechanics}
+\subsection{Michaelis-Menten Mechanics}
 
 In an enzyme-catalyzed reaction $$ s^* + e^* \leftarrow \rightarrow
 c^* \rightarrow p*+e* $$
@@ -414,16 +425,38 @@ we often see that the enyzyme concentration is very small compared to
 the substrate concentration, this in turn allow us to approximate $\dot{c}$ to
 0, which leads to a simplified system of equations.
 
-\section{Total Quasi Steady State Assumption}
-
+\subsection{Total Quasi Steady State Assumption}
 
 \section{Biological problem}
 
-How is it different from QSSA?
+The Quasi Steady State Assumption (QSSA) is a way of simplifying a system of two differential equations, under assumptions which are commonly satisfied in the biological problem that the differential equations corresponds to.
 
-Substrate and enzyme. Combines fast, experimentally. QSSA two time
-scales (Ingalls). TQSSA similar. Justification by singular
-perturbation theory, similar to ODE example above.
+If we have a substrate S and enzyme E that reversibly combines into a complex C, which in turn irreversibly produces a product P and frees up the enzyme, we can characterize this by the following ?-diagram.
+
+\begin{equation}
+E + S \leftarrow \rightarrow C \rightarrow P + E
+\end{equation}
+
+By the law of mass action, we can translate this ?-diagram into a set of differential equations.
+
+\begin{align*}
+\frac{dS}{dt} &= -k_1(E_0-C)S + k_{-1}C, \\
+\frac{dC}{dt} &= k_1[(E_0-C)S + k_mC],
+\end{align*}
+
+with $K_m = \frac{k_{-1}+k_2}{k_1}$. With the help of conservation laws we can get $E$ and $P$. Initial conditions are $(S, E, C, P) = (S_0, E_0, 0, 0)$.
+
+The normal criteria used in the QSSA is $ E_0 \ll S_0 $. That is, the amount of substrate is much bigger than the amount of enzyme, which leads to a lot of reactions happening. After a short initial period, the concentration of C will essentially not change. This is the key in the QSSA - it means that we can approximate $dC/dt=0$, and then change our system of two differential equations into a system of one equation (expressing S in terms of C), which we can get an exact expression of.
+
+How does the QSSA differ from that Total Quasi Steady State Assumption (TQSSA)? There we use the \textit{total substrate concentration} $S^{hat}$ instead of $S$ \cite{Borghans}, where $S^hat = S + C$.
+
+
+
+
+
+Khoo et al justified the TQSSA with singular perturbation analysis in 2008. We will now follow their approach.
+
+
 
 \section{Scaling}
 
