@@ -418,7 +418,7 @@ a+b \rightarrow c
 
 \subsection{Michaelis-Menten Mechanics}
 
-In an enzyme-catalyzed reaction $$ s^* + e^* \leftarrow \rightarrow
+In an enzyme-catalyzed reaction $$ s^* + e^* \rightleftharpoons
 c^* \rightarrow p*+e* $$
 
 we often see that the enyzyme concentration is very small compared to
@@ -448,13 +448,18 @@ with $K_m = \frac{k_{-1}+k_2}{k_1}$. With the help of conservation laws we can g
 
 The normal criteria used in the QSSA is $ E_0 \ll S_0 $. That is, the amount of substrate is much bigger than the amount of enzyme, which leads to a lot of reactions happening. After a short initial period, the concentration of C will essentially not change. This is the key in the QSSA - it means that we can approximate $dC/dt=0$, and then change our system of two differential equations into a system of one equation (expressing S in terms of C), which we can get an exact expression of.
 
-How does the QSSA differ from that Total Quasi Steady State Assumption (TQSSA)? There we use the \textit{total substrate concentration} $S^{hat}$ instead of $S$ \cite{Borghans}, where $S^hat = S + C$.
+How does the QSSA differ from that Total Quasi Steady State Assumption (TQSSA)? There we use the \textit{total substrate concentration} $\overline{S}$ instead of $S$ \cite{Borghans}, where $\overline{S} = S + C$. W then get the following rate equations for TQSSA.
 
+\begin{align*}
+\frac{d\overline{S}}{dt} &= -k_2C, \\
+\frac{dC}{dt} &= k_1[(E_0-C)S + k_mC],
+\end{align*}
 
+Initial conditions $\overline{S}(0)=S_0, C(0)=0$.
 
+With the problem formulated, we now proceed to justify TQSSA with the help of singular perturbation analysis and Khoo et. al. \cite{Khoo}.
 
-
-Khoo et al justified the TQSSA with singular perturbation analysis in 2008. We will now follow their approach.
+If we look in the phase plane we should see... HERE ATM.
 
 
 
