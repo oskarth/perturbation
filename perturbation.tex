@@ -104,7 +104,7 @@ For example, if N=1 we have $z(\epsilon) = a_0 + a_1\epsilon +
 O(\epsilon^2)$ and $z^2(\epsilon) = ... = a_0^2 + 2 a_0 a_1 \epsilon +
 O(\epsilon^2)$.
 
-Skipping over a lot of steps here.
+\textbf{NOTE}: Skipping over a lot of steps here.
 
 We finally get, for $N=2$, something like
 
@@ -139,7 +139,7 @@ degree, giving us an approximate solution without knowing an exact
 one.
 
 
-- Write down definition of Big Oh
+\textbf{NOTE}: Write down definition of Big Oh
 
 \section{Simple singular perturbation}
 
@@ -212,8 +212,7 @@ $$z_2(\epsilon) = \frac 2 \epsilon - \frac 1 2 + O(\epsilon)$$
 We have thus found an approximate expression of the other root, by
 turning the singular problem into a regular one.
 
-Procedure for this:
-
+\textbf{NOTE}:  Procedure for this:
 1. Substitute 2. Expand 3. Collect 4. Substitute original IC/BC 5. ...
 
 \section{ODE example}
@@ -330,7 +329,7 @@ x to be in the intermediate region? We let $x=O[\Theta(\epsilon)]$
 where $O(\Theta)$ is between the two magnitudes $$\lim \epsilon \to 0 \frac \Theta \delta = \infty, \lim \epsilon \to
 0 \Theta = 0$$ [what does this mean exactly?]
 
-page 294, a lot of symbols here, not grokking all of it.
+\textbf{NOTE}:  page 294, a lot of symbols here, not grokking all of it.
 
 We find a limit which has to hold for both of them, a matching
 requirement. To get a uniform approximation valid for $[0,1]$, we add the
@@ -382,7 +381,7 @@ In total, $$y_U(x) = e^{(\frac 1 2)(1-x)} + e^{\frac 1 2}(1 -
 
 Confirm numerically? It works on exact solution though.
 
-- Write limits properly Special n
+\textbf{NOTE}: Write limits properly Special.
 
 \chapter{Biological application - TQSSA et al}
 
@@ -450,28 +449,61 @@ The normal criteria used in the QSSA is $ E_0 \ll S_0 $. That is, the amount of 
 
 How does the QSSA differ from that Total Quasi Steady State Assumption (TQSSA)? There we use the \textit{total substrate concentration} $\overline{S}$ instead of $S$ \cite{Borghans}, where $\overline{S} = S + C$. W then get the following rate equations for TQSSA.
 
-\begin{align*}
-\frac{d\overline{S}}{dt} &= -k_2C, \\
-\frac{dC}{dt} &= k_1[(E_0-C)S + k_mC],
-\end{align*}
+\begin{equation}
+\frac{d\overline{S}}{dt} = -k_2C;
+\frac{dC}{dt} = k_1[(E_0-C)S + k_mC]
+\end{equation}
 
 Initial conditions $\overline{S}(0)=S_0, C(0)=0$.
 
 With the problem formulated, we now proceed to justify TQSSA with the help of singular perturbation analysis and Khoo et. al. \cite{Khoo}.
 
-If we look in the phase plane we should see... HERE ATM.
+If we look in the phase plane we should see that there are two stages.
 
-
+\textbf{NOTE}: Show graph of phase plane.
+\textbf{QUESTION}: How to provide it?
 
 \section{Scaling}
 
-Scale dimensionless. Two periods. Basics of dimensionaless.
+Segel and Slemrod (1989) enumerates several essential points for appropriate scaling. The goal is to get scaled and dimensionless variables, which by construction are of unit order of magnitude.
+
+\textbf{QUESTION}: Include a ssection on basics of dimensionless and scaling? ~ 6.3 in Lin/Segel
+
+First, let's think about time scales. Khoo and Hegland mentions the two timescales Borghans et al. finds.
+
+\begin{align*}
+t_c &= \frac{1}{k_1(E_0+S_0+K_M)}, \\
+t_{\overline{s}} &= \frac{E_0+S_0+K_m}{k_2+E_0}
+\end{align*}
+
+where $K_m = \frac{k_{-1} + k_{2}}{k_1}$ is the Michaelis-Menten constant.
+
+\textbf{NOTE}: We could derive this using Segel and Slemrod.
+
+Khoo and Heglund scale the time periods by dividing $t$ with each time scale, and the concentrations by dividing them with their maxima.
+
+\begin{align*}
+\tau = \frac t t_c, \\
+T = \frac t t_{\overline{S}}
+\end{align*}
+
+The first time period is for the fast initial time scale, and the second time scale for the slow one after that.
+
+\begin{equation}
+c = \frac{[C]}{C_0}; s = \frac{[\overline{S}]}{S_0}
+\end{equation}
+
+Borghans et al. calculate the maximum of $[C]$ as follows $C_0 = E_0S_0 / (E_0 + S_0 + K_m)$
+
+\textbf{NOTE}: Should we derive this?
+
+\section{Outer solution}
+
+We can reformulate the necessary condition of validity for TQSSA, derived by Borghans et al., $t_c \leq t_{\overline{S}}$ as $0\epsilon$ HERE ATM
 
 \section{Inner solution}
 
 $0 < \epsilon \leq 1, \epsilon = \frac{t_{\epsilon}}{t_{s}}$
-
-\section{Outer solution}
 
 \section{Matching and uniform approximation}
 
