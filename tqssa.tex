@@ -1,0 +1,74 @@
+\documentclass[12pt]{report}
+
+\usepackage{hyperref}
+
+\newcommand{\link}[2]{\href{#1}{#2}}
+
+% \usepackage[utf8]{inputenc}
+% \usepackage{mathtools}
+\usepackage[parfill]{parskip} % line skip paragraphs
+\linespread{1.5} % linespacing 1.5
+
+\usepackage{amsmath} % good standards
+
+\begin{document}
+
+\bibliographystyle{plain}
+
+\title{TQSSA}
+\author{Oskar Thor\'{e}n}
+
+\maketitle
+
+\chapter{TQSSA}
+
+The enzyme-substrate-complex schema
+
+\begin{equation}
+E + S \leftrightarrow C \rightarrow E + P
+\end{equation}
+
+where $k_1$, $k_{-1}$ and $k_2$ are parameters belonging to the respective arrows, can be described by the follow set of differential equations.
+
+\textbf{TODO:} Show derivation.
+
+\textbf{TODO:} Fill out rest of the ODEs.
+
+\begin{equation}
+\frac{dS}{dT} = ... \\
+\frac{dC}{dT} = ...
+\end{equation}
+
+with initial conditions $(S,E,C,P) = (S_0, E_0, 0, 0)$
+
+\textbf{TODO:} Fill out description of QSSA.
+The Quasi Steady State Assumptions tells us that we can approximate ... assuming ...
+
+TQSSA is an extension of the standard QSSA by the use of a change of variable.
+
+When we have too much enzyme for the standard QSSA to be valid, we can sometimes replace the free substrate concentration by total substrate concentration, as follows.
+
+\begin{equation}
+\overline{S} = S+C
+\end{equation}
+
+\textbf{TODO:} Reference and derivation of ODE.
+This changes the previous ODEs in ... to the following system of differential equations.
+
+\begin{align*}
+\frac{d\overline{S}}{dt} &= -k_2C, \\
+\frac{dC}{dt} &= k_1[(E_0 - C)(\overline{S}-C)-K_m C],
+\end{align*}
+
+with the same initial conditions as before.
+
+
+
+This is the criteria for its applicability
+\begin{equation}
+\frac{k_2 E_0}{k_1(E_0+S_0+K_m)^2} \ll 1
+\end{equation}
+
+\bibliography{references}
+
+\end{document}
