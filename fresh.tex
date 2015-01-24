@@ -1,0 +1,140 @@
+\documentclass[12pt]{article}
+\usepackage[parfill]{parskip}
+\usepackage{amsmath}
+\linespread{1.5}
+
+\begin{document}
+
+\section{Introduction}
+
+Perturbation theory has its roots in celestial mechanics and aerodynamics. There
+are two particularly interesting victories the field has seen. The first was the
+discovery of Neptune, and the second is the theoretical foundation for
+aerodynamics. We will give a short account of these in the history section.
+
+The promise of perturbation theory is that it allows us to solve a
+larger class of problems than we could otherwise with analytical methods. It
+does this by giving us approximate, but rigorous, solutions. In this article we
+will guide the reader from some a very simple and familiar example, a quadratic
+equation, all the way to a useful research example in system biology: the total
+quasi steady state in enzyme kinetics.
+
+The article has been written with the goal that any student with a basic
+understanding of calculus, differential equations and linear algebra will be
+able to follow along. All the relevant biology and perturbation theory will be
+explained as we go along.
+
+TODO: Write a subsection on the history of perturbation theory.
+
+\section{A regular perturbation}
+
+We are going to start with probably the simplest non-trivial example imaginable:
+a quadratic equation.
+
+\begin{equation}
+x^2 - 2x + \epsilon = 0
+\end{equation}
+
+We know how to solve this analytically. The roots of the equation are $x = 1 +
+\sqrt{1 - \epsilon}$ and $x = 1 - \sqrt{1 - \epsilon}$.
+
+The case we are interested in is the one where $\epsilon$ is very small. In this
+case, we can see that setting $\epsilon=0$ produces the roots $x=0$ and $x=2$
+respectively. In fact, for any given small $\epsilon$ we notice that solution
+changes very little. In that sense it's a very "boring" and predictable problem.
+
+How can we make this observation more rigorous? One way is to rewrite the part
+of the solution containing $\epsilon$ as a Taylor series. Recall that a Taylor
+series for a function $f(x)$ around 0 looks like follows.
+
+TODO: Write the expression of a Taylor series.
+
+\begin{equation}
+f(x) = \sum ...
+\end{equation}
+
+TODO: Write the expression of a Taylor series of $\sqrt{1 - \epsilon}$.
+
+\begin{equation}
+\sqrt{1 - \epsilon} = ...
+\end{equation}
+
+If we take the limit of this as $\epsilon \to 0$, it's obvious that our
+intuition is correct. That is, a small change in epsilon only brings about a
+small change in the solution.
+
+TODO: Write the solutions to $x_1$ and $x_2$ based on above.
+\begin{align*}
+x_1 &= ..., \\
+x_2 &= ...
+\end{align*}
+
+What is the point of all this? We said in the beginning that perturbation theory
+allows us to solve a larger class of problems, but what we have done so far
+hasn't given any indication of that being true. After all, we already have an
+analytical formula for the quadratic equation.
+
+Let's start over, but this time let's assume we don't have the quadratic formula
+at our disposal. We will outline a method which would allow us to get arbitrarly
+good approximations for polynomials of any degree.
+
+Let's assume the solution of (1) can be expressed on the form of a power series
+of $\epsilon$.
+
+\begin{equation}
+\sum_0^{\infty} a_k \epsilon^k = a_0 + a_1 \epsilon + a_2 \epsilon^2 + ...
+\end{equation}
+
+We will now insert this power series into (1), and then expand that expression
+in terms of powers of $\epsilon$. We only have to do this for the first few
+terms of the power series, as we will see in the end. If we want to we can
+always add more terms and get a more accurate approximation.
+
+\begin{equation}
+(a_0 + a_1 \epsilon + ...)^2 - 2(a_0 + a_1 \epsilon + ...) + \epsilon = 0
+\end{equation}
+
+We expand the expression using Big-Oh algebra. For example, $a_0 + a_1 \epsilon
++ ...)^2 = a_0^2 + a_0 a_1 \epsilon + a_1^2 \epsilon^2 + O(\epsilon^3)$.
+
+The whole expression becomes the following.
+
+\begin{equation}
+a_0^2 - 2a_0 + (a_0 a_1 + 2 a_1 + 1)\epsilon + (a_1^2 + 2 a_2)\epsilon^2 +
+O(\epsilon^3) = 0
+\end{equation}
+
+Now we turn the problem of determining the coefficients $a_0$, $a_1$ etc. Since
+we are assuming $\epsilon$ is a very small number, we can do create the
+following systems of equations for solving the coefficients.
+
+TODO: Provide a rigorous justification for why we can do this rewrite.
+
+\begin{align*}
+a_0^2 - 2 a_0 &=0, \\
+a_0 a_1 + 2 a_1 + 1 &= 0, \\
+a_1^2 + 2 a_2 &= 0
+\end{align*}
+
+Solving these equations in turn gives us $a_0 = 0$ or $a_0 = 2$. For $a_0 = 0$ we
+have $a_1 = - \frac{1}{2}$ and $a_2 = - \frac{1}{8}$. For $a_0 = 2$ we have $a_1 = -
+\frac{1}{4}$ and $a_2 = - \frac{1}{32}$.
+
+We said at the beginning that we assume the solution is on the form of a power
+series of $\epsilon$. We have two options for the coefficients, and these
+corresponds to the two approximate solutions.
+
+\begin{align*}
+x_1 &= 0 - \frac{1}{2} \epsilon - \frac{1}{8} \epsilon^2 + O(\epsilon^3), \\
+x_2 &= 2 - \frac{1}{4} \epsilon - \frac{1}{32} \epsilon^2 + O(\epsilon^3)
+\end{align*}
+
+This corresponds well to our previous solution, without the use of the
+quadratica formula. We have thus found a general method for finding approximate
+solutions to polynomials of any degree with a small parameter $\epsilon$.
+
+\section{A singular perturbation}
+\section{ODE and boundary theory}
+\section{Total Quasi Steady State}
+
+\end{document}
