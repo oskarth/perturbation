@@ -45,29 +45,26 @@ changes very little. In that sense it's a very "boring" and predictable problem.
 
 How can we make this observation more rigorous? One way is to rewrite the part
 of the solution containing $\epsilon$ as a Taylor series. Recall that a Taylor
-series for a function $f(x)$ around 0 looks like follows.
-
-TODO: Write the expression of a Taylor series.
+series for a function $f(x)$ around a looks like follows.
 
 \begin{equation}
-f(x) = \sum ...
+f(x) = \sum_{n=0}^{\infty} \frac{f^{n}(a)}{n!} (x-a)^n
 \end{equation}
 
-TODO: Write the expression of a Taylor series of $\sqrt{1 - \epsilon}$.
+The Taylor series for $f(\epsilon) = (1 - \epsilon)^{1/2}$ around 0 is thus.
 
 \begin{equation}
-\sqrt{1 - \epsilon} = ...
+\sqrt{1 - \epsilon} = 1 - \frac{\epsilon}{2} - \frac{\epsilon^2}{8} + O(\epsilon^3)
 \end{equation}
 
 If we take the limit of this as $\epsilon \to 0$, it's obvious that our
 intuition is correct. That is, a small change in epsilon only brings about a
 small change in the solution.
 
-TODO: Write the solutions to $x_1$ and $x_2$ based on above.
-\begin{align*}
-x_1 &= ..., \\
-x_2 &= ...
-\end{align*}
+\begin{equation}
+x_1 = 2 - \frac{\epsilon}{2} - \frac{\epsilon^2}{8} + O(\epsilon^3), \\
+x_2 = \frac{\epsilon}{2} + \frac{\epsilon^2}{8} + O(\epsilon^3)
+\end{equation}
 
 What is the point of all this? We said in the beginning that perturbation theory
 allows us to solve a larger class of problems, but what we have done so far
@@ -100,15 +97,17 @@ We expand the expression using Big-Oh algebra. For example, $a_0 + a_1 \epsilon
 The whole expression becomes the following.
 
 \begin{equation}
-a_0^2 - 2a_0 + (a_0 a_1 + 2 a_1 + 1)\epsilon + (a_1^2 + 2 a_2)\epsilon^2 +
-O(\epsilon^3) = 0
+a_0^2 - 2 a_0 + (a_0 a_1 + 2 a_1 + 1)\epsilon + (a_1^2 + 2 a_2)\epsilon^2 =
+O(\epsilon^3), \epsilon \to 0
 \end{equation}
 
 Now we turn the problem of determining the coefficients $a_0$, $a_1$ etc. Since
-we are assuming $\epsilon$ is a very small number, we can do create the
-following systems of equations for solving the coefficients.
-
-TODO: Provide a rigorous justification for why we can do this rewrite.
+$\epsilon$ is a variable here rather than a parameter, we see that the
+coefficients before each power of $\epsilon$ separately all have to be equal to
+zero. For example, $a_0^2 - 2 a_0 = 0$ when $\epsilon \to 0$, and if we remove
+that part and divide the rest by $\epsilon$ we get the same for the next
+coefficient, etc. We thus get the following system of equations for solving the
+coefficients.
 
 \begin{align*}
 a_0^2 - 2 a_0 &=0, \\
@@ -124,6 +123,8 @@ We said at the beginning that we assume the solution is on the form of a power
 series of $\epsilon$. We have two options for the coefficients, and these
 corresponds to the two approximate solutions.
 
+TODO: This algebra isn't right, fix it.
+
 \begin{align*}
 x_1 &= 0 - \frac{1}{2} \epsilon - \frac{1}{8} \epsilon^2 + O(\epsilon^3), \\
 x_2 &= 2 - \frac{1}{4} \epsilon - \frac{1}{32} \epsilon^2 + O(\epsilon^3)
@@ -134,7 +135,47 @@ quadratica formula. We have thus found a general method for finding approximate
 solutions to polynomials of any degree with a small parameter $\epsilon$.
 
 \section{A singular perturbation}
+
+In the last section we dealt with a so called regular problem. In this section
+we will deal with a singular perturbation problem. What is the difference? In a
+singular perturbation problem, the small $\epsilon$ \textit{matters} for the
+solution. In general, singular problems are generally interesting precisely
+because their solutions can change a lot with just a small change in
+circumstances.
+
+As before, we will use a quadratic equation to illustrate how it works.
+
+\begin{equation}
+\epsilon x^2 - 2 x + 1 = 0 
+\end{equation}
+
+As before, we take $\epsilon$ to be a very small number. This equation has the
+following solutions.
+
+\begin{equation}
+x_1 = \frac{1 + \sqrt{1 - \epsilon}}{\epsilon}, \\
+x_2 = \frac{1 - \sqrt{1 - \epsilon}}{\epsilon}.
+\end{equation}
+
+The first thing we notice is that even though $\epsilon$ is very small, we can't
+set it to zero. If we were to do it in (8), we would only get a one degree
+polynomial. The fact that we are losing solutions is a qualitative change, and
+is indicative that we are dealing with a singular perturbation problem.
+
+We can re-use the Taylor expansion of $\sqrt{1 - \epsilon}$ from (3), and we
+would get that the solutions of our equation are.
+
+TODO: Provide Taylor expansion.
+
+\begin{equation}
+x_1 = \frac{1 + \sqrt{1 - \epsilon}}{\epsilon}, \\
+x_2 = \frac{1 - \sqrt{1 - \epsilon}}{\epsilon}.
+\end{equation}
+
+We have a problem here. As $\epsilon \to 0$, the root $x_2 \to \infty$.
+
 \section{ODE and boundary theory}
 \section{Total Quasi Steady State}
 
 \end{document}
+
