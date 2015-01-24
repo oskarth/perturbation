@@ -20,9 +20,11 @@
 
 \maketitle
 
-\chapter{Singular perturbation theory}
+\tableofcontents
 
-\section{History and introduction}
+\chapter{Introduction}
+
+\textbf{TODO:} Write this section last. Example: Lin p. 277 about Prandtl and drag.
 
 \textit{It causeth my head to ache} -- Newton on the orbits of the moon. Three
 body problem. Discovery Neptunus, but also Vulcan (GR fixed that). Poincare and Prandtl.
@@ -35,7 +37,11 @@ This text is heavily inspired by two source. The first is
 \textit{Applied mathematics in...} by Lin and Segel. Also taking some
 inspiration from Holmes \textit{Introduction to Perturbation methods...}
 
-\section{Simple regular perturbation}
+\chapter{Algebraic regular perturbation}
+
+\textbf{TODO:} Elaborate on Series method procedure by Lin and Segel (p227)
+
+The Series method for perturbation goes as follows. We assume a dependent variable can be expanded as a power series of a small parameter. Then we have the following steps A-E... (put them inline).
 
 Let's start with a simple quadratic equation.
 
@@ -46,18 +52,22 @@ Let's start with a simple quadratic equation.
 For small $\epsilon$, how does the solution change? The first thought
 we might have is that we simply set $\epsilon$ to zero. If we do that
 we get two solutions, $z_1 = 2$ and $z_2 = 0$. In this case, since we
-know the exact solution to the full equationis $z = 1 \pm
+know the exact solution to the full equations $z = 1 \pm
 \sqrt{1-\epsilon}$, it's easy to see that changing $\epsilon$ a bit
 only changes the solution a bit. The solutions to the equation will be
 around $0$ and $2$.
 
-When we say that $\epsilon$ is small, we mean something like $0 < \epsilon
+When we say that $\epsilon$ is small, we mean $0 < \epsilon
 \ll 1$. The symbol $\ll$ means that the limit of $\epsilon$ over unity
 approaches $0$.
 
-One way to do this more rigorously is to expand $\sqrt{1-\epsilon}$
-part as a Taylor series around $\epsilon = 0$. In this case, we
-could've used a binominal series expansion as well.
+One way to do this more rigorously is to expand the $\sqrt{1-\epsilon}$
+part as a Taylor series around $\epsilon = 0$. (In this case, we
+could've used a binominal series expansion as well.)
+
+\textbf{TODO:} Write intermediate steps.
+
+\textbf{QUESTION:} Big Oh review?
 
 $\sqrt{1 - \epsilon}$ = $1 - \frac 1 2 \epsilon - \frac 1 8 \epsilon^2
 + O(\epsilon^3)$
@@ -67,16 +77,17 @@ details under the rug. What it's saying is that the following terms
 won't grow faster than on the order of $\epsilon^2$
 (which, as $\epsilon$ is close to zero, is essentially insignificant).
 
+\textbf{TODO:} Show these steps.
+
 Using that Taylor expansion in our original solution, and performing some basic
 Big-Oh algebra, we get $z_1 = \frac 1 2 \epsilon + O(\epsilon^2)$ and $z_2 = 2 -
-\frac 1 2 \epsilon + O(\epsilon^2)$. Here I'm content with the $O(\epsilon^2)$
+\frac 1 2 \epsilon + O(\epsilon^2)$. Here we are content with the $O(\epsilon^2)$
 term at the end, as more details aren't necessary for our current purposes.
 
-What does this tell us? What've established is a way to get successively better
+What does this tell us? What we have established is a way to get successively better
 approximations to the solutions, given that $\epsilon$ is very small. The
-reduced equation corresponds to setting $\epsilon$ to $0$. This is called
-something like the 0th order perturbation. If we want the first order
-perturbation, we get the solutions as seen above. You can imagine
+reduced equation corresponds to setting $\epsilon$ to $0$. This is called the 0th order perturbation.
+If we want the first order perturbation, we get the solutions as seen above. You can imagine
 substituting $\epsilon$ for a very small number, and you have some idea for how
 the solutions behaves.
 
@@ -138,10 +149,9 @@ solution. That is, we could do the same on any polynomial of any
 degree, giving us an approximate solution without knowing an exact
 one.
 
-
 \textbf{NOTE}: Write down definition of Big Oh
 
-\section{Simple singular perturbation}
+\chapter{Algebraic singular perturbation}
 
 Let's look at a slightly more interesting example.
 
@@ -196,7 +206,7 @@ change of variable:
 $$\epsilon z (\epsilon) = \omega (\epsilon)$$
 
 A lot of notation missing. Essence is that we turn a singular
-behavior, with the change of a varible, and reduce it into a regular
+behavior, with the change of a variable, and reduce it into a regular
 perturbation problem.
 
 $$\epsilon Q(\frac \omega \epsilon) = \omega^2 - 2\omega + \epsilon$$
@@ -212,17 +222,14 @@ $$z_2(\epsilon) = \frac 2 \epsilon - \frac 1 2 + O(\epsilon)$$
 We have thus found an approximate expression of the other root, by
 turning the singular problem into a regular one.
 
-\textbf{NOTE}:  Procedure for this:
-1. Substitute 2. Expand 3. Collect 4. Substitute original IC/BC 5. ...
-
-\section{ODE example}
+\chapter{Differential equation singular perturbation}
 
 Let's take an ODE example with some boundary conditions. We can divide this into multiple steps: finding the outer solution, boundary, layer, matching, and composite expansion.
 
 \textbf{NOTE:} this section will be re-written with procedure and
 notation a la Holmes page 58-63 - more clear wrt boundary-layer
 coordinates and scales, and less notation generally. Following is not
-clear at all, especially towards the end. -- is it really? Only major difference I see is the matching limit, where Holmes seems to use a more simplistic/naive version of lim yo(0+)=yi(inf). The pairwise balancing is also different. I feel like Lin and Segel is the more grown up version, possibly. Holmes seem to confuse, me at least, the O(epsilon) and the length scale? O?(1/epsilon)
+clear at all, especially towards the end. -- is it really? Only major difference I see is the matching limit, where Holmes seems to use a more simplistic/naive version of lim yo(0+)=yi(inf). The pairwise balancing is also different. I feel like Lin and Segel is the more grown up version, possibly. Holmes seem to confuse, me at least, the O(epsilon) and the length scale? O?(1/$\epsilon$)
 
 \begin{equation}
   \epsilon \frac{d^2y}{dx^2} + 2 \frac{dy}{dx} + y = 0; 0 < x < 1, 0
@@ -231,10 +238,9 @@ clear at all, especially towards the end. -- is it really? Only major difference
 
 and boundary conditions $y(0)=0, y(1) =1$.
 
-\subsection{Outer solution}
+\section{Outer solution}
 
-The naive reduced version, $\epsilon = 0$ gives $2 \frac{dy}{dx} + y =
-0$, with general solution $y=K \exp(-\frac{1}{2} x)$
+The naive reduced version, $\epsilon = 0$ gives $2 \frac{dy}{dx} + y = 0$, with general solution $y=K \exp(-\frac{1}{2} x)$
 
 The problem here is that we can't satisfy both boundary
 conditions. Either the approximation leads to $y=0$ or $y=exp(\frac 1
@@ -255,7 +261,7 @@ $$2 \frac{dy_O}{dx} + y_O = 0, y_O(1)=1$$
 
 $$y_O(x) = exp[\frac 1 2 (1-x)]$$
 
-\subsection{Boundary layer}
+\section{Boundary layer}
 
 We let the boundary layer near $x=0$ have a thickness of order of
 magnitude $\delta(\epsilon)$. This layer thickness approaches zero as
@@ -276,6 +282,8 @@ We use this function instead: $Y(\xi, \epsilon) = y(\xi \epsilon,
 $$\frac \epsilon \delta^2 \frac{d^2Y}{d\xi^2} + \frac 2 \delta
 \frac{dY}{d\xi} + Y = 0$$
 
+\textbf{QUESTION:} Is pairwise balancing the same as method of dominant balance that Bender and Orszag describes?
+
 We now do something called pairwise balancing, to determine the
 relative magnitudes. $\delta$ is the length scale in the boundary
 layer, and the various 'differentials' are O(1) there. The order of
@@ -283,7 +291,7 @@ magnitudes are
 
 $$\frac \epsilon \delta^2, \frac 1 \delta, 1.$$
 
-If two of these balance out, and the third is negliable, we can
+If two of these balance out, and the third is negligible, we can
 neglect the last one and simplify the problem. We know that one term of
 the balancing pair must be $\frac \epsilon \delta^2$, since we've seen
 that an approximation valid everywhere in $(0,1]$ isn't obtainable
@@ -295,8 +303,7 @@ negliable. Alternatively, if the first expression balances the second,
 $\delta = \epsilon$ and the third expression is negligable, and wehave
 found a so called scaling, $\delta = \epsilon, \xi=\frac x \epsilon$.
 
-\textbf{NOTE:} def of balance as f~g missing, and algebra to get
-result. -- a balancing is simply a consequence of the logic of the assumption of relative magnitudes, like a perturbation series goes O(1)+O(e) etc.
+\textbf{TODO:} Clarify above section with what it means to have a good balance.
 
 All together we now have the inner equation, with a scale appropriate
 at the boundary/inner layer.
@@ -315,7 +322,7 @@ operating on now, $\delta=\epsilon$.
 
 $$y_I(\xi) = C(1-exp^{-2\xi})$$
 
-\subsection{Matching}
+\section{Matching}
 
 Now we turn to the matter of matching these two approximations, each
 valid at their own scale. This is done by overlaping the two solutions
@@ -326,10 +333,13 @@ According to Lin and Segel, this is an area of continuous study, but
 the way we will do it is by noticing that when $x=O(\delta)$, x is
 within boundary layer, and when $x=O(1)$ it's outside it. How to do we
 x to be in the intermediate region? We let $x=O[\Theta(\epsilon)]$
-where $O(\Theta)$ is between the two magnitudes $$\lim \epsilon \to 0 \frac \Theta \delta = \infty, \lim \epsilon \to
-0 \Theta = 0$$ [what does this mean exactly?]
+where $O(\Theta)$ is between the two magnitudes
 
-\textbf{NOTE}:  page 294, a lot of symbols here, not grokking all of it.
+\begin{equation}
+\lim \epsilon \to 0 \frac \Theta \delta = \infty, \lim \epsilon \to 0 \Theta = 0
+\end{equation}
+
+\textbf{TODO}:  Elaborate more! A lot of things missing.(Lin/Segel page 294).
 
 We find a limit which has to hold for both of them, a matching
 requirement. To get a uniform approximation valid for $[0,1]$, we add the
@@ -349,8 +359,8 @@ $$\lim \epsilon \to 0[y_O(x) |_{x=n \Theta}] = lim \epsilon \to
 
 Left-hand side:
 
-$$\lim \epsilon \to 0[exp^{(\frac 1 2)(1-x)} |_{x=n \Theta}] = \lim
-\epsilon \to 0[exp^{(\frac 1 2)(1- n \Theta)}] = exp^{\frac 1 2} $$
+$$\lim \epsilon \to 0[\exp^{(\frac 1 2)(1-x)} |_{x=n \Theta}] = \lim
+\epsilon \to 0[\exp^{(\frac 1 2)(1- n \Theta)}] = \exp^{\frac 1 2} $$
 [why $n \Theta \to 0$?  cause n is fixed and other $\to 0$.]
 
 Right-hand side:
@@ -362,34 +372,126 @@ So we have a requirement that $C = \exp^{\frac 1 2}$
 We thus have a C for our inner equation,
 $y_I(\xi) = e^{\frac 1 2}(1-e^{-2\xi})$
 
-\subsection{Composite expansion}
+\section{Composite expansion}
 
 Now that we have an inner approximation and an outer approximation, we
 would like to put them together into one uniform approximation $y_U$,
 valid everywhere in $[0,1]$. We add them together and remove common part.
 
 $$y_U(x) = y_O(x) + y_I(\frac x \delta) - \lim \epsilon \to 0 y_O(n \Theta)$$
-[what's up with the common part being that limit?
+
+\textbf{TODO:} Explain why the common part is that limit.
 
 Sanity check should show that it produces inner approximation for
-inner region, rest negliable etc. It should reduce to the right
+inner region, rest negligible etc. It should reduce to the right
 approximation depending on region.
 
 In total, $$y_U(x) = e^{(\frac 1 2)(1-x)} + e^{\frac 1 2}(1 -
 		e^{-2\frac x \epsilon}) - e^{\frac 1 2} = e^{\frac 1 2}(e^{\frac -x 2}
 			- e^{\frac -2x \epsilon})$$
 
-Confirm numerically? It works on exact solution though.
+\textbf{TODO:} Confirm numerically / analytically / qualitatively.
 
-\textbf{NOTE}: Write limits properly Special.
+\textbf{TODO}: Write limits properly.
 
-\chapter{Biological application - TQSSA et al}
+\chapter{Total Quasi Steady State application}
 
-We will proceed similarly to how we did in the previous section. After
-the preliminary notes, we start off by stating the problem, and then
-turning it from a biological form to a mathematical form, which we can
-solve as before. We turn it from its biological form with the help of
-dimensional analysis and scaling.
+We will proceed similarly to how we did in the previous section. We start off by stating the problem,
+and then turn it from a biological form to a mathematical form, which we can
+solve as before. We do this with the help of dimensional analysis and scaling.
+
+\section{Biological problem}
+
+The Quasi Steady State Assumption (QSSA) is a way of simplifying a system of two differential equations, under assumptions which are commonly satisfied in the biological problem that the differential equations corresponds to.
+
+If we have a substrate S and enzyme E that reversibly combines into a complex C, which in turn irreversibly produces a product P and frees up the enzyme, we can characterize this by the following ?-diagram.
+
+\begin{equation}
+E + S \leftarrow \rightarrow C \rightarrow P + E
+\end{equation}
+
+By the law of mass action, we can translate this ?-diagram into a set of differential equations.
+
+\begin{align*}
+\frac{dS}{dt} &= -k_1(E_0-C)S + k_{-1}C, \\
+\frac{dC}{dt} &= k_1[(E_0-C)S + k_mC],
+\end{align*}
+
+with $K_m = \frac{k_{-1}+k_2}{k_1}$. With the help of conservation laws we can get $E$ and $P$. Initial conditions are $(S, E, C, P) = (S_0, E_0, 0, 0)$.
+
+\textbf{QUESTION:} Does $\ll$ really mean asymptotically much less than? Seems like it is sometimes used as a "just small" fashion, and sometimes even as just $<1$.
+
+The normal criteria used in the QSSA is $ E_0 \ll S_0 $. That is, the amount of substrate is much bigger than the amount of enzyme, which leads to a lot of reactions happening. After a short initial period, the concentration of C will essentially not change. This is the key in the QSSA - it means that we can approximate $dC/dt=0$, and then change our system of two differential equations into a system of one equation (expressing S in terms of C), which we can get an exact expression of.
+
+How does the QSSA differ from that Total Quasi Steady State Assumption (TQSSA)? There we use the \textit{total substrate concentration} $\overline{S}$ instead of $S$ \cite{Borghans}, where $\overline{S} = S + C$. W then get the following rate equations for TQSSA.
+
+\begin{equation}
+\frac{d\overline{S}}{dt} = -k_2C;
+\frac{dC}{dt} = k_1[(E_0-C)S + k_mC]
+\end{equation}
+
+Initial conditions $\overline{S}(0)=S_0, C(0)=0$.
+
+With the problem formulated, we now proceed to justify TQSSA with the help of singular perturbation analysis and Khoo et. al. \cite{Khoo}.
+
+If we look in the phase plane we should see that there are two stages.
+
+\textbf{NOTE}: Show graph of phase plane.
+
+\textbf{QUESTION}: How to provide it? Mathematica?
+
+\section{Scaling}
+
+Segel and Slemrod (1989) enumerates several essential points for appropriate scaling. The goal is to get scaled and dimensionless variables, which by construction are of unit order of magnitude.
+
+\textbf{QUESTION}: Include a section on basics of dimensionless and scaling? ~ 6.3 in Lin/Segel
+
+First, let's think about time scales. Khoo and Hegland mentions the two timescales Borghans et al. finds.
+
+\begin{align*}
+t_c &= \frac{1}{k_1(E_0+S_0+K_M)}, \\
+t_{\overline{s}} &= \frac{E_0+S_0+K_m}{k_2+E_0}
+\end{align*}
+
+where $K_m = \frac{k_{-1} + k_{2}}{k_1}$ is the Michaelis-Menten constant.
+
+\textbf{NOTE}: We could derive this using Segel and Slemrod.
+
+Khoo and Heglund scale the time periods by dividing $t$ with each time scale, and the concentrations by dividing them with their maxima.
+
+\begin{align*}
+\tau = \frac t t_c, \\
+T = \frac t t_{\overline{S}}
+\end{align*}
+
+The first time period is for the fast initial time scale, and the second time scale for the slow one after that.
+
+\begin{equation}
+c = \frac{[C]}{C_0}; s = \frac{[\overline{S}]}{S_0}
+\end{equation}
+
+Borghans et al. calculate the maximum of $[C]$ as follows $C_0 = E_0S_0 / (E_0 + S_0 + K_m)$
+
+\textbf{NOTE}: Should we derive this? Probably. ~1-2 pages and learn something about Pade approximations.
+
+\section{Outer solution}
+
+We can reformulate the necessary condition of validity for TQSSA, derived by Borghans et al., $t_c \leq t_{\overline{S}}$ as $0\epsilon$ HERE ATM
+
+\section{Inner solution}
+
+$0 < \epsilon \leq 1, \epsilon = \frac{t_{\epsilon}}{t_{s}}$
+
+\section{Matching and uniform approximation}
+
+\textbf{QUESTION: } Error term?
+
+\textbf{QUESTION: } Numerical simulation?
+
+\section{Placeholder for possible temporary stuff}
+Temp stuff in all sections below.
+
+\textbf{TODO: } Write intro for biology and relevance.
 
 The enzyme-substrate-complex schema
 
@@ -401,7 +503,7 @@ where $k_1$, $k_{-1}$ and $k_2$ are parameters belonging to the
 respective arrows, can be described by the follow set of differential
 equations.
 
-\textbf{TODO:} Show derivation.
+\textbf{TODO:} Show derivation with conservation laws ~1 page.
 
 \textbf{TODO:} Fill out rest of the ODEs.
 
@@ -441,16 +543,13 @@ this, we have to scale it correctly. If we assume... assume what?
 
 \textbf{TODO:} Show phase plane.
 
+\textbf{TODO:} Where does the criteria for its validity come from? Explain
 
 This is the criteria for its applicability
 \begin{equation}
 \frac{k_2 E_0}{k_1(E_0+S_0+K_m)^2} \ll 1
 \end{equation}
 
-\section{Temp stuff}
-Temp stuff in all sections below.
-
-\section{Preliminary notes (possibly temporary)}
 
 \textbf{NOTE:} rough outline of topics. Once ODE section above is
 clearer, all components there except for scaling and translating the
@@ -486,96 +585,6 @@ c^* \rightarrow p*+e* $$
 we often see that the enyzyme concentration is very small compared to
 the substrate concentration, this in turn allow us to approximate $\dot{c}$ to
 0, which leads to a simplified system of equations.
-
-\subsection{Total Quasi Steady State Assumption}
-
-\section{Biological problem}
-
-The Quasi Steady State Assumption (QSSA) is a way of simplifying a system of two differential equations, under assumptions which are commonly satisfied in the biological problem that the differential equations corresponds to.
-
-If we have a substrate S and enzyme E that reversibly combines into a complex C, which in turn irreversibly produces a product P and frees up the enzyme, we can characterize this by the following ?-diagram.
-
-\begin{equation}
-E + S \leftarrow \rightarrow C \rightarrow P + E
-\end{equation}
-
-By the law of mass action, we can translate this ?-diagram into a set of differential equations.
-
-\begin{align*}
-\frac{dS}{dt} &= -k_1(E_0-C)S + k_{-1}C, \\
-\frac{dC}{dt} &= k_1[(E_0-C)S + k_mC],
-\end{align*}
-
-with $K_m = \frac{k_{-1}+k_2}{k_1}$. With the help of conservation laws we can get $E$ and $P$. Initial conditions are $(S, E, C, P) = (S_0, E_0, 0, 0)$.
-
-The normal criteria used in the QSSA is $ E_0 \ll S_0 $. That is, the amount of substrate is much bigger than the amount of enzyme, which leads to a lot of reactions happening. After a short initial period, the concentration of C will essentially not change. This is the key in the QSSA - it means that we can approximate $dC/dt=0$, and then change our system of two differential equations into a system of one equation (expressing S in terms of C), which we can get an exact expression of.
-
-How does the QSSA differ from that Total Quasi Steady State Assumption (TQSSA)? There we use the \textit{total substrate concentration} $\overline{S}$ instead of $S$ \cite{Borghans}, where $\overline{S} = S + C$. W then get the following rate equations for TQSSA.
-
-\begin{equation}
-\frac{d\overline{S}}{dt} = -k_2C;
-\frac{dC}{dt} = k_1[(E_0-C)S + k_mC]
-\end{equation}
-
-Initial conditions $\overline{S}(0)=S_0, C(0)=0$.
-
-With the problem formulated, we now proceed to justify TQSSA with the help of singular perturbation analysis and Khoo et. al. \cite{Khoo}.
-
-If we look in the phase plane we should see that there are two stages.
-
-\textbf{NOTE}: Show graph of phase plane.
-\textbf{QUESTION}: How to provide it?
-
-\section{Scaling}
-
-Segel and Slemrod (1989) enumerates several essential points for appropriate scaling. The goal is to get scaled and dimensionless variables, which by construction are of unit order of magnitude.
-
-\textbf{QUESTION}: Include a ssection on basics of dimensionless and scaling? ~ 6.3 in Lin/Segel
-
-First, let's think about time scales. Khoo and Hegland mentions the two timescales Borghans et al. finds.
-
-\begin{align*}
-t_c &= \frac{1}{k_1(E_0+S_0+K_M)}, \\
-t_{\overline{s}} &= \frac{E_0+S_0+K_m}{k_2+E_0}
-\end{align*}
-
-where $K_m = \frac{k_{-1} + k_{2}}{k_1}$ is the Michaelis-Menten constant.
-
-\textbf{NOTE}: We could derive this using Segel and Slemrod.
-
-Khoo and Heglund scale the time periods by dividing $t$ with each time scale, and the concentrations by dividing them with their maxima.
-
-\begin{align*}
-\tau = \frac t t_c, \\
-T = \frac t t_{\overline{S}}
-\end{align*}
-
-The first time period is for the fast initial time scale, and the second time scale for the slow one after that.
-
-\begin{equation}
-c = \frac{[C]}{C_0}; s = \frac{[\overline{S}]}{S_0}
-\end{equation}
-
-Borghans et al. calculate the maximum of $[C]$ as follows $C_0 = E_0S_0 / (E_0 + S_0 + K_m)$
-
-\textbf{NOTE}: Should we derive this?
-
-\section{Outer solution}
-
-We can reformulate the necessary condition of validity for TQSSA, derived by Borghans et al., $t_c \leq t_{\overline{S}}$ as $0\epsilon$ HERE ATM
-
-\section{Inner solution}
-
-$0 < \epsilon \leq 1, \epsilon = \frac{t_{\epsilon}}{t_{s}}$
-
-\section{Matching and uniform approximation}
-
-\section{Applying it}
-
-See Verdugo.
-
-\textbf{NOTE:} possibly add numerical simulation sanity check, or second-term or
-something? later.
 
 \bibliography{references}
 
