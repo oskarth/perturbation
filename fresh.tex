@@ -172,10 +172,65 @@ x_1 = \frac{1 + \sqrt{1 - \epsilon}}{\epsilon}, \\
 x_2 = \frac{1 - \sqrt{1 - \epsilon}}{\epsilon}.
 \end{equation}
 
-We have a problem here. As $\epsilon \to 0$, the root $x_2 \to \infty$.
+We have a problem here. As $\epsilon \to 0$, the root $x_2 \to \infty$. Is this
+correct? Let's use the same method a we did before. We assume the solution can
+be expressed in the form of a power series of $\epsilon$. Inserting this in our
+equation gives us the following.
+
+\begin{equation}
+\epsilon (a_0 + \epsilon a_1 + ...)^2 - 2(a_0 + \epsilon a_1 + \epsilon^2 a_2 +
+...) + 1 = 0
+\end{equation}
+
+which gets expanded into.
+
+\begin{equation}
+(- 2 a_0 + 1) + (2 a_1) \epsilon + (a_0 + a_2) \epsilon^2 + O(\epsilon^3)
+\end{equation}
+
+and leads to.
+
+\begin{align*}
+- 2 a_0 + 1 &= 0, \\
+2 a_1 &= 0, \\
+a_0 + a_2 &= 0
+\end{align*}
+
+$a_0$ = \frac{1}{2}$, $a_1=0$, $a_2= - \frac{1}{2}$,  but this gives us only one
+of the roots, $x_1$.
+
+TODO: Check algebra. Is this correct?
+
+\begin{equation}
+x_1 = \frac{1}{2} - \frac{1}{2} \epsilon^2 + O(\epsilon^3)
+\end{equation}
+
+That's only one solution though. By the Fundamental Theorem of Algebra, we would
+expect to see two solutions. What happened with the other root? We missed it
+because it's not on the form of a perturbation series. We got a hint of this
+when we saw the Taylor expansion of the root, but remember that we aren't
+supposed to use that. So what do we do?
+  
+TODO: Explain how this specific change of variable is motivated.
+
+The key here is that we can do a change in variable to turn the problem into a
+regular perturbation problem.
+
+Exactly how we do this differ from problem to
+problem, but in this case we are going to call $\overline{x} = \epsilon x$.
+
+Our original equation (8) then becomes.
+
+TODO: Something is wrong here. Read more.
 
 \section{ODE and boundary theory}
+
+We are now going to look at at differential equation.
+
+\begin{equation}
+\epsilon y'' + 2 y' + y, y(0)=0, y(1)=1, 0 <x < 1
+\end{equation}
+
 \section{Total Quasi Steady State}
 
 \end{document}
-
