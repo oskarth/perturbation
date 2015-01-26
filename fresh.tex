@@ -61,10 +61,10 @@ If we take the limit of this as $\epsilon \to 0$, it's obvious that our
 intuition is correct. That is, a small change in epsilon only brings about a
 small change in the solution.
 
-\begin{equation}
-x_1 = 2 - \frac{\epsilon}{2} - \frac{\epsilon^2}{8} + O(\epsilon^3), \\
-x_2 = \frac{\epsilon}{2} + \frac{\epsilon^2}{8} + O(\epsilon^3)
-\end{equation}
+\begin{align*}
+x_1 &= \frac{\epsilon}{2} + \frac{\epsilon^2}{8} + O(\epsilon^3), \\
+x_2 &= 2 - \frac{\epsilon}{2} - \frac{\epsilon^2}{8} + O(\epsilon^3)
+\end{align*}
 
 What is the point of all this? We said in the beginning that perturbation theory
 allows us to solve a larger class of problems, but what we have done so far
@@ -88,17 +88,18 @@ terms of the power series, as we will see in the end. If we want to we can
 always add more terms and get a more accurate approximation.
 
 \begin{equation}
-(a_0 + a_1 \epsilon + ...)^2 - 2(a_0 + a_1 \epsilon + ...) + \epsilon = 0
+(a_0 + a_1 \epsilon + a_2 \epsilon^2 + ...)^2 - 2(a_0 + a_1 \epsilon + a_2
+\epsilon^2 + ...) + \epsilon = 0
 \end{equation}
 
-We expand the expression using Big-Oh algebra. For example, $a_0 + a_1 \epsilon
-+ ...)^2 = a_0^2 + a_0 a_1 \epsilon + a_1^2 \epsilon^2 + O(\epsilon^3)$.
+We expand the expression using Big-Oh algebra. For example, $(a_0 + a_1 \epsilon
++ a_2 \epsilon^2)^2 = a_0^2 + 2 a_0 a_1 \epsilon + (a_1^2 + 2 a_0 a_2) \epsilon^2 + O(\epsilon^3)$.
 
 The whole expression becomes the following.
 
 \begin{equation}
-a_0^2 - 2 a_0 + (a_0 a_1 + 2 a_1 + 1)\epsilon + (a_1^2 + 2 a_2)\epsilon^2 =
-O(\epsilon^3), \epsilon \to 0
+a_0^2 - 2 a_0 + (2 a_0 a_1 - 2 a_1 + 1)\epsilon + (a_1^2 + 2 a_0 a_2 - 2 a_2)
+\epsilon^2 = O(\epsilon^3), \epsilon \to 0
 \end{equation}
 
 Now we turn the problem of determining the coefficients $a_0$, $a_1$ etc. Since
@@ -111,23 +112,21 @@ coefficients.
 
 \begin{align*}
 a_0^2 - 2 a_0 &=0, \\
-a_0 a_1 + 2 a_1 + 1 &= 0, \\
-a_1^2 + 2 a_2 &= 0
+2 a_0 a_1 - 2 a_1 + 1 &= 0, \\
+a_1^2 + 2 a_0 a_2 - 2 a_2 &= 0
 \end{align*}
 
 Solving these equations in turn gives us $a_0 = 0$ or $a_0 = 2$. For $a_0 = 0$ we
-have $a_1 = - \frac{1}{2}$ and $a_2 = - \frac{1}{8}$. For $a_0 = 2$ we have $a_1 = -
-\frac{1}{4}$ and $a_2 = - \frac{1}{32}$.
+have $a_1 = \frac{1}{2}$ and $a_2 = \frac{1}{8}$. For $a_0 = 2$ we have $a_1 = -
+\frac{1}{2}$ and $a_2 = - \frac{1}{8}$.
 
 We said at the beginning that we assume the solution is on the form of a power
 series of $\epsilon$. We have two options for the coefficients, and these
 corresponds to the two approximate solutions.
 
-TODO: This algebra isn't right, fix it.
-
 \begin{align*}
-x_1 &= 0 - \frac{1}{2} \epsilon - \frac{1}{8} \epsilon^2 + O(\epsilon^3), \\
-x_2 &= 2 - \frac{1}{4} \epsilon - \frac{1}{32} \epsilon^2 + O(\epsilon^3)
+x_1 &= \frac{1}{2} \epsilon + \frac{1}{8} \epsilon^2 + O(\epsilon^3), \\
+x_2 &= 2 - \frac{1}{2} \epsilon - \frac{1}{8} \epsilon^2 + O(\epsilon^3)
 \end{align*}
 
 This corresponds well to our previous solution, without the use of the
