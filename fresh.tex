@@ -161,6 +161,8 @@ set it to zero. If we were to do it in (8), we would only get a one degree
 polynomial. The fact that we are losing solutions is a qualitative change, and
 is indicative that we are dealing with a singular perturbation problem.
 
+TODO: Skip this Taylor section, it's superfluous.
+
 We can re-use the Taylor expansion of $\sqrt{1 - \epsilon}$ from (3), and we
 would get that the solutions of our equation are.
 
@@ -177,38 +179,36 @@ be expressed in the form of a power series of $\epsilon$. Inserting this in our
 equation gives us the following.
 
 \begin{equation}
-\epsilon (a_0 + \epsilon a_1 + ...)^2 - 2(a_0 + \epsilon a_1 + \epsilon^2 a_2 +
-...) + 1 = 0
+\epsilon (a_0 + a_1 \epsilon + a_2 \epsilon^2)^2 - 2(a_0 + \epsilon a_1 +
+a_2 \epsilon^2 + ...) + 1 = 0
 \end{equation}
 
 which gets expanded into.
 
 \begin{equation}
-(- 2 a_0 + 1) + (2 a_1) \epsilon + (a_0 + a_2) \epsilon^2 + O(\epsilon^3)
+(- 2 a_0 + 1) + (a_0^2 - 2 a_1) \epsilon + (2 a_0 a_1 -2 a_2) \epsilon^2 +
+O(\epsilon^3)
 \end{equation}
 
 and leads to.
 
 \begin{align*}
 - 2 a_0 + 1 &= 0, \\
-2 a_1 &= 0, \\
-a_0 + a_2 &= 0
+a_0^2 - 2 a_1 &= 0, \\
+2 a_0 a_1 -2 a_2 &= 0
 \end{align*}
 
-$a_0$ = \frac{1}{2}$, $a_1=0$, $a_2= - \frac{1}{2}$,  but this gives us only one
-of the roots, $x_1$.
-
-TODO: Check algebra. Is this correct?
+$a_0 = \frac{1}{2}$, $a_1=\frac{1}{8}$, $a_2= \frac{1}{64}$, but this gives us
+only one of the roots, $x_1$.
 
 \begin{equation}
-x_1 = \frac{1}{2} - \frac{1}{2} \epsilon^2 + O(\epsilon^3)
+x_1 = \frac{1}{2} + \frac{1}{8} \epsilon + O(\epsilon^2)
 \end{equation}
 
-That's only one solution though. By the Fundamental Theorem of Algebra, we would
-expect to see two solutions. What happened with the other root? We missed it
-because it's not on the form of a perturbation series. We got a hint of this
-when we saw the Taylor expansion of the root, but remember that we aren't
-supposed to use that. So what do we do?
+By the Fundamental Theorem of Algebra, we would expect to see two solutions.
+What happened with the other root? We missed it because it's not on the form of
+a perturbation series. We got a hint of this when we saw the Taylor expansion of
+the root, but remember that we aren't supposed to use that. So what do we do?
   
 TODO: Explain how this specific change of variable is motivated.
 
