@@ -283,7 +283,24 @@ We are now going to look at a differential equation.
 \end{equation}
 
 If we naively set $\epsilon = 0$ we see that the resulting equation $2 y' + y$
-has the solution $C \exp^{- \frac{1}{2}t}$
+has the general solution $C e^{- \frac{1}{2}x}$. This can't satisfy both
+boundary conditions at once. If it satisfies $y(0)=0$ we have $y=0$ as the only
+solution, and if it satisfies $y(1)=1$ we have
+
+\begin{equation}
+y=e^{\frac{1}{2} (1 - x)}
+\end{equation}
+
+TODO: Why is this assumption legit?
+
+We are going to assume this is a good approximation somewhere. We are also going
+to assume this is valid for the $y(1)=1$ boundary condition.
+
+Like the example in the last section, we missed something when we set $\epsilon
+= 0$. We have found one of the two solutions and now we want to the find the
+other one with the help of pairwise balancing. Since $\epsilon y''$ can't be
+neglected, we have two options:
+
 
 
 \section{Total Quasi Steady State}
