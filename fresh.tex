@@ -582,7 +582,138 @@ TODO: Why don't Khoo use $\ll$? Odd.
 \end{equation}
 
 this comes from Borghans. \textit{Assuming} $t_f \ll t_s$ we then get, for the
-outer region, using c and $t_s$
+outer region.
+
+TODO: Use s* and s etc to diff? A la Segel.
+
+Using c and $t_s$ we get, using procedure by Khoo and Heglund REF,
+
+\begin{equation}
+\frac{dC}{dt_s} = \frac{t_{\overline{S}}}{c_0} k_1 [E_0 S_0 s - (E_0 + S_0 s +
+K_M) C_0 c + (c c_0)^2]
+\end{equation}
+
+Recall
+
+\begin{equation}
+\epsilon = \frac{t_f}{t_s} = \frac{k_2 E_0}{k_1(E_0+S_0+K_m)^2}
+\end{equation}
+
+so we can rewrite the above as
+
+\begin{equation}
+... = \frac{1}{\epsilon} (s - \frac{E_0+S_0 s + k_m}{E_0 + S_0+ K_M}C + \gamma^2
+c)
+\end{equation}
+
+\begin{equation}
+\gamma = \frac{E_0 S_0}{(S_0 + K_m + E_0)^2}
+\end{equation}
+
+TODO: Check algebra and lower case c, s.
+
+TODO: This reasoning is wrong, It's due to Tikhonov theorem (C433)
+
+As $\epsilon \to 0, \frac{1}{\epsilon} \to \infty$, but C(0) = 0 so
+
+\begin{equation}
+s - \frac{E_0 + S_0 s + K_m}{E_0 + S_0 + K_M}C + \gamma c^2 = 0
+\end{equation}
+
+TODO: What is it? How do they work? Take for granted or explain?
+
+By using Pade approximants we can get an approximation for the outer
+solution
+
+\begin{equation}
+c_0  = \frac{E_0 + S_0 + K_m}{E_0 + S_0 s + K_m} s
+\end{equation}
+
+This is the outer solution. If we substitute this into s REF we get an
+expression for outer solution of s.
+
+TODO: Check algebra. Mathematica?
+
+\begin{equation}
+\frac{ds}{dt_s} = \frac{-E_0 + S_0 + K_m}{E_0 + S_0s + k_m}s, s(0) = 1
+\end{equation}
+
+Solving this, we get the outer solution for s (according to Khoo!):
+
+TODO: Derive yourself? Same below
+
+\begin{equation}
+(E_0 + K_m) ln s_O(t_s) + s_o(s_o(t_s) - 1) + (E_0 + S_0 + K_m) t_s = 0
+\end{equation}
+
+\subsection{Inner solution}
+
+TODO: Show intermediate steps.
+
+Using the outer time scale to satify the other initial conition,
+
+\begin{equation}
+\frac{dS}{dt_f} = \frac{-k_2 E_0}{k_1(E_0 + S_0 + K_M)^2} c, s(0) = 1
+\end{equation}
+
+As $\epsilon \to 0$, above becomes $\frac{dS}{dt_f} = 0$, i.e constant.
+
+\begin{equation}
+s_I = s(0) = 1
+\end{equation}
+
+For c:
+
+\begin{equation}
+\frac{dc}{dt_f} = 1 - c - \gamma c^2, c(0)=0
+\end{equation}
+
+TODO: How solve this? Mathematica? Khoo claims...
+
+\begin{equation}
+c_I = \frac{2[exp(\sqrt{4\gamma-1}t_f)-1]}{(1-\sqrt{1-4\gamma}
+exp(\sqrt{4\gamma-1}t_f) - (1+\sqrt{1-4\gamma}}
+\end{equation}
+
+where c(0)=0 holds.
+
+TODO: Check this.
+
+\subsection{Matching}
+
+As before, we are loking for a common limit, and our matching condition as
+$\epsilon \to 0, t_f \to \infty, t_s \to 0$ is
+
+\begin{equation}
+\lim \epsilon 0 [y_o(t_s)|t_s=0] = \lim \epsilon \to 0[y_I(t_f)|t_f=\infty]
+\end{equation}
+
+For s:
+
+\begin{equation}
+\lim \epsilon 0 [y_o(t_s)|t_s=0] = \lim \epsilon \to 0[y_I(t_f)|t_f=\infty] = 1
+\end{equation}
+
+For c:
+
+TODO: Perform this limit check, help from Mathematica? Can I find by hand? Khoo
+caims
+
+\begin{equation}
+... = \approx 2(1+\sqrt{1-4\gamma})^{-1}
+\end{equation}
+
+\subsection{Uniform approximation}
+
+Like before, common part and subtract the difference.
+
+\begin{align}
+s_u &= s_O + s_I - 1 = s_O, \\
+c_u &= c_O + c_I - 2(1 + \sqrt{1-4\gamma})^{-1}
+\end{align}
+
+TODO: Compare with what handwavey TQSSA says.
+
+TODO: Phase plane / numerical?
 
 \end{document}
-
