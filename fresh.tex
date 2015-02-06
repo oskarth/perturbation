@@ -448,10 +448,141 @@ equations.
 We also normally have some initial conditions to help us out: $S(0) = S_0, E(0)
 = E_0, C(0)=0, P(0)=0$.
 
-With the initial conditions we get that
+We see immediately that
 
 \begin{equation}
 \frac{dE}{dt} + \frac{dC}{dt} = 0
 \end{equation}
 
+with the initial conditions we get that
+
+\begin{equation}
+E + C = E_0
+\end{equation}
+
+Which we can use to eliminate E from the equation. This is a conservation law.
+We also don't care about P, as it doesn't feed back into the other equations. We
+are left with
+
+\begin{align}
+\frac{dS}{dt} &= -k_1(E_0 - C)S + k_{-1}C, \\
+\frac{dC}{dt} &= k_1(E_0 - C)S - k_{-1}C - k_2 C, \\
+\end{align}
+
+This is a two-dimensional system, which is much easier to deal with. Can we do
+better? It turns out we can.
+
+Many times, the substrate has a much higher concentration than enzyme. This
+means that C ban be treated as constant after a short initial period. By
+expoliting this fact, we can reduce the system to one equation. This i called
+the Michaelis-Menten or Quasi-Steady State approximation.
+
+Assume that C is constant $\iff \frac{dC}{dt} = 0$ after a short period of time,
+then we can could write (as $\frac{dC}{dt}$ could be treated as 0)
+
+\begin{equation}
+\frac{dS}{dt} = -k2 C
+\end{equation}
+
+with
+
+\begin{equation}
+C = \frac{E_0 S}{K_m +S}
+\end{equation}
+
+where $K_m = \frac{k_{-1} + k_2}{k_1}$ is the Michaelis-Menten constant.
+
+\begin{equation}
+\frac{dS}{dt} = \frac{-k_2 E_0 S}{K_M + S}
+\end{equation}
+
+together with $S(0) = S_0$ as initial condition is what is normally considered
+the QSSA, valid after some short amount of time has passed.
+
+We can justify this with a procedure simiilar to te previous section, as done by
+for example Lin and Segel REF. Instead we are going to look at a slight
+variation of this, namely what happens when the amount of substarate isn't much
+bigger than the amount of enzymes. This is the Total Quasi Steady State
+assumption, discovered by Borghans and Segel 1996.
+
+\subsection{TQSSA}
+
+The basic idea behind TQSSA is to perform a change of variable
+
+\begin{equation}
+\overline{S} = S + C
+\end{equation}
+
+TODO: This doesn't really make sense without talking about validity of QSSA.
+
+This change of variable makes the approximation valid for more parameters. We
+get the following system of equations from REF and REF
+
+\begin{align}
+\frac{d\overline{S}}{dt} &= - k_2 C, \\
+\frac{dC}{dt} &= k_1(E_0-C)(\overline{S}-C)-(k_{-1}+ k_2) C
+\end{align}
+
+With initial conditions $\overline{S}(0)=S_0, C(0)=C$, these are the rate
+equations for the TQSSA.
+
+TODO: Show and explain phase plane for intuition.
+
+TODO: Justify time scales chosen?
+
+Borghans et al found these two following time scales,
+
+\begin{align}
+t_c &= \frac{1}{k_1(E_0+S_0+K_M)}, \\
+t_{\overline{s}} &= \frac{E_0+S_0+K_m}{k_2+E_0}
+\end{align}
+
+$K_M = \frac{k_{-1}+k_2}{k_1}$ as before. We will now analyze this like before.
+But first, we have to scale the system.
+
+\subsection{Scaling}
+
+We will now introduce scaled, dimensionless variables. We have the two times:
+
+TODO: Include Segel def. of scaling (p11) (Slemrod ~441p)
+
+\begin{align}
+t_f &= \frac{t}{t_c}, \\
+t_s &= \frac{t}{t_{\overline{S}}}
+\end{align}
+
+f for fast, s for slow/long. Also scaling C and $\overline{S}$ by their maximum:
+
+\begin{align}
+c &= \frac{C}{C_0}, \\
+s &= \frac{\overline{S}}{S_0}
+\end{align}
+
+$S_0$ is max since it starts from something and then turns into complex. $C_0$
+is max derived by Borghans et al. REF as
+
+TODO: Show how Borghans derive this?
+
+\begin{equation}
+C_0 = \frac{E_0 S_0}{E_0 + S_0 + K_m}
+\end{equation}
+
+\subsection{Outer solution}
+
+We now have a mathematical formulation of the problem and we just need a small
+parameter $\epsilon$ to begin look for the outer solution, where the complex
+changes slowly.
+
+A necessary condition for TQSSA to hold is $0 \epsilon \leq 1$
+
+TODO: Why don't Khoo use $\ll$? Odd.
+
+\begin{equation}
+\epsilon = \frac{t_f}{t_s}
+\end{equation}
+
+this comes from Borghans. \textit{Assuming} $t_f \ll t_s$ we then get, for the
+outer region, using c and $t_s$
+
 \end{document}
+
