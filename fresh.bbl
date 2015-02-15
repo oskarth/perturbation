@@ -1,0 +1,45 @@
+\begin{thebibliography}{1}
+
+\bibitem{bender1999advanced}
+Carl~M Bender and Steven~A Orszag.
+\newblock {\em Advanced Mathematical Methods for Scientists and Engineers I}.
+\newblock Springer Science \& Business Media, 1999.
+
+\bibitem{borghans1996extending}
+Jos{\'e}~AM Borghans, Rob~J De~Boer, and Lee~A Segel.
+\newblock Extending the quasi-steady state approximation by changing variables.
+\newblock {\em Bulletin of mathematical biology}, 58(1):43--63, 1996.
+
+\bibitem{holmes2012introduction}
+Mark~H Holmes.
+\newblock {\em Introduction to perturbation methods}, volume~20.
+\newblock Springer Science \& Business Media, 2012.
+
+\bibitem{khoo2008total}
+Chin~Foon Khoo and Markus Hegland.
+\newblock The total quasi-steady state assumption: its justification by
+  singular perturbation theory and its application to the chemical master
+  equation.
+\newblock {\em ANZIAM Journal}, 50:C429--C443, 2008.
+
+\bibitem{lin1974mathematics}
+CC~Lin and Lee~A Segel.
+\newblock {\em Mathematics Applied to Deterministic Problems}.
+\newblock SIAM, 1974.
+
+\bibitem{segel1988validity}
+Lee~A Segel.
+\newblock On the validity of the steady state assumption of enzyme kinetics.
+\newblock {\em Bulletin of mathematical biology}, 50(6):579--593, 1988.
+
+\bibitem{segel1989quasi}
+Lee~A Segel and Marshall Slemrod.
+\newblock The quasi-steady-state assumption: a case study in perturbation.
+\newblock {\em SIAM review}, 31(3):446--477, 1989.
+
+\bibitem{simmonds2013first}
+James~G Simmonds and James~E Mann.
+\newblock {\em A first look at perturbation theory}.
+\newblock Courier Corporation, 2013.
+
+\end{thebibliography}

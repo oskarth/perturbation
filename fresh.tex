@@ -1,11 +1,35 @@
 \documentclass[12pt]{article}
 \usepackage[parfill]{parskip}
 \usepackage{amsmath}
+\usepackage[nottoc,numbib]{tocbibind} % show bib in toc
 \linespread{1.5}
+
+\bibliographystyle{plain}
+
+\title{Perturbation theory and TQSSA}
+\author{Oskar Thor\'{e}n}
+\date{2015-02-15}
 
 \begin{document}
 
+\nocite{*} % include all references
+\maketitle
+
+TODO: Write abstract and title.
+
+\begin{abstract}
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+aliquip ex ea commodo consequat. Duis aute irure dolor in
+reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum.
+\end{abstract}
+
+\clearpage
 \tableofcontents
+\clearpage
 
 \section{Introduction}
 
@@ -17,7 +41,7 @@ aerodynamics. We will give a short account of these in the history section.
 The promise of perturbation theory is that it allows us to solve a
 larger class of problems than we could otherwise with analytical methods. It
 does this by giving us approximate, but rigorous, solutions. In this article we
-will guide the reader from some a very simple and familiar example, a quadratic
+will guide the reader from a very simple and familiar example, a quadratic
 equation, all the way to a useful research example in system biology: the total
 quasi steady state in enzyme kinetics.
 
@@ -26,7 +50,10 @@ understanding of calculus, differential equations and linear algebra will be
 able to follow along. All the relevant biology and perturbation theory will be
 explained as we go along.
 
-TODO: Write a subsection on the history of perturbation theory.
+\subsection{History}
+
+TODO: Write a subsection on the history of perturbation theory. From
+Scholarpedia.
 
 \section{A regular perturbation}
 
@@ -37,8 +64,8 @@ a quadratic equation.
 x^2 - 2x + \epsilon = 0
 \end{equation}
 
-We know how to solve this analytically. The roots of the equation are $x = 1 +
-\sqrt{1 - \epsilon}$ and $x = 1 - \sqrt{1 - \epsilon}$.
+We know how to solve this analytically. The roots of the equation are $x_1 = 1 +
+\sqrt{1 - \epsilon}$ and $x_2 = 1 - \sqrt{1 - \epsilon}$.
 
 The case we are interested in is the one where $\epsilon$ is very small. In this
 case, we can see that setting $\epsilon=0$ produces the roots $x=0$ and $x=2$
@@ -60,13 +87,13 @@ The Taylor series for $f(\epsilon) = (1 - \epsilon)^{1/2}$ around 0 is thus.
 \end{equation}
 
 If we take the limit of this as $\epsilon \to 0$, it's obvious that our
-intuition is correct. That is, a small change in epsilon only brings about a
+intuition is correct. That is, a small change in $\epsilon$ only brings about a
 small change in the solution.
 
-\begin{align*}
+\begin{align}
 x_1 &= \frac{\epsilon}{2} + \frac{\epsilon^2}{8} + O(\epsilon^3), \\
 x_2 &= 2 - \frac{\epsilon}{2} - \frac{\epsilon^2}{8} + O(\epsilon^3)
-\end{align*}
+\end{align}
 
 What is the point of all this? We said in the beginning that perturbation theory
 allows us to solve a larger class of problems, but what we have done so far
@@ -112,11 +139,11 @@ that part and divide the rest by $\epsilon$ we get the same for the next
 coefficient, etc. We thus get the following system of equations for solving the
 coefficients.
 
-\begin{align*}
+\begin{align}
 a_0^2 - 2 a_0 &=0, \\
 2 a_0 a_1 - 2 a_1 + 1 &= 0, \\
 a_1^2 + 2 a_0 a_2 - 2 a_2 &= 0
-\end{align*}
+\end{align}
 
 Solving these equations in turn gives us $a_0 = 0$ or $a_0 = 2$. For $a_0 = 0$ we
 have $a_1 = \frac{1}{2}$ and $a_2 = \frac{1}{8}$. For $a_0 = 2$ we have $a_1 = -
@@ -126,10 +153,10 @@ We said at the beginning that we assume the solution is on the form of a power
 series of $\epsilon$. We have two options for the coefficients, and these
 corresponds to the two approximate solutions.
 
-\begin{align*}
+\begin{align}
 x_1 &= \frac{1}{2} \epsilon + \frac{1}{8} \epsilon^2 + O(\epsilon^3), \\
 x_2 &= 2 - \frac{1}{2} \epsilon - \frac{1}{8} \epsilon^2 + O(\epsilon^3)
-\end{align*}
+\end{align}
 
 This corresponds well to our previous solution, without the use of the
 quadratica formula. We have thus found a general method for finding approximate
@@ -137,14 +164,14 @@ solutions to polynomials of any degree with a small parameter $\epsilon$.
 
 \section{A singular perturbation}
 
-In the last section we dealt with a so called regular problem. In this section
+In the last section we dealt with a so called regular perturbation problem. In this section
 we will deal with a singular perturbation problem. What is the difference? In a
 singular perturbation problem, the small $\epsilon$ \textit{matters} for the
-solution. In general, singular problems are generally interesting precisely
+solution. In general, singular problems are interesting precisely
 because their solutions can change a lot with just a small change in
 circumstances.
 
-As before, we will use a quadratic equation to illustrate how it works.
+As before, we will use a quadratic equation to illustrate how this works.
 
 \begin{equation}
 \epsilon x^2 - 2 x + 1 = 0
@@ -153,30 +180,17 @@ As before, we will use a quadratic equation to illustrate how it works.
 As before, we take $\epsilon$ to be a very small number. This equation has the
 following solutions.
 
-\begin{align*}
+\begin{align}
 x_1 &= \frac{1 + \sqrt{1 - \epsilon}}{\epsilon}, \\
 x_2 &= \frac{1 - \sqrt{1 - \epsilon}}{\epsilon}.
-\end{align*}
+\end{align}
 
 The first thing we notice is that even though $\epsilon$ is very small, we can't
-set it to zero. If we were to do it in (8), we would only get a one degree
+set it to zero. If we were to do it in (14), we would only get a one degree
 polynomial. The fact that we are losing solutions is a qualitative change, and
 is indicative that we are dealing with a singular perturbation problem.
 
-TODO: Skip this Taylor section, it's superfluous.
-
-We can re-use the Taylor expansion of $\sqrt{1 - \epsilon}$ from (3), and we
-would get that the solutions of our equation are.
-
-TODO: Provide Taylor expansion.
-
-\begin{equation}
-x_1 = \frac{1 + \sqrt{1 - \epsilon}}{\epsilon}, \\
-x_2 = \frac{1 - \sqrt{1 - \epsilon}}{\epsilon}.
-\end{equation}
-
-We have a problem here. As $\epsilon \to 0$, the root $x_2 \to \infty$. Is this
-correct? Let's use the same method a we did before. We assume the solution can
+Let's try using the same method a we did before. We assume the solution can
 be expressed in the form of a power series of $\epsilon$. Inserting this in our
 equation gives us the following.
 
@@ -194,11 +208,11 @@ O(\epsilon^3)
 
 and leads to.
 
-\begin{align*}
+\begin{align}
 - 2 a_0 + 1 &= 0, \\
 a_0^2 - 2 a_1 &= 0, \\
 2 a_0 a_1 -2 a_2 &= 0
-\end{align*}
+\end{align}
 
 $a_0 = \frac{1}{2}$, $a_1=\frac{1}{8}$, $a_2= \frac{1}{64}$, but this gives us
 only one of the roots, $x_1$.
@@ -208,9 +222,8 @@ x_1 = \frac{1}{2} + \frac{1}{8} \epsilon + O(\epsilon^2)
 \end{equation}
 
 By the Fundamental Theorem of Algebra, we would expect to see two solutions.
-What happened with the other root? We missed it because it's not on the form of
-a perturbation series. We got a hint of this when we saw the Taylor expansion of
-the root, but remember that we aren't supposed to use that. So what do we do?
+What happened to the other root? We missed it because it's not on the form of
+a perturbation series. So what do we do?
 
 The key here is that we can do a change in variable to turn the problem into a
 regular perturbation problem.
@@ -227,21 +240,23 @@ equation becomes
 \frac{\epsilon}{\delta^2} y^2 - \frac{2}{\delta} y + 1 = 0
 \end{equation}
 
-Our goal is to simplify the equation. We do this by dropping relatively
+Our goal is to simplify this equation. We do this by dropping relatively
 insignifcant terms. As we have seen, it turns out that the first term in the
 equation is not insignificant, so we have to leave it in. Is there some other
 term that we, to a first approximation, can drop?
 
-All the three terms in the above equation have an order of magnitude. The method
+TODO: Cite for method of dominant balance.
+
+All the three terms in the above equation have some order of magnitude. The method
 of dominant balance tells us to look for pairs that balance, where balance means
 they are of the same order of magnitude. We have already determined that the
-first term can't be drop, so we have two options:
+first term can't be dropped, so we have two options:
 
 \textbf{Case 1.} $\frac{\epsilon}{\delta^2} y^2$ balances 1, with $\frac{2}{\delta}$
 being relatively insignificant.
 
 $\frac{\epsilon}{\delta^2} = 1$ implies $\delta = \epsilon^{\frac{1}{2}}$. But
-then $\frac{2}{\delta} = \frac{2}{\epsilon^{\frac{1}{2}}}$ which isn't small as
+then $\frac{2}{\delta} = \frac{2}{\sqrt{\epsilon}}$ which isn't small as
 $\epsilon \to 0$.
 
 \textbf{Case 2.} $\frac{\epsilon}{\delta^2} y^2$ balance $\frac{2}{\delta} y$,
@@ -249,7 +264,10 @@ with 1 being relatively insignificant.
 
 This means $\frac{\epsilon}{\delta^2} = \frac{1}{\delta}$ which implies that
 $\delta = \epsilon$. This seems correct as both expressions are
-$O(\frac{1}{e})$, and 1 is relatively small compared to that. We have
+$O(\frac{1}{e})$, and 1 is relatively small compared to that when $\epsilon \to
+0$. We have
+
+TODO: Fix Latex small paranthesis.
 
 \begin{align}
 P(x) = \epsilon x^2 - 2x + 1, \\
@@ -278,7 +296,8 @@ perturbation problem.
 
 \section{ODE and boundary theory}
 
-TODO: Section on basics of boundary theory, intuition?
+TODO: Section on basics of boundary theory, intuition? Which book? ~ Ref Prandtl
+handwavey what boundary means.
 
 \subsection{Outer solution}
 
@@ -294,13 +313,14 @@ boundary conditions at once. If it satisfies $y(0)=0$ we have $y=0$ as the only
 solution, and if it satisfies $y(1)=1$ we have
 
 \begin{equation}
-y=e^{\frac{1}{2} (1 - x)}
+y_O=e^{\frac{1}{2} (1 - x)}
 \end{equation}
 
-TODO: Why is this assumption legit?
+TODO: Why is this assumption legit? Ask Y
 
 We are going to assume this is a good approximation somewhere. We are also going
-to assume this is valid for the $y(1)=1$ boundary condition.
+to assume this is valid for the $y(1)=1$ boundary condition. We call this out
+outer solution.
 
 Like the example in the last section, we missed something when we set $\epsilon
 = 0$. We have found one of the two solutions and now we want to the find the
@@ -316,14 +336,14 @@ $\delta(\epsilon)$. We introduce a re-scaling variable
 \end{equation}
 
 Having two scales like this is typical for singular perturbation problems. Our
-original equation REF becomes
+original equation (31) becomes
 
 \begin{equation}
 \frac{\epsilon}{\delta^2} \frac{d^2y}{d\overline{x}^2} + \frac{2}{\delta}
 \frac{dy}{d\overline{x}} + y = 0
 \end{equation}
 
-We now do pairwise balancing, like before. We have the following orders of
+We now do pairwise balancing. We have the following orders of
 magnitude
 
 \begin{equation}
@@ -334,15 +354,16 @@ We must have $\frac{\epsilon}{\delta^2}$ present, so the question is if it
 balance one of the other terms with one being insignificant, and if so, which one
 is insignificant. There are two cases.
 
-\textbf{Case 1}
+TODO: Latex imply, x2.
 
+\textbf{Case 1}
 \begin{equation}
 \frac{\epsilon}{\delta^2} ~ 1 => \delta = \epsilon^{\frac{1}{2}},
 \end{equation}
 
 but then $\frac{1}{\delta}$ is big compared to 1.
 
-textbf{Case 2}
+\textbf{Case 2}
 \begin{equation}
 \frac{\epsilon}{\delta^2} ~ \frac{1}{\delta} => \delta = \epsilon,
 \end{equation}
@@ -375,20 +396,22 @@ determine the constant $C$.
 \subsection{Matching}
 
 The idea behind matching is that there is some edge or region between the inner
-and outer solution. A region where both are valid approximations.
+and outer solution. A region where both solutions are valid approximations.
 
 If we imagine a particle tracing the x-axis rightward, as we exit the boundary
 layer, i.e. as $\overline{x} \to \infty$, the value of $y_I$ should be equal to
 the value of $y_O$ as $x \to 0$, that is
 
+TODO: Wrong Latex format of limit.
+
 \begin{equation}
-lim \overline{x} \to |infty y_I = lim \to 0+ y_O \iff
-lim \overline{x} \to |infty C(1 - e^{-2\overline{x}}) = lim \to 0+
-e^{\frac{1}{2}(1-x)}
+\lim \overline{x} \to \infty y_I = \\lim x \to 0+ y_O \iff 
+\lim \overline{x} \to \infty C(1 - e^{-2\overline{x}}) = \lim x \to 0+ e^{\frac{1}{2}(1-x)}
 \end{equation}
 
-This is a matching conditioning. The right-hand side is $e^{\frac{1}{2}}$, and
-thus the left-hand side gives us that $C = e^{\frac{1}{2}}$ is required.
+This is called a \textit{matching condition}. The right-hand side is
+$e^{\frac{1}{2}}$, and thus the left-hand side gives us that $C =
+e^{\frac{1}{2}}$.
 
 \subsection{Uniform approximation}
 
@@ -407,35 +430,38 @@ region.
 \begin{align}
 y_U &= e^{\frac{1}{2}(1-x)} e^{\frac{1}{2}}(1 - e^{\frac{-2x}{\epsilon}}) -
 e^{\frac{1}{2}} \\
-    &=  e^{\frac{1}{2}}(e^{\frac{-x}{2}} - e^{\frac{-2x}{\epsilon}}
+    &=  e^{\frac{1}{2}}(e^{\frac{-x}{2}} - e^{\frac{-2x}{\epsilon}})
 \end{align}
 
 Which is our uniform approximation for the whole solutions.
 
-TODO: Compare vs exact solution and graph them.
+TODO: Compare vs exact solution and graph them. Mathematica or XPP.
 
-TODO: Compute the second term?
+We can compare this to the exact solution and see that it is indeed a good
+approximation.
 
 \section{Total Quasi Steady State}
 
 \subsection{A biological problem}
 
-In enzyme kinetics we often come across chemical reactions lik
+In enzyme kinetics we often come across chemical reactions like
+
+TODO: Fix left right arrows.
 
 \begin{equation}
 E + S \leftarrow k_1 \rightarrow k_{-1} C \rightarrow k_2 E + P
 \end{equation}
 
 This is an enzyme E and substrate S that combine, reversibly, to form a complex
-C, which in turn gives us a product and enzyme back. $k_1$ etc are rate
+C, which in turn gives us a product and enzyme back. $k_1, k_{-1}, k_2$ are rate
 constants. We won't bother with the biological etails too much, but instead look
 at how we can analyze the above as a dynamical system.
 
-The law of mass action tells us that two molecules a and b forming complex c,
-$a+b \rightarrow k c$ are governed by $\frac{dc}{dt} = kab$. That is, the more
-concentration of a or b we have, the faster they turn into complex c. This has
-been experimentally verified in 1867 by Guldberg and Waage, and many times
-others.
+The \textit{law of mass action} tells us that two molecules a and b forming
+complex c, $a+b \rightarrow k c$ are governed by $\frac{dc}{dt} = kab$. That is,
+the more concentration of a or b we have, the faster they turn into complex c.
+This has been experimentally verified in 1867 by Guldberg and Waage, and many
+times since.
 
 With this law, we can translate our chemical reaction a system of differential
 equations.
@@ -447,8 +473,8 @@ equations.
 \frac{dP}{dt} &= k_2C
 \end{align}
 
-We also normally have some initial conditions to help us out: $S(0) = S_0, E(0)
-= E_0, C(0)=0, P(0)=0$.
+In the study of enzyme kinetics, we normall have some initial conditions to help
+us out: $S(0) = S_0, E(0) = E_0, C(0)=0, P(0)=0$.
 
 We see immediately that
 
@@ -456,31 +482,31 @@ We see immediately that
 \frac{dE}{dt} + \frac{dC}{dt} = 0
 \end{equation}
 
-with the initial conditions we get that
+Together with the initial conditions we get that
 
 \begin{equation}
 E + C = E_0
 \end{equation}
 
-Which we can use to eliminate E from the equation. This is a conservation law.
-We also don't care about P, as it doesn't feed back into the other equations. We
-are left with
+Which we can use to eliminate E from the equation. This is called a conservation
+law.  We also don't care about P, as it doesn't feed back into the other
+equations. We are left with
 
 \begin{align}
 \frac{dS}{dt} &= -k_1(E_0 - C)S + k_{-1}C, \\
-\frac{dC}{dt} &= k_1(E_0 - C)S - k_{-1}C - k_2 C, \\
+\frac{dC}{dt} &= k_1(E_0 - C)S - k_{-1}C - k_2 C
 \end{align}
 
 This is a two-dimensional system, which is much easier to deal with. Can we do
 better? It turns out we can.
 
-Many times, the substrate has a much higher concentration than enzyme. This
-means that C ban be treated as constant after a short initial period. By
-expoliting this fact, we can reduce the system to one equation. This i called
-the Michaelis-Menten or Quasi-Steady State approximation.
+Very often, in practice, the substrate has a much higher concentration than enzyme. This
+means that C can be treated as constant after a short initial period. By
+exploiting this fact, we can reduce the system to one equation. This is called
+the \textit{Quasi-Steady State approximation}.
 
 Assume that C is constant $\iff \frac{dC}{dt} = 0$ after a short period of time,
-then we can could write (as $\frac{dC}{dt}$ could be treated as 0)
+then we can could write, as $\frac{dC}{dt}$ can be treated as 0,
 
 \begin{equation}
 \frac{dS}{dt} = -k2 C
@@ -492,7 +518,8 @@ with
 C = \frac{E_0 S}{K_m +S}
 \end{equation}
 
-where $K_m = \frac{k_{-1} + k_2}{k_1}$ is the Michaelis-Menten constant.
+where $K_m = \frac{k_{-1} + k_2}{k_1}$ is the so called {Michaelis-Menten
+constant}.
 
 \begin{equation}
 \frac{dS}{dt} = \frac{-k_2 E_0 S}{K_M + S}
@@ -501,11 +528,12 @@ where $K_m = \frac{k_{-1} + k_2}{k_1}$ is the Michaelis-Menten constant.
 together with $S(0) = S_0$ as initial condition is what is normally considered
 the QSSA, valid after some short amount of time has passed.
 
-We can justify this with a procedure simiilar to te previous section, as done by
-for example Lin and Segel REF. Instead we are going to look at a slight
-variation of this, namely what happens when the amount of substarate isn't much
-bigger than the amount of enzymes. This is the Total Quasi Steady State
-assumption, discovered by Borghans and Segel 1996.
+We can justify this with a procedure similar to the previous section, as done by
+for example Lin and Segel \cite{lin1974mathematics}. Instead we are going to
+look at a slight variation of this, namely what happens when the amount of
+substrate isn't much bigger than the amount of enzymes. This is the
+\textit{Total Quasi Steady State assumption}, discovered by Borghans and Segel
+1996 \cite{borghans1996extending}.
 
 \subsection{TQSSA}
 
@@ -515,10 +543,8 @@ The basic idea behind TQSSA is to perform a change of variable
 \overline{S} = S + C
 \end{equation}
 
-TODO: This doesn't really make sense without talking about validity of QSSA.
-
 This change of variable makes the approximation valid for more parameters. We
-get the following system of equations from REF and REF
+get the following system of equations from (52), (53) and (57)
 
 \begin{align}
 \frac{d\overline{S}}{dt} &= - k_2 C, \\
@@ -528,19 +554,19 @@ get the following system of equations from REF and REF
 With initial conditions $\overline{S}(0)=S_0, C(0)=C$, these are the rate
 equations for the TQSSA.
 
-TODO: Show and explain phase plane for intuition.
+TODO: Show and explain phase plane for intuition. Mathematica or XPP.
 
-TODO: Justify time scales chosen?
+TODO: Justify time scales chosen? Ask Y.
 
-Borghans et al found these two following time scales,
+Borghans et al. found these two following time scales,
 
 \begin{align}
 t_c &= \frac{1}{k_1(E_0+S_0+K_M)}, \\
 t_{\overline{s}} &= \frac{E_0+S_0+K_m}{k_2+E_0}
 \end{align}
 
-$K_M = \frac{k_{-1}+k_2}{k_1}$ as before. We will now analyze this like before.
-But first, we have to scale the system.
+$K_M = \frac{k_{-1}+k_2}{k_1}$ as before. We will now analyze this like we did
+in the last section. But first, we have to scale the system.
 
 \subsection{Scaling}
 
@@ -553,17 +579,18 @@ t_f &= \frac{t}{t_c}, \\
 t_s &= \frac{t}{t_{\overline{S}}}
 \end{align}
 
-f for fast, s for slow/long. Also scaling C and $\overline{S}$ by their maximum:
+$t_f$ is the fast time scale, and $t_s$ the slow one. We also scale C and
+$\overline{S}$ by their maximum:
 
 \begin{align}
 c &= \frac{C}{C_0}, \\
 s &= \frac{\overline{S}}{S_0}
 \end{align}
 
-$S_0$ is max since it starts from something and then turns into complex. $C_0$
-is max derived by Borghans et al. REF as
+$S_0$ is max since it starts from some constant and then turns into complex. $C_0$
+is max derived by Borghans et al. \cite{borghans1996extending} as
 
-TODO: Show how Borghans derive this?
+TODO: Show how Borghans derive this? Ask Y.
 
 \begin{equation}
 C_0 = \frac{E_0 S_0}{E_0 + S_0 + K_m}
@@ -572,30 +599,29 @@ C_0 = \frac{E_0 S_0}{E_0 + S_0 + K_m}
 \subsection{Outer solution}
 
 We now have a mathematical formulation of the problem and we just need a small
-parameter $\epsilon$ to begin look for the outer solution, where the complex
+parameter $\epsilon$ to begin looking for the outer solution, where the complex
 changes slowly.
 
-A necessary condition for TQSSA to hold is $0 \epsilon \leq 1$
+A necessary condition for TQSSA to hold is $0 < \epsilon \leq 1$
 
-TODO: Why don't Khoo use $\ll$? Odd.
+TODO: Why don't Khoo use $\ll$? Odd. Ask Y.
 
 \begin{equation}
 \epsilon = \frac{t_f}{t_s}
 \end{equation}
 
-this comes from Borghans. \textit{Assuming} $t_f \ll t_s$ we then get, for the
+This comes from Borghans. \textit{Assuming} $t_f \ll t_s$ we then get, for the
 outer region.
 
-TODO: Use s* and s etc to diff? A la Segel.
-
-Using c and $t_s$ we get, using procedure by Khoo and Heglund REF,
+Using c and $t_s$ we get, using the procedure used by Khoo and Heglund
+\cite{khoo2008total},
 
 \begin{equation}
 \frac{dC}{dt_s} = \frac{t_{\overline{S}}}{c_0} k_1 [E_0 S_0 s - (E_0 + S_0 s +
 K_M) C_0 c + (c c_0)^2]
 \end{equation}
 
-Recall
+Recall that
 
 \begin{equation}
 \epsilon = \frac{t_f}{t_s} = \frac{k_2 E_0}{k_1(E_0+S_0+K_m)^2}
@@ -631,7 +657,7 @@ solution
 c_0  = \frac{E_0 + S_0 + K_m}{E_0 + S_0 s + K_m} s
 \end{equation}
 
-This is the outer solution. If we substitute this into s REF we get an
+This is the outer solution. If we substitute this into s we get an
 expression for outer solution of s.
 
 TODO: Check algebra. Mathematica?
@@ -640,7 +666,7 @@ TODO: Check algebra. Mathematica?
 \frac{ds}{dt_s} = \frac{-E_0 + S_0 + K_m}{E_0 + S_0s + k_m}s, s(0) = 1
 \end{equation}
 
-Solving this, we get the outer solution for s (according to Khoo!):
+Solving this, we get the outer solution for s, according to Khoo:
 
 TODO: Derive yourself? Same below
 
@@ -650,15 +676,15 @@ TODO: Derive yourself? Same below
 
 \subsection{Inner solution}
 
-TODO: Show intermediate steps.
+TODO: Show intermediate steps. Which ones?
 
-Using the outer time scale to satify the other initial conition,
+Using the outer time scale to satify the other initial conditions,
 
 \begin{equation}
 \frac{dS}{dt_f} = \frac{-k_2 E_0}{k_1(E_0 + S_0 + K_M)^2} c, s(0) = 1
 \end{equation}
 
-As $\epsilon \to 0$, above becomes $\frac{dS}{dt_f} = 0$, i.e constant.
+As $\epsilon \to 0$, the above becomes $\frac{dS}{dt_f} = 0$, i.e constant.
 
 \begin{equation}
 s_I = s(0) = 1
@@ -670,7 +696,9 @@ For c:
 \frac{dc}{dt_f} = 1 - c - \gamma c^2, c(0)=0
 \end{equation}
 
-TODO: How solve this? Mathematica? Khoo claims...
+TODO: How solve this? Mathematica?
+
+Khoo et al. finds that the solution is
 
 \begin{equation}
 c_I = \frac{2[exp(\sqrt{4\gamma-1}t_f)-1]}{(1-\sqrt{1-4\gamma}
@@ -683,7 +711,7 @@ TODO: Check this.
 
 \subsection{Matching}
 
-As before, we are loking for a common limit, and our matching condition as
+As before, we are looking for a common limit, and our matching condition as
 $\epsilon \to 0, t_f \to \infty, t_s \to 0$ is
 
 \begin{equation}
@@ -699,7 +727,7 @@ For s:
 For c:
 
 TODO: Perform this limit check, help from Mathematica? Can I find by hand? Khoo
-caims
+finds
 
 \begin{equation}
 ... = \approx 2(1+\sqrt{1-4\gamma})^{-1}
@@ -707,15 +735,15 @@ caims
 
 \subsection{Uniform approximation}
 
-Like before, common part and subtract the difference.
+Like before, we take the common part and subtract the difference.
 
 \begin{align}
 s_u &= s_O + s_I - 1 = s_O, \\
 c_u &= c_O + c_I - 2(1 + \sqrt{1-4\gamma})^{-1}
 \end{align}
 
-TODO: Compare with what handwavey TQSSA says.
+TODO: Phase plane / numerical? Same as before. But compared to what?
 
-TODO: Phase plane / numerical?
+\bibliography{references}
 
 \end{document}
