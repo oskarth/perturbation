@@ -15,16 +15,12 @@
 \nocite{*} % include all references
 \maketitle
 
-TODO: Write abstract and title.
-
 \begin{abstract}
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-aliquip ex ea commodo consequat. Duis aute irure dolor in
-reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-culpa qui officia deserunt mollit anim id est laborum.
+Perturbation theory has a long history, and recent decades has seen applications
+in enzyme kinetics. We start with some basic polynomial examples of perturbation
+theory, and then progress to a boundary-value problem in a differential
+equation, before we tackle a real application in the form of Total Quasi Steady
+State from enzyme kinetics.
 \end{abstract}
 
 \clearpage
@@ -446,10 +442,8 @@ approximation.
 
 In enzyme kinetics we often come across chemical reactions like
 
-TODO: Fix left right arrows.
-
 \begin{equation}
-E + S \leftarrow k_1 \rightarrow k_{-1} C \rightarrow k_2 E + P
+E + S \leftarrow_{k_1} \rightarrow_{k_{-1}} C \rightarrow_{k_2} E + P
 \end{equation}
 
 This is an enzyme E and substrate S that combine, reversibly, to form a complex
@@ -457,19 +451,19 @@ C, which in turn gives us a product and enzyme back. $k_1, k_{-1}, k_2$ are rate
 constants. We won't bother with the biological etails too much, but instead look
 at how we can analyze the above as a dynamical system.
 
-The \textit{law of mass action} tells us that two molecules a and b forming
-complex c, $a+b \rightarrow k c$ are governed by $\frac{dc}{dt} = kab$. That is,
-the more concentration of a or b we have, the faster they turn into complex c.
-This has been experimentally verified in 1867 by Guldberg and Waage, and many
+The \textit{law of mass action} tells us that two molecules A and B forming
+complex C, $A+B \rightarrow_k C$ are governed by $\frac{dC}{dt} = kAB$. That is,
+the more concentration of A or B we have, the faster they turn into complex C.
+This has been experimentally verified by Guldberg and Waage in 1867, and many
 times since.
 
 With this law, we can translate our chemical reaction a system of differential
 equations.
 
 \begin{align}
-\frac{dE}{dt} &= -k_1(E+S) + k_{-1}C + k_2C, \\
-\frac{dS}{dt} &= -k1(E+S) + k_{-1}C, \\
-\frac{dC}{dt} &= k_1(E+S) - k_{-1}C - k_2C, \\
+\frac{dE}{dt} &= -k_1(E*S) + k_{-1}C + k_2C, \\
+\frac{dS}{dt} &= -k1(E*S) + k_{-1}C, \\
+\frac{dC}{dt} &= k_1(E*S) - k_{-1}C - k_2C, \\
 \frac{dP}{dt} &= k_2C
 \end{align}
 
@@ -551,10 +545,8 @@ get the following system of equations from (52), (53) and (57)
 \frac{dC}{dt} &= k_1(E_0-C)(\overline{S}-C)-(k_{-1}+ k_2) C
 \end{align}
 
-With initial conditions $\overline{S}(0)=S_0, C(0)=C$, these are the rate
+With initial conditions $\overline{S}(0)=S_0, C(0)=0$, these are the rate
 equations for the TQSSA.
-
-TODO: Show and explain phase plane for intuition. Mathematica or XPP.
 
 TODO: Justify time scales chosen? Ask Y.
 
@@ -570,9 +562,14 @@ in the last section. But first, we have to scale the system.
 
 \subsection{Scaling}
 
-We will now introduce scaled, dimensionless variables. We have the two times:
+Lin and Segel defines Scaling as follows:
 
-TODO: Include Segel def. of scaling (p11) (Slemrod ~441p)
+\textit{Scaling amounts to nondimensionalizing so that relative magnitude of
+each term is indicated by a dimensionless factor preceding that term}
+\cite{lin1974mathematics}.
+
+We will now introduce scaled, dimensionless variables. We get these variables by
+dividing with their respective scales. We have the two time variables:
 
 \begin{align}
 t_f &= \frac{t}{t_c}, \\
@@ -602,9 +599,7 @@ We now have a mathematical formulation of the problem and we just need a small
 parameter $\epsilon$ to begin looking for the outer solution, where the complex
 changes slowly.
 
-A necessary condition for TQSSA to hold is $0 < \epsilon \leq 1$
-
-TODO: Why don't Khoo use $\ll$? Odd. Ask Y.
+A necessary condition for TQSSA to hold is $0 < \epsilon \ll 1$
 
 \begin{equation}
 \epsilon = \frac{t_f}{t_s}
