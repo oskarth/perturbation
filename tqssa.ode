@@ -1,0 +1,12 @@
+# tqssa.ode
+# k = k1, l=k_1, m=k2
+#
+s'=-m*c
+c'=k*(e-c)*(s-c)-(l+m)*c
+par e=0.01, k=10, l=1, m=0.1
+init s=0.1, c=0
+@xp=s, yp=c
+# xlo=0, ylo=0, xhi=1, yhi=1
+@ total=400
+@ nmesh=51
+done
