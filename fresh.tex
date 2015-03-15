@@ -2,6 +2,7 @@
 \usepackage[parfill]{parskip}
 \usepackage{amsmath}
 \usepackage[nottoc,numbib]{tocbibind} % show bib in toc
+\usepackage{graphicx}
 \linespread{1.5}
 
 \bibliographystyle{plain}
@@ -267,7 +268,7 @@ TODO: Fix Latex small paranthesis.
 
 \begin{align}
 P(x) = \epsilon x^2 - 2x + 1, \\
-\epsilon P(\frac{y}{\epsilon}) = y^2 - 2 y + \epsilon
+\epsilon P\Big(\frac{y}{\epsilon}\Big) = y^2 - 2 y + \epsilon
 \end{align}
 
 Where the last part is exactly the same as our regular perturbation problem.
@@ -467,7 +468,7 @@ equations.
 \frac{dP}{dt} &= k_2C
 \end{align}
 
-In the study of enzyme kinetics, we normall have some initial conditions to help
+In the study of enzyme kinetics, we normally have some initial conditions to help
 us out: $S(0) = S_0, E(0) = E_0, C(0)=0, P(0)=0$.
 
 We see immediately that
@@ -548,7 +549,23 @@ get the following system of equations from (52), (53) and (57)
 With initial conditions $\overline{S}(0)=S_0, C(0)=0$, these are the rate
 equations for the TQSSA.
 
-TODO: Justify time scales chosen? Ask Y.
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=120mm]
+{tqssa-phase-plane-b.png}
+\caption{TQSSA phase plane. Initial state is $\overline{S}(0)=0.1,
+  C(0)=0$. $E=0.01, k_1=10, k={-1}=1, k_2=0.1$.}
+\label{overflow}
+\end{figure}
+
+We get some intuition of the behavior by inspecting the phase plane of
+the above equations. With the help of XPP (see appendix for the source
+code used), we can numerically simulate the system, as seen in figure
+1. There are two things to note: (1) the steady state is at (0,0) (not
+shown in graph due to numerical rounding error) and (2) from the initial
+condition there's a rapid increase of concentration in complexity C,
+after which it slowly decrease (quasi-steady state) until it reached
+steady state.
 
 Borghans et al. found these two following time scales,
 
@@ -738,6 +755,33 @@ c_u &= c_O + c_I - 2(1 + \sqrt{1-4\gamma})^{-1}
 \end{align}
 
 TODO: Phase plane / numerical? Same as before. But compared to what?
+
+\section{Appendix}
+
+\subsection{TQSSA XPP code}
+
+\begin{verbatim}
+# tqssa.ode
+# k = k1, l=k_1, m=k2
+#
+s'=-m*c
+c'=k*(e-c)*(s-c)-(l+m)*c
+par e=0.01, k=10, l=1, m=0.1
+init s=0.1, c=0
+@xp=s, yp=c
+# xlo=0, ylo=0, xhi=1, yhi=1
+@ total=400
+@ nmesh=51
+done
+\end{verbatim}
+
+To reproduce, download XPP and load the above code. Press "V 2" and
+choose S on the x-axis for the phase plane, press "I G" to simulate
+from the initial conditions, then "W F" to fit the resulting graph to
+the window. If we press "S G" we get a confirmation that there's a
+steady state at at (0,0) to a rounding error becuase of numerical
+errors, and that it is stable. For more information, consult the
+official XPP manual available online.
 
 \bibliography{references}
 
