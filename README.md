@@ -1,3 +1,10 @@
+# Low prio TODOs
+
+- Define y in (23)
+- Cite method for dominant balance after (24)
+- y is treated as a constant (~) after (24) (but it's a fn of O(1))
+
+## Misc
 v1 explanation of singular perturbation theory, using TQSSA as an example.
 
 First part - What is singular perturbation theory?

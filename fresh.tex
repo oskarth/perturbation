@@ -30,31 +30,28 @@ State from enzyme kinetics.
 
 \section{Introduction}
 
-Perturbation theory has its roots in celestial mechanics and aerodynamics. There
-are two particularly interesting victories the field has seen. The first was the
-discovery of Neptune, and the second is the theoretical foundation for
-aerodynamics. We will give a short account of these in the history section.
+Perturbation theory has its roots in celestial mechanics and
+aerodynamics. There are two particularly interesting victories that
+perturbation theory has enabled. The first was the discovery of
+Neptune, and the second is the theoretical foundation for
+aerodynamics.
 
 The promise of perturbation theory is that it allows us to solve a
-larger class of problems than we could otherwise with analytical methods. It
-does this by giving us approximate, but rigorous, solutions. In this article we
-will guide the reader from a very simple and familiar example, a quadratic
-equation, all the way to a useful research example in system biology: the total
-quasi steady state in enzyme kinetics.
+larger class of problems, for example, in differential equation, than
+we could otherwise with analytical methods. It does this by giving us
+approximate, but rigorous, solutions. In this article we will guide
+the reader from a very simple and familiar example, a quadratic
+equation, all the way to a useful research example in system biology:
+the total quasi steady state in enzyme kinetics.
 
 The article has been written with the goal that any student with a basic
 understanding of calculus, differential equations and linear algebra will be
 able to follow along. All the relevant biology and perturbation theory will be
 explained as we go along.
 
-\subsection{History}
-
-TODO: Write a subsection on the history of perturbation theory. From
-Scholarpedia.
-
 \section{A regular perturbation}
 
-We are going to start with probably the simplest non-trivial example imaginable:
+We are going to start with one of the simplest non-trivial example imaginable:
 a quadratic equation.
 
 \begin{equation}
@@ -69,23 +66,25 @@ case, we can see that setting $\epsilon=0$ produces the roots $x=0$ and $x=2$
 respectively. In fact, for any given small $\epsilon$ we notice that solution
 changes very little. In that sense it's a very "boring" and predictable problem.
 
-How can we make this observation more rigorous? One way is to rewrite the part
+Can we make this observation, that a small change in $\epsilon$ only brings about a small change in the solution, more rigorous? One way is to rewrite the part
 of the solution containing $\epsilon$ as a Taylor series. Recall that a Taylor
-series for a function $f(x)$ around a looks like follows.
+series for a function $f(x)$ around a point a looks like follows.
 
 \begin{equation}
 f(x) = \sum_{n=0}^{\infty} \frac{f^{n}(a)}{n!} (x-a)^n
 \end{equation}
 
-The Taylor series for $f(\epsilon) = (1 - \epsilon)^{1/2}$ around 0 is thus.
+The Taylor series for $f(\epsilon) = (1 - \epsilon)^{1/2}$ around 0
+(since we assume that \$epsilon$ is very small) is thus:
 
 \begin{equation}
 \sqrt{1 - \epsilon} = 1 - \frac{\epsilon}{2} - \frac{\epsilon^2}{8} + O(\epsilon^3)
 \end{equation}
 
-If we take the limit of this as $\epsilon \to 0$, it's obvious that our
-intuition is correct. That is, a small change in $\epsilon$ only brings about a
-small change in the solution.
+Where $O(\epsilon^3)$ is some expression with a term $\epsilon^3$ in
+it. If we take the limit of this expression as $\epsilon \to 0$, it's
+obvious that our intuition is correct. That is, a small change in
+$\epsilon$ only brings about a small change in the solution. We get:
 
 \begin{align}
 x_1 &= \frac{\epsilon}{2} + \frac{\epsilon^2}{8} + O(\epsilon^3), \\
@@ -101,8 +100,8 @@ Let's start over, but this time let's assume we don't have the quadratic formula
 at our disposal. We will outline a method which would allow us to get arbitrarly
 good approximations for polynomials of any degree.
 
-Let's assume the solution of (1) can be expressed on the form of a power series
-of $\epsilon$.
+Let's assume the solution of (1) in terms of x can be expressed in the
+form of a power series of $\epsilon$.
 
 \begin{equation}
 \sum_0^{\infty} a_k \epsilon^k = a_0 + a_1 \epsilon + a_2 \epsilon^2 + ...
@@ -110,7 +109,7 @@ of $\epsilon$.
 
 We will now insert this power series into (1), and then expand that expression
 in terms of powers of $\epsilon$. We only have to do this for the first few
-terms of the power series, as we will see in the end. If we want to we can
+terms of the power series to get a decent approximation. If we want to we can
 always add more terms and get a more accurate approximation.
 
 \begin{equation}
@@ -118,10 +117,11 @@ always add more terms and get a more accurate approximation.
 \epsilon^2 + ...) + \epsilon = 0
 \end{equation}
 
-We expand the expression using Big-Oh algebra. For example, $(a_0 + a_1 \epsilon
-+ a_2 \epsilon^2)^2 = a_0^2 + 2 a_0 a_1 \epsilon + (a_1^2 + 2 a_0 a_2) \epsilon^2 + O(\epsilon^3)$.
+We expand the expression using Big-Oh algebra. For example, for the
+first term, we get: $(a_0 + a_1 \epsilon + a_2 \epsilon^2)^2 = a_0^2 +
+2 a_0 a_1 \epsilon + (a_1^2 + 2 a_0 a_2) \epsilon^2 + O(\epsilon^3)$.
 
-The whole expression becomes the following.
+The whole expression becomes the following:
 
 \begin{equation}
 a_0^2 - 2 a_0 + (2 a_0 a_1 - 2 a_1 + 1)\epsilon + (a_1^2 + 2 a_0 a_2 - 2 a_2)
@@ -131,10 +131,7 @@ a_0^2 - 2 a_0 + (2 a_0 a_1 - 2 a_1 + 1)\epsilon + (a_1^2 + 2 a_0 a_2 - 2 a_2)
 Now we turn the problem of determining the coefficients $a_0$, $a_1$ etc. Since
 $\epsilon$ is a variable here rather than a parameter, we see that the
 coefficients before each power of $\epsilon$ separately all have to be equal to
-zero. For example, $a_0^2 - 2 a_0 = 0$ when $\epsilon \to 0$, and if we remove
-that part and divide the rest by $\epsilon$ we get the same for the next
-coefficient, etc. We thus get the following system of equations for solving the
-coefficients.
+zero. We thus get the following system of equations for solving the coefficients.
 
 \begin{align}
 a_0^2 - 2 a_0 &=0, \\
@@ -142,22 +139,25 @@ a_0^2 - 2 a_0 &=0, \\
 a_1^2 + 2 a_0 a_2 - 2 a_2 &= 0
 \end{align}
 
-Solving these equations in turn gives us $a_0 = 0$ or $a_0 = 2$. For $a_0 = 0$ we
-have $a_1 = \frac{1}{2}$ and $a_2 = \frac{1}{8}$. For $a_0 = 2$ we have $a_1 = -
+Solving these equations in turn gives us, starting with the first
+equation, $a_0 = 0$ or $a_0 = 2$. For $a_0 = 0$ we have $a_1 =
+\frac{1}{2}$ and $a_2 = \frac{1}{8}$. For $a_0 = 2$ we have $a_1 = -
 \frac{1}{2}$ and $a_2 = - \frac{1}{8}$.
 
-We said at the beginning that we assume the solution is on the form of a power
-series of $\epsilon$. We have two options for the coefficients, and these
-corresponds to the two approximate solutions.
+We said at the beginning that we assume the solution is on the form of
+a power series of $\epsilon$. We have two options for the coefficients
+of this power series, and these corresponds to the two approximate
+solutions of the original equation. From the above and (6) we get:
 
 \begin{align}
 x_1 &= \frac{1}{2} \epsilon + \frac{1}{8} \epsilon^2 + O(\epsilon^3), \\
 x_2 &= 2 - \frac{1}{2} \epsilon - \frac{1}{8} \epsilon^2 + O(\epsilon^3)
 \end{align}
 
-This corresponds well to our previous solution, without the use of the
-quadratica formula. We have thus found a general method for finding approximate
-solutions to polynomials of any degree with a small parameter $\epsilon$.
+This is exactly the same as our previous solutions in (4) and (5),
+without the use of the quadratica formula. We have thus found a
+general method for finding approximate solutions to polynomials of any
+degree with a small parameter $\epsilon$.
 
 \section{A singular perturbation}
 
@@ -165,7 +165,7 @@ In the last section we dealt with a so called regular perturbation problem. In t
 we will deal with a singular perturbation problem. What is the difference? In a
 singular perturbation problem, the small $\epsilon$ \textit{matters} for the
 solution. In general, singular problems are interesting precisely
-because their solutions can change a lot with just a small change in
+because their solutions can change significantly with just a small change in
 circumstances.
 
 As before, we will use a quadratic equation to illustrate how this works.
@@ -187,13 +187,13 @@ set it to zero. If we were to do it in (14), we would only get a one degree
 polynomial. The fact that we are losing solutions is a qualitative change, and
 is indicative that we are dealing with a singular perturbation problem.
 
-Let's try using the same method a we did before. We assume the solution can
-be expressed in the form of a power series of $\epsilon$. Inserting this in our
-equation gives us the following.
+Let's try using the same method as we did before. We assume x can be
+expressed in the form of a power series of $\epsilon$. Inserting this
+in our equation gives us the following.
 
 \begin{equation}
 \epsilon (a_0 + a_1 \epsilon + a_2 \epsilon^2)^2 - 2(a_0 + \epsilon a_1 +
-a_2 \epsilon^2 + ...) + 1 = 0
+a_2 \epsilon^2) + 1 = 0
 \end{equation}
 
 which gets expanded into.
@@ -238,11 +238,9 @@ equation becomes
 \end{equation}
 
 Our goal is to simplify this equation. We do this by dropping relatively
-insignifcant terms. As we have seen, it turns out that the first term in the
+insignificant terms. As we have seen, it turns out that the first term in the
 equation is not insignificant, so we have to leave it in. Is there some other
 term that we, to a first approximation, can drop?
-
-TODO: Cite for method of dominant balance.
 
 All the three terms in the above equation have some order of magnitude. The method
 of dominant balance tells us to look for pairs that balance, where balance means
@@ -263,8 +261,6 @@ This means $\frac{\epsilon}{\delta^2} = \frac{1}{\delta}$ which implies that
 $\delta = \epsilon$. This seems correct as both expressions are
 $O(\frac{1}{e})$, and 1 is relatively small compared to that when $\epsilon \to
 0$. We have
-
-TODO: Fix Latex small paranthesis.
 
 \begin{align}
 P(x) = \epsilon x^2 - 2x + 1, \\

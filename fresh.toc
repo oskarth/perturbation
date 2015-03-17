@@ -1,20 +1,19 @@
 \contentsline {section}{\numberline {1}Introduction}{3}
-\contentsline {subsection}{\numberline {1.1}History}{3}
-\contentsline {section}{\numberline {2}A regular perturbation}{4}
+\contentsline {section}{\numberline {2}A regular perturbation}{3}
 \contentsline {section}{\numberline {3}A singular perturbation}{7}
 \contentsline {section}{\numberline {4}ODE and boundary theory}{11}
 \contentsline {subsection}{\numberline {4.1}Outer solution}{11}
 \contentsline {subsection}{\numberline {4.2}Inner solution}{12}
-\contentsline {subsection}{\numberline {4.3}Matching}{14}
-\contentsline {subsection}{\numberline {4.4}Uniform approximation}{15}
-\contentsline {section}{\numberline {5}Total Quasi Steady State}{16}
-\contentsline {subsection}{\numberline {5.1}A biological problem}{16}
-\contentsline {subsection}{\numberline {5.2}TQSSA}{19}
-\contentsline {subsection}{\numberline {5.3}Scaling}{21}
-\contentsline {subsection}{\numberline {5.4}Outer solution}{22}
-\contentsline {subsection}{\numberline {5.5}Inner solution}{24}
-\contentsline {subsection}{\numberline {5.6}Matching}{25}
-\contentsline {subsection}{\numberline {5.7}Uniform approximation}{25}
-\contentsline {section}{\numberline {6}Appendix}{26}
-\contentsline {subsection}{\numberline {6.1}TQSSA XPP code}{26}
-\contentsline {section}{\numberline {7}References}{27}
+\contentsline {subsection}{\numberline {4.3}Matching}{13}
+\contentsline {subsection}{\numberline {4.4}Uniform approximation}{14}
+\contentsline {section}{\numberline {5}Total Quasi Steady State}{15}
+\contentsline {subsection}{\numberline {5.1}A biological problem}{15}
+\contentsline {subsection}{\numberline {5.2}TQSSA}{18}
+\contentsline {subsection}{\numberline {5.3}Scaling}{20}
+\contentsline {subsection}{\numberline {5.4}Outer solution}{21}
+\contentsline {subsection}{\numberline {5.5}Inner solution}{23}
+\contentsline {subsection}{\numberline {5.6}Matching}{24}
+\contentsline {subsection}{\numberline {5.7}Uniform approximation}{24}
+\contentsline {section}{\numberline {6}Appendix}{25}
+\contentsline {subsection}{\numberline {6.1}TQSSA XPP code}{25}
+\contentsline {section}{\numberline {7}References}{26}
