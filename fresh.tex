@@ -3,7 +3,16 @@
 \usepackage{amsmath}
 \usepackage[nottoc,numbib]{tocbibind} % show bib in toc
 \usepackage{graphicx}
+\usepackage{hyperref}
 \linespread{1.5}
+
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
 
 \bibliographystyle{plain}
 
@@ -442,10 +451,16 @@ e^{\frac{1}{2}} \\
 
 Which is our uniform approximation for the whole solutions.
 
-TODO: Compare vs exact solution and graph them. Mathematica or XPP.
-
 We can compare this to the exact solution and see that it is indeed a good
 approximation.
+
+\subsection{Comparison with exact solution}
+
+We saw in the previous section what a good approximation to the
+solution is. Our original equation can however be solved exactly, so
+let's do that.
+
+TODO: Compare vs exact solution and graph them. Mathematica or XPP.
 
 \section{Total Quasi Steady State}
 
