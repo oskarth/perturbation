@@ -457,10 +457,38 @@ approximation.
 \subsection{Comparison with exact solution}
 
 We saw in the previous section what a good approximation to the
-solution is. Our original equation can however be solved exactly, so
-let's do that.
+solution is. Our original equation (31) can however be solved exactly,
+so let's do that.
 
-TODO: Compare vs exact solution and graph them. Mathematica or XPP.
+The characteristic polynomial is $\frac{-1 \pm
+  \sqrt{1-\epsilon}}{\epsilon}$. We have:
+
+\begin{equation}
+y_{\epsilon}(x)=c_1 e^{\frac{-1 + \sqrt{1-\epsilon}}{\epsilon} x} + c_2
+e^{\frac{-1 - \sqrt{1-\epsilon}}{\epsilon} x}
+\end{equation}
+
+With the help of the boundary conditions $y(0)=0, y(1)=1$ we see that
+
+\begin{equation}
+  c2 = - c1 = - \frac{1}{e^{\frac{-1 + \sqrt{1-\epsilon}}{\epsilon}}
+    - e^{\frac{-1 - \sqrt{1-\epsilon}}{\epsilon}}}
+\end{equation}
+
+TODO: This section.
+
+Want something like this (lin/ mathematica): g[x_] := E^(1/2)
+(E^(-x/2) - E^(-2 x/err))
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=120mm]
+{tmp_ode-outer.png}
+\caption{Outer vs approx}
+\label{overflow}
+\end{figure}
+
+TODO: Then same for inner soln.
 
 \section{Total Quasi Steady State}
 
