@@ -289,8 +289,28 @@ perturbation problem.
 
 \section{ODE and boundary theory}
 
-TODO: Section on basics of boundary theory, intuition? Which book? ~ Ref Prandtl
-handwavey what boundary means.
+Boundary layer theory has its origins in aerodynamics and Prandtl. He
+discovered that the way fluids like air around a plane and water
+around some obstacle flows is almost completely void of viscosity, or
+stickiness, except for a very thin region near the boundary of the
+plane of the obsacle. This allowed for the separate treatment - one
+where viscosity can be discarded, and one where it matters a lot - of
+what would back then be one single complex problem, which simplified
+matters greatly.
+
+We will now give a basic example of this in the form of a boundary
+value problem with differential equations. We will again look at a
+problem which we could solve explicitly, but instead use perturbation
+theory to analyze. In a boundary value problem, we have two boundary
+value conditions and, in a first approximation, they can't both be
+satisfied at the same time. The strategy we use is to split the
+problem in two - one where we are in a very thin region at $t=0$
+(where we have a boundary condition), the so called inner region, and
+one where we are in an outer region, which is everywhere else. This
+strategy is generalizable to multiple layers
+
+We start by looking for the outer solution, then the inner solution,
+then we match them together into one unified solution.
 
 \subsection{Outer solution}
 
@@ -308,8 +328,6 @@ solution, and if it satisfies $y(1)=1$ we have
 \begin{equation}
 y_O=e^{\frac{1}{2} (1 - x)}
 \end{equation}
-
-TODO: Why is this assumption legit? Ask Y
 
 We are going to assume this is a good approximation somewhere. We are also going
 to assume this is valid for the $y(1)=1$ boundary condition. We call this out
