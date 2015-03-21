@@ -475,20 +475,70 @@ With the help of the boundary conditions $y(0)=0, y(1)=1$ we see that
     - e^{\frac{-1 - \sqrt{1-\epsilon}}{\epsilon}}}
 \end{equation}
 
-TODO: This section.
+We use a Taylor expansion as before and define $\alpha_1$ and $\alpha_2$ as follows:
 
-Want something like this (lin/ mathematica): g[x_] := E^(1/2)
-(E^(-x/2) - E^(-2 x/err))
+\begin{align}
+  \alpha_1 &= \frac{1 - \sqrt{1-\epsilon}}{\epsilon} = \frac{1}{2} + O(\epsilon) \\
+  \alpha_2 &= 1+ \sqrt{1-\epsilon} = 2 + O(\epsilon)
+\end{align}
+
+We can then express the solution as follows:
+
+\begin{equation}
+  y_{\epsilon}(x) = \frac{1}{e^{-\alpha_1(\epsilon)} - e^{\frac{-\alpha_2(\epsilon)}{\epsilon}}} \Big(e^{-\alpha_1(\epsilon)x} - e^{\frac{-\alpha_2(\epsilon)x}{\epsilon}}\Big)
+\end{equation}
+
+There are two terms in this solution. As $\epsilon \to 0+$, for fixed
+$x \in (0,1)$, all the expression involving a division with $\epsilon$
+disappears. The solution becomes:
+
+\begin{equation}
+  y_{\epsilon}(x) \to \frac{e^{\frac{-x}{2}}}{e^{\frac{-1}{2}}} = e^{\frac{1}{2}(1-x)}
+\end{equation}
+
+This is exactly the outer solution we got before, satisfying $y(1)=1$
+but not $y(0)=0$.
+
+If we instead take (49) and notice that, for arbitrarily small
+$\epsilon$, $e^{-\frac{\alpha_2(\epsilon)}/{\epsilon}}$ is 0. The
+exact solution is thus (we distinguish between an approximation of the
+exact solution, and the outer approximation):
+
+\begin{equation}
+y_{\epsilon}(x) \approx e^{\frac{1}{2}}(e^{-\frac{x}{2}} -
+  e^{-\frac{2x}{\epsilon}}), \quad 0 < \epsilon \ll 1
+\end{equation}
+
+When we graph (50) and (51) for any given $\epsilon$ we see that,
+outside of a small region near 0, the outer approximation is indeed a
+good approximation.
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=120mm]
 {tmp_ode-outer.png}
-\caption{Outer vs approx}
+\caption{The full line is the outer approximation, $\epsilon=0.1$}
 \label{overflow}
 \end{figure}
 
-TODO: Then same for inner soln.
+Note that the outer approximation starts at $y(0)=e^{\frac{1}{2}}$,
+and thus misses the contribution $\epsilon$ has on the solution for
+very small x values.
+
+If we were to do the same thing for the inner solution, we would get
+the following graph.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=120mm]
+{tmp_ode-inner.png}
+\caption{The full line is the inner approximation, $\epsilon=0.1$}
+\label{overflow}
+\end{figure}
+
+Notice the agreement between the exact and inner approximation in a
+region close to $x=0$ (which we can move arbitrarily closer by using a
+smaller $\epsilon$).
 
 \section{Total Quasi Steady State}
 
@@ -835,6 +885,21 @@ the window. If we press "S G" we get a confirmation that there's a
 steady state at at (0,0) to a rounding error becuase of numerical
 errors, and that it is stable. For more information, consult the
 official XPP manual available online.
+
+\subsection{Mathematica code}
+
+\begin{verbatim}
+f[x_] := E^((1/2) (1 - x)) (* outer approx *)
+g[x_] := E^(1/2) (E^(-x/2) - E^(-2 x/err)) (* exact *)
+h[x_] := E^(1/2) * (1 - E^(-2*x/err)) (* inner approx *)
+err = 0.1
+
+Plot[{f[x], g[x]}, {x, 0, 1.7}, PlotRange -> {0, 1.7}, PlotStyle ->
+ {Dashing, Directive[Dashed], Directive[Thick]}]
+
+Plot[{h[x], g[x]}, {x, 0, 1}, PlotRange -> {0, 2}, 
+ PlotStyle -> {Dashing, Directive[Dashed], Directive[Thick]}]
+\end{verbatim}
 
 \bibliography{references}
 
