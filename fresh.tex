@@ -670,7 +670,43 @@ condition there's a rapid increase of concentration in complexity C,
 after which it slowly decrease (quasi-steady state) until it reached
 steady state.
 
-Borghans et al. found these two following time scales,
+\subsection{Timescales}
+
+To analyze the problem rigorously using perturbation theory, we need
+to find an expression that estimates these two time scales that the
+system is operating with, $t_c$ for the fast initial period and
+$t_{\overline{s}}$ for the slow quasi-steady state period.
+
+To get the fast time scale, we can estimate S as $S_0$ since in that
+time period the substrate concentration won't change much. We just
+care about rough orders of magnitudes for the timescales. From (60) we
+get:
+
+\begin{equation}
+  \frac{dC}{dt} = k_1E_0 S_0 - (k_1 S_0 + k_{-1} + k_2)C
+\end{equation}
+
+With the help of initial condition $C(0)=0$, we get the solution:
+$C(0)=0$):
+
+\begin{equation}
+  C(t) = A(1 -  e^{\lambda x}), \quad
+  \lambda = (-S_0 k_1 + k_{-1} + k_2), \quad
+  A =\frac{k1 E_0 S_0}{S_0 k1 + k_{-1} + k_2}
+\end{equation}
+
+The timescale here is $t_c = \lambda^{-1}$, which we can rewrite as:
+
+\begin{equation}
+  t_c = \frac{1}{k_1(S_0+K_M)}
+\end{equation}
+
+TODO: This section, now get the $E_0$ in there based on TQSSA/Pade
+approximants.
+
+TODO: And t_s similar.
+
+Borghans et al. found these two following time scales:
 
 \begin{align}
 t_c &= \frac{1}{k_1(E_0+S_0+K_M)}, \\

@@ -1,13 +1,10 @@
 
 # TODOs
 
-- better organization in general
-- when ODE, main part, more text is needed - why outer/inner appears
 - tihkonov padeapprox a bit (if write about approx anyway)
-- outer soln no exact diff (?) sister to inner which is connected to start t=0
 
-- borghans chosen timescales a bit, no repeat but nice to have an example of how you do it, otherwise math lacking
-- Jag har inte åsikt egentligen.  På något sätt vore det trevligt att jfr approx med exakt
+- borghans chosen timescales a bit, no repeat but nice to have an
+  example of how you do it, otherwise math lacking
 
 skalfaktorer:
 Jag menar så enkelt t=a\tau typ vad är a?  Det är inte självklart en
