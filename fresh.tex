@@ -716,15 +716,30 @@ us:
 
 \begin{align}
   t_s &= \frac{S_0}{|dS/dt|_{max}}, \\
-  t_s &= \frac{K_M + S_0}{k_2 E_0}
+      &= \frac{K_M + S_0}{k_2 E_0}
 \end{align}
 
 So far we have only derived timescales for the normal QSSA. To get the
 timescales for TQSSA, Borghans et al. use the rewrite $\overline{S} =
-S + C$. By doing so the $dC\dt$ equation gets a $C^2$ - a quadratic -
-term. They then use a so called two-point Padé approximant to simplify
-the resulting expression, eventually ending up with these two slightly
-modified time-scales:
+S + C$. By doing so, and assuming $dC/dt=0$ as before, the $dC/dt$
+equation gets a quadratic term, $C^2$:
+
+\begin{equation}
+  C^2 - (E_0 + K_M + \overline{S})C + E_0 \overline{S} = 0
+\end{equation}
+
+They then use a so called two-point Pad\'{e} approximant to simplify
+the resulting expression. (Alternatively it can be shown that
+neglecting the $C^2$ term gives a good approximation, but this is
+outside the scope of this article.). The Pad\'{e} approximant of the
+above equation is:
+
+\begin{equation}
+  C = \frac{E_0 \overline{S}}{E_0 + K_M + \overline{S}}
+\end{equation}
+
+
+Eventually we end up with these two slightly modified time-scales:
 
 \begin{align}
 t_c &= \frac{1}{k_1(E_0+S_0+K_M)}, \\
@@ -759,10 +774,10 @@ c &= \frac{C}{C_0}, \\
 s &= \frac{\overline{S}}{S_0}
 \end{align}
 
-$S_0$ is max since it starts from some constant and then turns into complex. $C_0$
-is max derived by Borghans et al. \cite{borghans1996extending} as
-
-TODO: Show how Borghans derive this? Ask Y.
+$S_0$ is max since it starts from some constant and then turns into
+complex, as we saw before. Borghans et al. derive C's max (or an upper
+limit for it), $C_0$ by using the Pad\'{e} approximation in (74) and
+$S=S_0$:
 
 \begin{equation}
 C_0 = \frac{E_0 S_0}{E_0 + S_0 + K_m}
