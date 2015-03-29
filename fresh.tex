@@ -679,41 +679,71 @@ We define a function f with the goal of solving for C:
   \frac{(E_0 + K_M + \overline{S})^2}{4}
 \end{align}
 
-Is there a unique positive solution? We know $f(0) = E_0 \overline{S}
-> 0$
+If we have assume there are two roots $x_1$ and $x_2$, then the
+quadratic equation $x^2+bx+c$ can be factored into $(x - x_1)(x -
+x_2)$, where:
+\begin{equation}
+  x_1 x_2 = c
+\end{equation}
 
-TODO: I don't understand the reasoning here, Yishao page
-1. Q1. Wouldn't the reason be because the discriminant != 0? How would
-we know that? Why is $E_0 \overline{S} = c_1 c_2$? See Oskar p6 and
-before.
+Is there a unique positive solution to (74)? No. We know $f(0) = E_0
+\overline{S} > 0$, since a concentration can never be less than 0, and
+we know from the above identity that $c_1 c_2 = E_0
+\overline{S}$. Thus, assuming $c_1$, $c_2$ are solutions, $c_1 c_2 >
+0$, which in turn implies that either both roots are positive or they
+are both negative.
 
-Are there positive solutions?
-TODO: This too.
+Are there positive solutions? Yes. We have:
 \begin{align}
   f(0) &= E_0 \overline{S} > 0 \\
   f(E_0) &= E_0^2 - (E_0 + K_M + \overline{S})E_0 + E_0 \overline{S} \\
          &= - K_m E_0 < 0
 \end{align}
 
-TODO: Verbatim atm
+Using the Intermediate value theorem for continuous functions, there
+must be a number $c_1 \in (0,E_0)$, such that $f(c_1) = 0$ is a
+solution. Moreover, since we are dealing with a real polynomial, the
+Complex conjugate root theorem says that the complex roots appears in
+pairs. Together with what we saw above, this implies that both $c_1$
+and $c_2$ are positive.
 
-With this we get the following inequalities. First, the discriminant o
-f(c) is positive:
+With this we get the following inequalities. First, the discriminant
+of f(c) is positive:
 \begin{equation}
   (E_0 + K_M + \overline{S})^2 - 4 E_0 + \overline{S} > 0
 \end{equation}
 
-For a quadratic equation $x^2 + bx + c$, we have the equality for its roots:
+For a quadratic equation $x^2 + bx + c$, we have another identity for
+its roots:
 \begin{align}
-  x_1 + x_2 &= \frac{-b + \sqrt{\Delta}}{2} + \frac{-b - \sqrt{\Delta}}{2}, \\
-            &= - b
+  x_1 + x_2 &= \frac{-b + \sqrt{\Delta}}{2} + \frac{-b - \sqrt{\Delta}}{2} = -b
 \end{align}
 
-Hence we have our second inequality:
-\begin{equation}
-  c_1 + c_2 = E_0 + K_M + \overline{S} \\
-  \iff c_2 = E_0 + K_m + \overline{S}
-\end{equation}
+Hence:
+\begin{align}
+  c_1 + c_2 = E_0 + K_M + \overline{S} \iff c_2 = E_0 + K_m + \overline{S} - c_1
+\end{align}
+
+And we have our second set of inequalities:
+\begin{align}
+  c_1 &< E_0 &\implies c_2 &> K_M + \overline{S}, \\
+  c_1 &> 0 &\implies c_2 &< E_0 K_M + \overline{S}
+\end{align}
+
+With these inequalities, we can position the roots as follows:
+\begin{align}
+  0 &< c_1 < E_0 \\
+  0 < K_M + \overline{S} &< c_2 < E_0 + K_M + \overline{S}
+\end{align}
+
+IF $E_0 < K_M + \overline{S}$ there is only one solution that
+satisfies the conservation law (58), $E + C = E_0$
+
+
+
+
+
+
 
 TODO: HERE ATM QQQ
 
