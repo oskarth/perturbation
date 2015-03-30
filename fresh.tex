@@ -674,14 +674,18 @@ equation gets a quadratic term, $C^2$:
 
 We define a function f with the goal of solving for C:
 \begin{align}
-  f(c) &= C^2 - (E_0 + K_M + \overline{S})C + E_0 \overline{S} \\
-  &= \Big(C - \frac{(E_0 + K_M + \overline{S})}{2}\Big)^2 + E_0 \overline{S} -
-  \frac{(E_0 + K_M + \overline{S})^2}{4}
+  f(c) &= C^2 - (E_0 + K_M + \overline{S})C + E_0 \overline{S}
 \end{align}
 
-If we have assume there are two roots $x_1$ and $x_2$, then the
-quadratic equation $x^2+bx+c$ can be factored into $(x - x_1)(x -
-x_2)$, where:
+\iffalse
+TODO: remove this?
+&= \Big(C - \frac{(E_0 + K_M + \overline{S})}{2}\Big)^2 + E_0 \overline{S} -
+\frac{(E_0 + K_M + \overline{S})^2}{4}
+\fi
+
+If we have a quadratic equation $x^2+bx+c$, assuming there are two
+roots $x_1$ and $x_2$, then the quadratic equation can be factored
+into $(x - x_1)(x - x_2)$, where:
 \begin{equation}
   x_1 x_2 = c
 \end{equation}
@@ -736,8 +740,20 @@ With these inequalities, we can position the roots as follows:
   0 < K_M + \overline{S} &< c_2 < E_0 + K_M + \overline{S}
 \end{align}
 
-IF $E_0 < K_M + \overline{S}$ there is only one solution that
-satisfies the conservation law (58), $E + C = E_0$
+\textbf{Case 1}
+
+If $E_0 < K_M + \overline{S}$ there is only one solution that
+satisfies the conservation law (58), since for $c_2$ we would have a
+contradiction:
+\begin{align}
+  0 < E_0 &= E + c_2, \\
+  E_0 < K_M + \overline{S} &< c_2 \implies E_0 < 0
+\end{align}
+
+
+If we have $0 < c_1 < E_0 < K_M + \overline{S} < c_2$, then the root
+
+
 
 
 
