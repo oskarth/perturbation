@@ -750,8 +750,38 @@ contradiction:
   E_0 < K_M + \overline{S} &< c_2 \implies E_0 < 0
 \end{align}
 
+Thus our only solution, as a function of $\overline{S}$, is:
+\begin{equation}
+  c_1(\overline{S}) = \frac{E_0 + K_m + \overline{S} - \sqrt{(E_0 +
+      K_M + \overline{S})^2 - 4 E_0 \overline{S}}}{2}
+\end{equation}
 
-If we have $0 < c_1 < E_0 < K_M + \overline{S} < c_2$, then the root
+We want to investigate what happens when $\overline{S}$ is very
+large. Multiplying with the conjugate we get:
+\begin{align}
+  c_1(\overline{S}) &= \frac{2 E_0 \overline{S}}{2 E_0 + K_m + \overline{S} +
+    \sqrt{(E_0 +K_M + \overline{S})^2 - 4 E_0 \overline{S}}}, \\
+  c_1(\overline{S}) &= \frac{2 E_0}{\frac{E_0 + K_m}{\overline{S}} + 1 +
+    \sqrt{(\frac{E_0 + K_M}{\overline{S}} + 1)^2 - \frac{4 E_0}{\overline{S}}}}
+  \to  E_0 \enskip \text{as} \enskip \overline{S} \to \infty
+\end{align}
+
+TODO: Why do we do this?
+
+\textbf{Case 2}
+
+TODO: Why is this what we investigate?
+
+If we have $(E_0 + K_M + \overline{S})^2 \geq E_0 \overline{S}$ then
+
+TODO: And how do we get thisb y Taylor expansion? Gah
+
+\begin{align}
+  c_1 &= \frac{2 E_0 \overline{S}}{99999}, \\
+  &= ..., \\
+  &\approx \frac{E_0 \overline{S}}{E_0 + K_M + \overline{S}}
+\end{align}
+
 
 
 
