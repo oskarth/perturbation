@@ -704,10 +704,10 @@ Are there positive solutions? Yes. We have:
          &= - K_m E_0 < 0
 \end{align}
 
-Using the Intermediate value theorem for continuous functions, there
+Using the Intermediate Value Theorem for continuous functions, there
 must be a number $c_1 \in (0,E_0)$, such that $f(c_1) = 0$ is a
 solution. Moreover, since we are dealing with a real polynomial, the
-Complex conjugate root theorem says that the complex roots appears in
+Complex Conjugate Root Theorem says that the complex roots appears in
 pairs. Together with what we saw above, this implies that both $c_1$
 and $c_2$ are positive.
 
@@ -740,6 +740,8 @@ With these inequalities, we can position the roots as follows:
   0 < K_M + \overline{S} &< c_2 < E_0 + K_M + \overline{S}
 \end{align}
 
+TODO: Is it really a matter of cases? case 1 valid for case 2
+
 \textbf{Case 1}
 
 If $E_0 < K_M + \overline{S}$ there is only one solution that
@@ -759,7 +761,7 @@ Thus our only solution, as a function of $\overline{S}$, is:
 We want to investigate what happens when $\overline{S}$ is very
 large. Multiplying with the conjugate we get:
 \begin{align}
-  c_1(\overline{S}) &= \frac{2 E_0 \overline{S}}{2 E_0 + K_m + \overline{S} +
+  c_1(\overline{S}) &= \frac{E_0 \overline{S}}{E_0 + K_m + \overline{S} +
     \sqrt{(E_0 +K_M + \overline{S})^2 - 4 E_0 \overline{S}}}, \\
   c_1(\overline{S}) &= \frac{2 E_0}{\frac{E_0 + K_m}{\overline{S}} + 1 +
     \sqrt{(\frac{E_0 + K_M}{\overline{S}} + 1)^2 - \frac{4 E_0}{\overline{S}}}}
@@ -770,26 +772,78 @@ TODO: Why do we do this?
 
 \textbf{Case 2}
 
-TODO: Why is this what we investigate?
+TODO: Why is this what we investigate? Comes from a rewrite of Pade
+approx, but we don't know that. It's also not really a case 2, since
+we are still dealing with c1 only.
 
 If we have $(E_0 + K_M + \overline{S})^2 \geq E_0 \overline{S}$ then
 
-TODO: And how do we get thisb y Taylor expansion? Gah
-
+We can rewrite (89) as follows:
 \begin{align}
-  c_1 &= \frac{2 E_0 \overline{S}}{99999}, \\
-  &= ..., \\
-  &\approx \frac{E_0 \overline{S}}{E_0 + K_M + \overline{S}}
+  c_1 &= \frac{2 E_0 \overline{S}}
+              {(E_0 + K_M + \overline{S}) + (E_0 + K_M + \overline{S})
+              \sqrt{1- \frac{4 E_0 \overline{S}}
+                            {(E_0 + K_M + \overline{S})^2}}} \\
+      &= \frac{2 E_0 \overline{S}}
+              {\Big(E_0 + K_M + \overline{S}\Big)
+              \Big(1 + \sqrt{1- \frac{4 E_0 \overline{S}}
+                  {(E_0 + K_M + \overline{S})^2}}\Big)}
 \end{align}
 
+Recall that for an expression like $\sqrt{1-x}$ the Taylor expansion
+around $x=0$ is $1 + O(x)$. This converges for $|x| < 1$. In our case
+that means we can simplify the above as:
+\begin{align}
+   c_1 &= \frac{2 E_0 \overline{S}}
+              {(E_0 + K_M + \overline{S})(1 + (1 -
+              O(\frac{4 E_0  \overline{S}}
+                     {(E_0 + K_M + \overline{S})^2})))} \\
+      &\approx \frac{E_0 \overline{S}}
+                    {E_0 + K_M + \overline{S}}
+\end{align}
 
+TODO: Wording We got here without the use of Pad\'{e} approximation.
 
+Let's now look at when the following inequality holds:
+\begin{equation}
+(E_0 + K_M + \overline{S})^2 \gg E_0 \overline{S}
+\end{equation}
 
+This is equivalent to:
+\begin{align}
+1 \ll
+  \frac{(E_0 + K_M + \overline{S})^2}
+           {E_0 \overline{S}} &= 
+\frac{(E_0 + K_M + \overline{S})}
+      {E_0} \frac{(E_0 + K_M + \overline{S})}{\overline{S}}, \\
+&= \Big(1 + \frac{K_M}{E_0} + \frac{\overline{S}}{E_0}\Big)
+   \Big(1 + \frac{E_0}{\overline{S}} + \frac{K_M}{\overline{S}}\Big)
+\end{align}
 
+This is true for $\overline{S}$ sufficiently large or small compared
+to $E_0$.
 
+TODO: Why is the above statement true?
 
+TODO: Missing something about Borghans here I think.
 
+If $\overline{S} = E_0$ then:
+\begin{equation}
+\Big(1 + \frac{K_M}{E_0} + \frac{\overline{E}}{S_0}\Big)\Big(1 + \frac{E_0}{\overline{S}} + \frac{K_M}{\overline{S}}\Big) = \Big(2 + \frac{K_M}{E_0}\Big) \Big(2 + \frac{K_M}{E_0}\Big) \gg 1
+\end{equation}
 
+TODO: Why are we checking $\overline{S}=E_0$? Borghans something.
+
+Then our approximation is possible.
+
+TODO: Why? And which exactly? C approx above?
+
+Next thing is on my (previous) equation (85) which is now... [0324]
+1/eps one, ie 109 at the moment. That is a separate page.
+
+I think for now, grok the above. Re-read Borghans and understand.
+
+\subsubsection{Resume previous writings}
 
 TODO: HERE ATM QQQ
 
@@ -1015,3 +1069,8 @@ Plot[{h[x], g[x]}, {x, 0, 1}, PlotRange -> {0, 2},
 \bibliography{references}
 
 \end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
