@@ -964,34 +964,36 @@ This gives us the outer solution for s, $s_O$:
 
 \subsection{Inner solution}
 
-TODO: Show intermediate steps. Which ones?
+The outer solution can't satisfy the initial conditions, which is why
+we have an inner solution where the complex changes
+quickly. Proceeding as with the outer solution, we scale (65):
+\begin{align}
+\frac{ds}{d\tau} &= \frac{t_C}{S_0} \Big( - k_2 C_0 c \Big), \\
+                 &= \frac{-k_2 E_0}{k_1(E_0 + S_0 + K_m)^2} c, \\
+                 &= \epsilon c
+\end{align}
 
-Using the outer time scale to satify the other initial conditions,
+As $\epsilon \to 0$, the above becomes $\frac{ds}{d\tau} = 0$. That
+is, s is approximately constant at this fast time scale. Together with
+the initial condition $s(0)=1$, we have the inner solution for s:
 \begin{equation}
-\frac{dS}{dt_f} = \frac{-k_2 E_0}{k_1(E_0 + S_0 + K_m)^2} c, s(0) = 1
+s_I(\tau) = s(0) = 1
 \end{equation}
 
-As $\epsilon \to 0$, the above becomes $\frac{dS}{dt_f} = 0$, i.e constant.
+For c we get, using $s= s_I = 1$:
+\begin{align}
+\frac{dc}{d\tau} &= \frac{t_C}{C_0} \Big(
+                     k_1 E_0 S_0 s - k_1 C_0 (E_0 + S_0 s + K_m) c + k_1 C_0^2 c^2
+                     \Big), \\
+                 & = 1 - c - \gamma c^2
+\end{align}
+
+We solve this by separation of variables, like before:
 \begin{equation}
-s_I = s(0) = 1
+\frac{dc}{1 - c - \gamma c^2} = d\tau
 \end{equation}
 
-For c:
-\begin{equation}
-\frac{dc}{dt_f} = 1 - c - \gamma c^2, c(0)=0
-\end{equation}
-
-TODO: How solve this? Mathematica?
-
-Khoo et al. finds that the solution is
-\begin{equation}
-c_I = \frac{2[exp(\sqrt{4\gamma-1}t_f)-1]}{(1-\sqrt{1-4\gamma}
-exp(\sqrt{4\gamma-1}t_f) - (1+\sqrt{1-4\gamma}}
-\end{equation}
-
-where c(0)=0 holds.
-
-TODO: Check this.
+TODO: QQQ. Here atm. Good stopping point.
 
 \subsection{Matching}
 
