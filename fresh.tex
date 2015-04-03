@@ -573,7 +573,7 @@ C = \frac{E_0 S}{K_m +S}
 where $K_m = \frac{k_{-1} + k_2}{k_1}$ is the so called {Michaelis-Menten
 constant}.
 \begin{equation}
-\frac{dS}{dt} = \frac{-k_2 E_0 S}{K_M + S}
+\frac{dS}{dt} = \frac{-k_2 E_0 S}{K_m + S}
 \end{equation}
 
 together with $S(0) = S_0$ as initial condition is what is normally considered
@@ -624,8 +624,8 @@ steady state.
 
 To analyze the problem rigorously using perturbation theory, we need
 to find an expression that estimates these two time scales that the
-system is operating with, $t_c$ for the fast initial period and
-$t_{\overline{s}}$ for the slow quasi-steady state period.
+system is operating with, $t_C$ for the fast initial period and
+$t_{\overline{S}}$ for the slow quasi-steady state period.
 
 To get the fast time scale, we can estimate S as $S_0$ since in that
 time period the substrate concentration won't change much. We just
@@ -643,16 +643,16 @@ $C(0)=0$):
   A =\frac{k1 E_0 S_0}{S_0 k1 + k_{-1} + k_2}
 \end{equation}
 
-The timescale here is $t_c = \lambda^{-1}$, which we can rewrite as:
+The timescale here is $t_C = \lambda^{-1}$, which we can rewrite as:
 \begin{equation}
-  t_c = \frac{1}{k_1(S_0+K_M)}
+  t_C = \frac{1}{k_1(S_0+K_m)}
 \end{equation}
 
 To get the other time scale we first use that $dC/dt = 0$ after some
 period of time, which is the time scale we care about. We then use
 (61) and (62) as before to get (63):
 \begin{equation}
-  \frac{dS}{dt} = -\frac{k_2 E_0 S}{K_M + S}
+  \frac{dS}{dt} = -\frac{k_2 E_0 S}{K_m + S}
 \end{equation}
 
 We now get $t_s$ with the help of an estimation technique by Segel
@@ -661,7 +661,7 @@ maximum of $|dS/dt|$ using $S_S0$ in the previous equation. This gives
 us:
 \begin{align}
   t_s &= \frac{S_0}{|dS/dt|_{max}}, \\
-      &= \frac{K_M + S_0}{k_2 E_0}
+      &= \frac{K_m + S_0}{k_2 E_0}
 \end{align}
 
 So far we have only derived timescales for the normal QSSA. To get the
@@ -669,18 +669,18 @@ timescales for TQSSA, Borghans et al. use the rewrite $\overline{S} =
 S + C$. By doing so, and assuming $dC/dt=0$ as before, the $dC/dt$
 equation gets a quadratic term, $C^2$:
 \begin{equation}
-  C^2 - (E_0 + K_M + \overline{S})C + E_0 \overline{S} = 0
+  C^2 - (E_0 + K_m + \overline{S})C + E_0 \overline{S} = 0
 \end{equation}
 
 We define a function f with the goal of solving for C:
 \begin{align}
-  f(c) &= C^2 - (E_0 + K_M + \overline{S})C + E_0 \overline{S}
+  f(c) &= C^2 - (E_0 + K_m + \overline{S})C + E_0 \overline{S}
 \end{align}
 
 \iffalse
 TODO: remove this?
-&= \Big(C - \frac{(E_0 + K_M + \overline{S})}{2}\Big)^2 + E_0 \overline{S} -
-\frac{(E_0 + K_M + \overline{S})^2}{4}
+&= \Big(C - \frac{(E_0 + K_m + \overline{S})}{2}\Big)^2 + E_0 \overline{S} -
+\frac{(E_0 + K_m + \overline{S})^2}{4}
 \fi
 
 If we have a quadratic equation $x^2+bx+c$, assuming there are two
@@ -700,7 +700,7 @@ are both negative.
 Are there positive solutions? Yes. We have:
 \begin{align}
   f(0) &= E_0 \overline{S} > 0 \\
-  f(E_0) &= E_0^2 - (E_0 + K_M + \overline{S})E_0 + E_0 \overline{S} \\
+  f(E_0) &= E_0^2 - (E_0 + K_m + \overline{S})E_0 + E_0 \overline{S} \\
          &= - K_m E_0 < 0
 \end{align}
 
@@ -714,7 +714,7 @@ and $c_2$ are positive.
 With this we get the following inequalities. First, the discriminant
 of f(c) is positive:
 \begin{equation}
-  (E_0 + K_M + \overline{S})^2 - 4 E_0 + \overline{S} > 0
+  (E_0 + K_m + \overline{S})^2 - 4 E_0 + \overline{S} > 0
 \end{equation}
 
 For a quadratic equation $x^2 + bx + c$, we have another identity for
@@ -725,145 +725,117 @@ its roots:
 
 Hence:
 \begin{align}
-  c_1 + c_2 = E_0 + K_M + \overline{S} \iff c_2 = E_0 + K_m + \overline{S} - c_1
+  c_1 + c_2 = E_0 + K_m + \overline{S} \iff c_2 = E_0 + K_m + \overline{S} - c_1
 \end{align}
 
 And we have our second set of inequalities:
 \begin{align}
-  c_1 &< E_0 &\implies c_2 &> K_M + \overline{S}, \\
-  c_1 &> 0 &\implies c_2 &< E_0 K_M + \overline{S}
+  c_1 &< E_0 &\implies c_2 &> K_m + \overline{S}, \\
+  c_1 &> 0 &\implies c_2 &< E_0 K_m + \overline{S}
 \end{align}
 
 With these inequalities, we can position the roots as follows:
 \begin{align}
   0 &< c_1 < E_0 \\
-  0 < K_M + \overline{S} &< c_2 < E_0 + K_M + \overline{S}
+  0 < K_m + \overline{S} &< c_2 < E_0 + K_m + \overline{S}
 \end{align}
 
-TODO: Is it really a matter of cases? case 1 valid for case 2
+TODO: Ask Y 1 - where do we get this below inequality from?
 
-\textbf{Case 1}
-
-If $E_0 < K_M + \overline{S}$ there is only one solution that
+If $E_0 < K_m + \overline{S}$ there is only one solution that
 satisfies the conservation law (58), since for $c_2$ we would have a
 contradiction:
 \begin{align}
   0 < E_0 &= E + c_2, \\
-  E_0 < K_M + \overline{S} &< c_2 \implies E_0 < 0
+  E_0 < K_m + \overline{S} &< c_2 \implies E_0 < 0
 \end{align}
 
 Thus our only solution, as a function of $\overline{S}$, is:
 \begin{equation}
   c_1(\overline{S}) = \frac{E_0 + K_m + \overline{S} - \sqrt{(E_0 +
-      K_M + \overline{S})^2 - 4 E_0 \overline{S}}}{2}
+      K_m + \overline{S})^2 - 4 E_0 \overline{S}}}{2}
 \end{equation}
 
 We want to investigate what happens when $\overline{S}$ is very
 large. Multiplying with the conjugate we get:
 \begin{align}
   c_1(\overline{S}) &= \frac{E_0 \overline{S}}{E_0 + K_m + \overline{S} +
-    \sqrt{(E_0 +K_M + \overline{S})^2 - 4 E_0 \overline{S}}}, \\
+    \sqrt{(E_0 +K_m + \overline{S})^2 - 4 E_0 \overline{S}}}, \\
   c_1(\overline{S}) &= \frac{2 E_0}{\frac{E_0 + K_m}{\overline{S}} + 1 +
-    \sqrt{(\frac{E_0 + K_M}{\overline{S}} + 1)^2 - \frac{4 E_0}{\overline{S}}}}
+    \sqrt{(\frac{E_0 + K_m}{\overline{S}} + 1)^2 - \frac{4 E_0}{\overline{S}}}}
   \to  E_0 \enskip \text{as} \enskip \overline{S} \to \infty
 \end{align}
 
-TODO: Why do we do this?
+TODO: Ask Y 2 - Why do we do this above check? What does it mean?
 
-\textbf{Case 2}
+TODO: Ask Y 3 - Why is this what we want to investigate? It's a
+rewrite of the Pade approximant of C, but we don't know that at this
+stage. Also, this inequality will always hold because it's a sum of
+positive concentrations/constant. Is it just to clarify the Taylor
+O(x)?
 
-TODO: Why is this what we investigate? Comes from a rewrite of Pade
-approx, but we don't know that. It's also not really a case 2, since
-we are still dealing with c1 only.
-
-If we have $(E_0 + K_M + \overline{S})^2 \geq E_0 \overline{S}$ then
-
-We can rewrite (89) as follows:
+If we have $(E_0 + K_m + \overline{S})^2 \geq E_0 \overline{S}$ then
+we can rewrite (89) as follows:
 \begin{align}
   c_1 &= \frac{2 E_0 \overline{S}}
-              {(E_0 + K_M + \overline{S}) + (E_0 + K_M + \overline{S})
+              {(E_0 + K_m + \overline{S}) + (E_0 + K_m + \overline{S})
               \sqrt{1- \frac{4 E_0 \overline{S}}
-                            {(E_0 + K_M + \overline{S})^2}}} \\
+                            {(E_0 + K_m + \overline{S})^2}}} \\
       &= \frac{2 E_0 \overline{S}}
-              {\Big(E_0 + K_M + \overline{S}\Big)
+              {\Big(E_0 + K_m + \overline{S}\Big)
               \Big(1 + \sqrt{1- \frac{4 E_0 \overline{S}}
-                  {(E_0 + K_M + \overline{S})^2}}\Big)}
+                  {(E_0 + K_m + \overline{S})^2}}\Big)}
 \end{align}
 
 Recall that for an expression like $\sqrt{1-x}$ the Taylor expansion
-around $x=0$ is $1 + O(x)$. This converges for $|x| < 1$. In our case
+around $x=0$ is $1 - O(x)$. This converges for $|x| < 1$. In our case
 that means we can simplify the above as:
 \begin{align}
    c_1 &= \frac{2 E_0 \overline{S}}
-              {(E_0 + K_M + \overline{S})(1 + (1 -
-              O(\frac{4 E_0  \overline{S}}
-                     {(E_0 + K_M + \overline{S})^2})))} \\
+              {\Big(E_0 + K_m + \overline{S}\Big)
+               \Big(1 + \Big(1 -
+                O\Big(\frac{4 E_0 \overline{S}}
+                           {(E_0 + K_m + \overline{S})^2}\Big)\Big)\Big)} \\
       &\approx \frac{E_0 \overline{S}}
-                    {E_0 + K_M + \overline{S}}
+                    {E_0 + K_m + \overline{S}}
 \end{align}
-
-TODO: Wording We got here without the use of Pad\'{e} approximation.
 
 Let's now look at when the following inequality holds:
 \begin{equation}
-(E_0 + K_M + \overline{S})^2 \gg E_0 \overline{S}
+(E_0 + K_m + \overline{S})^2 \gg E_0 \overline{S}
 \end{equation}
 
 This is equivalent to:
 \begin{align}
 1 \ll
-  \frac{(E_0 + K_M + \overline{S})^2}
+  \frac{(E_0 + K_m + \overline{S})^2}
            {E_0 \overline{S}} &= 
-\frac{(E_0 + K_M + \overline{S})}
-      {E_0} \frac{(E_0 + K_M + \overline{S})}{\overline{S}}, \\
-&= \Big(1 + \frac{K_M}{E_0} + \frac{\overline{S}}{E_0}\Big)
-   \Big(1 + \frac{E_0}{\overline{S}} + \frac{K_M}{\overline{S}}\Big)
+\frac{(E_0 + K_m + \overline{S})}
+      {E_0} \frac{(E_0 + K_m + \overline{S})}{\overline{S}}, \\
+&= \Big(1 + \frac{K_m}{E_0} + \frac{\overline{S}}{E_0}\Big)
+   \Big(1 + \frac{E_0}{\overline{S}} + \frac{K_m}{\overline{S}}\Big)
 \end{align}
 
 This is true for $\overline{S}$ sufficiently large or small compared
 to $E_0$.
 
-TODO: Why is the above statement true?
-
-TODO: Missing something about Borghans here I think.
-
 If $\overline{S} = E_0$ then:
 \begin{equation}
-\Big(1 + \frac{K_M}{E_0} + \frac{\overline{E}}{S_0}\Big)\Big(1 + \frac{E_0}{\overline{S}} + \frac{K_M}{\overline{S}}\Big) = \Big(2 + \frac{K_M}{E_0}\Big) \Big(2 + \frac{K_M}{E_0}\Big) \gg 1
+\Big(1 + \frac{K_m}{E_0} + \frac{\overline{E}}{S_0}\Big)\Big(1 + \frac{E_0}{\overline{S}} + \frac{K_m}{\overline{S}}\Big) = \Big(2 + \frac{K_m}{E_0}\Big) \Big(2 + \frac{K_m}{E_0}\Big) \gg 1
 \end{equation}
 
-TODO: Why are we checking $\overline{S}=E_0$? Borghans something.
+So if $E_0 < K_m + \overline{S}$ our approximation (94) is possible.
 
-Then our approximation is possible.
+TODO: Ask Y 4 - is the above accurate?
 
-TODO: Why? And which exactly? C approx above?
-
-Next thing is on my (previous) equation (85) which is now... [0324]
-1/eps one, ie 109 at the moment. That is a separate page.
-
-I think for now, grok the above. Re-read Borghans and understand.
-
-\subsubsection{Resume previous writings}
-
-TODO: HERE ATM QQQ
-
-They then use a so called two-point Pad\'{e} approximant to simplify
-the resulting expression. (Alternatively it can be shown that
-neglecting the $C^2$ term gives a good approximation, but this is
-outside the scope of this article.). The Pad\'{e} approximant of the
-above equation is:
-\begin{equation}
-  C = \frac{E_0 \overline{S}}{E_0 + K_M + \overline{S}}
-\end{equation}
-
-
-Eventually we end up with these two slightly modified time-scales:
+Doing calucations similar to what we did in beginning of this section,
+we eventually end up with these two slightly modified time-scales:
 \begin{align}
-t_c &= \frac{1}{k_1(E_0+S_0+K_M)}, \\
-t_{\overline{s}} &= \frac{E_0+S_0+K_m}{k_2+E_0}
+t_C &= \frac{1}{k_1(E_0+S_0+K_m)}, \\
+t_{\overline{S}} &= \frac{E_0+S_0+K_m}{k_2+E_0}
 \end{align}
 
-$K_M = \frac{k_{-1}+k_2}{k_1}$ as before. We will now analyze this
+$K_m = \frac{k_{-1}+k_2}{k_1}$ as before. We will now analyze this
 like we did in the last section. But first, we have to scale the
 system using our newly discovered timescales.
 
@@ -878,11 +850,11 @@ each term is indicated by a dimensionless factor preceding that term}
 We will now introduce scaled, dimensionless variables. We get these variables by
 dividing with their respective scales. We have the two time variables:
 \begin{align}
-t_f &= \frac{t}{t_c}, \\
-t_s &= \frac{t}{t_{\overline{S}}}
+\tau &= \frac{t}{t_C}, \\
+T &= \frac{t}{t_{\overline{S}}}
 \end{align}
 
-$t_f$ is the fast time scale, and $t_s$ the slow one. We also scale C and
+$\tau$ is the fast time scale, and $T$ the slow one. We also scale C and
 $\overline{S}$ by their maximum:
 \begin{align}
 c &= \frac{C}{C_0}, \\
@@ -890,78 +862,104 @@ s &= \frac{\overline{S}}{S_0}
 \end{align}
 
 $S_0$ is max since it starts from some constant and then turns into
-complex, as we saw before. Borghans et al. derive C's max (or an upper
-limit for it), $C_0$ by using the Pad\'{e} approximation in (74) and
-$S=S_0$:
+complex, as we saw before. We derive C's max $C_0$ by using the
+approximation we got for C in (94) and $S=S_0$:
 \begin{equation}
 C_0 = \frac{E_0 S_0}{E_0 + S_0 + K_m}
 \end{equation}
 
 \subsection{Outer solution}
 
-We now have a mathematical formulation of the problem and we just need a small
-parameter $\epsilon$ to begin looking for the outer solution, where the complex
-changes slowly.
-
-A necessary condition for TQSSA to hold is $0 < \epsilon \ll 1$
+Now we need a small parameter $\epsilon$ to begin looking for the
+outer solution, where the complex changes slowly. A necessary
+condition for TQSSA to hold is $0 < \epsilon \ll 1$:
 \begin{equation}
-\epsilon = \frac{t_f}{t_s}
+\epsilon = \frac{t_C}{t_{\overline{S}}} = \frac{k_2 E_0}{k_1(E_0+S_0+K_m)^2}
 \end{equation}
 
-This comes from Borghans. \textit{Assuming} $t_f \ll t_s$ we then get, for the
-outer region.
-
-Using c and $t_s$ we get, using the procedure used by Khoo and Heglund
-\cite{khoo2008total},
+This comes from Borghans. \textit{Assuming} $\tau \ll T$ we will calculate for the outer region, using the procedure by Khoo and Heglund \cite{khoo2008total}. Translating equation (65) and (66) with the help of the above equations and the chain rule:
 \begin{equation}
-\frac{dC}{dt_s} = \frac{t_{\overline{S}}}{c_0} k_1 [E_0 S_0 s - (E_0 + S_0 s +
-K_M) C_0 c + (c c_0)^2]
+\frac{dc}{dT} = \frac{dC}{dt} \enskip \frac{dt}{dT} \enskip \frac{dc}{dC}
 \end{equation}
 
-Recall that
+We get:
+\begin{align}
+\frac{dc}{dT} &= \frac{t_{\overline{S}}}{C_0}
+       \Big[k_1 \Big(E_0 S_0 s - (E_0 + S_0 s + K_m) C_0 c + (C_0 c)^2
+                   \Big)\Big], \\
+              &= \frac{(E_0+S_0+K_m)^2 k_1}{(k_2 + E_0)}
+                 \Big(s - \frac{E_0+S_0 s+K_m}{E_0 + S_0 + K_m} c
+                        + \frac{(C_0)^2}{E_0 S_0} c^2 \Big), \\
+              &= \frac{1}{\epsilon}
+                 \Big(s - \frac{E_0+S_0 s+K_m}{E_0 + S_0 + K_m} c
+                        +  \gamma c^2 \Big)
+\end{align}
+
+With:
 \begin{equation}
-\epsilon = \frac{t_f}{t_s} = \frac{k_2 E_0}{k_1(E_0+S_0+K_m)^2}
+\gamma = \frac{(C_0)^2}{E_0 S_0} = \frac{E_0 S_0}{(E_0 + S_0 + K_m)^2}
 \end{equation}
 
-so we can rewrite the above as
+We now have an equation of the form:
 \begin{equation}
-... = \frac{1}{\epsilon} (s - \frac{E_0+S_0 s + k_m}{E_0 + S_0+ K_M}C + \gamma^2
-c)
-\end{equation}
-\begin{equation}
-\gamma = \frac{E_0 S_0}{(S_0 + K_m + E_0)^2}
+  \epsilon \frac{dc}{dT} = \gamma c^2 - \frac{E_0+S_0 s+K_m}{E_0 + S_0 + K_m} c + s
 \end{equation}
 
-TODO: Check algebra and lower case c, s.
-
-TODO: This reasoning is wrong, It's due to Tikhonov theorem (C433)
-
-As $\epsilon \to 0, \frac{1}{\epsilon} \to \infty$, but C(0) = 0 so
+Similarly to what we saw in section 3, as $\epsilon \to 0$, we have:
 \begin{equation}
-s - \frac{E_0 + S_0 s + K_m}{E_0 + S_0 + K_M}C + \gamma c^2 = 0
+   \gamma c^2  - \frac{E_0+S_0 s+K_m}{E_0 + S_0 + K_m} c + s = 0
 \end{equation}
 
-TODO: What is it? How do they work? Take for granted or explain?
-
-By using Pade approximants we can get an approximation for the outer
-solution
+As justified in (98), $1 \ll \gamma$ when $\overline{S}$ is
+sufficiently large or small compared to $E_0$. Our above quadratic is
+thus approximately:
 \begin{equation}
-c_0  = \frac{E_0 + S_0 + K_m}{E_0 + S_0 s + K_m} s
+  s - \frac{E_0+S_0 s+K_m}{E_0 + S_0 + K_m} c = 0
 \end{equation}
 
-This is the outer solution. If we substitute this into s we get an
-expression for outer solution of s.
-
-TODO: Check algebra. Mathematica?
+Thus we obtain our outer solution (note the subscript 'O' as in the
+author's first name):
 \begin{equation}
-\frac{ds}{dt_s} = \frac{-E_0 + S_0 + K_m}{E_0 + S_0s + k_m}s, s(0) = 1
+  c_O = \frac{E_0 + S_0 + K_m}{E_0+S_0 s+K_m} s
 \end{equation}
 
-Solving this, we get the outer solution for s, according to Khoo:
-
-TODO: Derive yourself? Same below
+If we substitute this in (65), after scaling for the slow timescale,
+we get an expression for the outer solution of s:
 \begin{equation}
-(E_0 + K_m) ln s_O(t_s) + s_o(s_o(t_s) - 1) + (E_0 + S_0 + K_m) t_s = 0
+\frac{ds}{dT} = - \frac{E_0 + S_0 + K_m}{E_0 + S_0s + K_m}s, \enskip s(0) = 1
+\end{equation}
+
+We can solve this by separation of variables:
+\begin{equation}
+\int \frac{E_0 + S_0 s + K_m}{(E_0 + S_0 + K_m) s} ds = \int - dT
+\end{equation}
+
+The left hand side is an equation of the form:
+\begin{align}
+&\int \frac{a + b x + c}{(a + b + c) x} dx
+        \quad \text{[u = a + bx + c],} \\
+&\iff \frac{1}{a+b+c} \int \frac{u}{u - a -c} du, \\
+&\iff \frac{1}{a+b+c} \int \Big(\frac{a+c}{u - a -c} + 1\Big)
+                          du, \\
+&\iff \frac{a+c}{a+b+c} \int \frac{1}{u - a - c} du
+                    + \frac{1}{a+b+c} \int 1 du, \\
+&\iff \frac{(a+c) \ln{x}}{a+b+c} + \frac{bx}{a+b+c} + \text{constant}
+\end{align}
+
+This makes the solution to (117):
+\begin{equation}
+\frac{E_0+K_m}{E_0 + S_0 + K_m} \ln{s} + \frac{S_0}{E_0 + S_0 + K_m} s = - T + \text{constant}
+\end{equation}
+
+Using the initial condition $s(0)=1$, and the fact that $t=0$, we get
+the constant:
+\begin{equation}
+  \frac{S_0}{E_0 + S_0 + K_m}
+\end{equation}
+
+This gives us the outer solution for s, $s_O$:
+\begin{equation}
+  (E_0+K_m) \ln{s_O(T)} + S_0 (s_O(T) - 1) + (E_0 + S_0 + K_m) T = 0
 \end{equation}
 
 \subsection{Inner solution}
@@ -970,7 +968,7 @@ TODO: Show intermediate steps. Which ones?
 
 Using the outer time scale to satify the other initial conditions,
 \begin{equation}
-\frac{dS}{dt_f} = \frac{-k_2 E_0}{k_1(E_0 + S_0 + K_M)^2} c, s(0) = 1
+\frac{dS}{dt_f} = \frac{-k_2 E_0}{k_1(E_0 + S_0 + K_m)^2} c, s(0) = 1
 \end{equation}
 
 As $\epsilon \to 0$, the above becomes $\frac{dS}{dt_f} = 0$, i.e constant.
