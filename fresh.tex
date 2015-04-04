@@ -1035,15 +1035,13 @@ Integrating (132) we get:
  = (\tau + \text{constant}) \sqrt{\Delta}.
 \end{align}
 
-TODO: Sign is off in implies absolute value above.
-
 Note that $|-\sqrt{\Delta}+1| = \sqrt{\Delta} - 1$. $c(0)=0$ gives the constant:
 \begin{equation}
 \text{constant} =
 \frac{1}{\sqrt{\Delta}} \ln \frac{\sqrt{\Delta}+1}{{\sqrt{\Delta}-1}}
 \end{equation}
 
-Which makes the solution:
+Which gives us:
 \begin{align}
 &\ln \bigg|\frac{2\gamma c + \sqrt{\Delta}+1}
                 {2\gamma c - \sqrt{\Delta}+1} \bigg|
@@ -1052,6 +1050,26 @@ Which makes the solution:
                      {2\gamma c - \sqrt{\Delta}+1} \bigg|
  = \frac{\sqrt{\Delta}+1}{{\sqrt{\Delta}-1}} \mathrm{e}^{\sqrt{\Delta} \tau}
 \end{align}
+
+Note that $2 \gamma c + \sqrt{\Delta} + 1 > 1 > 0$ and
+$2 \gamma c - \sqrt{\Delta} + 1 < 0$.
+
+TODO: Ask Y 5 - That second inequality is true is not obvious to
+me. Couldn't c be $C_0$?
+
+We then have:
+\begin{align}
+&(2\gamma c + \sqrt{\Delta} + 1)(\sqrt{\Delta} - 1) =
+   (\sqrt{\Delta} - 2\gamma c - 1)(\sqrt{\Delta} + 1) e^{\sqrt{\Delta} \tau}, \\
+&\iff 2\gamma c (\sqrt{\Delta} - 1) + 4 \gamma =
+  \Big( -2\gamma c(\sqrt{\Delta} + 1) + 4\gamma \Big) e^{\sqrt{\Delta} \tau}, \\
+&\iff e... + e...
+\end{align}
+
+TODO: What is happening in this last step?
+
+
+
 
 
 TODO: QQQ. Here atm. Good stopping point.
