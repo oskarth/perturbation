@@ -1004,50 +1004,53 @@ Where $CP+DQ = 1$. We will use this in partial fraction step below.
 Let $\Delta=1 + 4\gamma$. We investigate the denominator in (132):
 \begin{align}
 &-\gamma c^2 - c + 1 = - \gamma
-                        \Big(c - \frac{-1 + \sqrt{1+4 \gamma}}{2 \gamma}\Big)
-                        \Big(c + \frac{ 1 + \sqrt{1+4 \gamma}}{2 \gamma}\Big), \\
+                        \Big(c - \frac{-1 + \sqrt{\Delta}}{2 \gamma}\Big)
+                        \Big(c + \frac{ 1 + \sqrt{\Delta}}{2 \gamma}\Big), \\
 &\implies \frac{1}{- \gamma c^2 - c + 1} = \frac{1}
                         {- \gamma
-                        \Big(c - \frac{-1 + \sqrt{1+4 \gamma}}{2 \gamma}\Big)
-                        \Big(c + \frac{ 1 + \sqrt{1+4 \gamma}}{2 \gamma}\Big)} \\
-&= - \frac{1}{\sqrt{1+4\gamma}}
-   \Bigg(\frac{1}{c - \frac{-1 + \sqrt{1+4 \gamma}}{2 \gamma}} -
-        \frac{1}{c + \frac{1 + \sqrt{1+4 \gamma}}{2 \gamma}} \Bigg)
+                        \Big(c - \frac{-1 + \sqrt{\Delta}}{2 \gamma}\Big)
+                        \Big(c + \frac{ 1 + \sqrt{\Delta}}{2 \gamma}\Big)} \\
+&= - \frac{1}{\sqrt{\Delta}}
+   \Bigg(\frac{1}{c - \frac{-1 + \sqrt{\Delta}}{2 \gamma}} -
+        \frac{1}{c + \frac{1 + \sqrt{\Delta}}{2 \gamma}} \Bigg)
    \quad \text{(see above identity)}
 \end{align}
 
 Integrating (132) we get:
 \begin{align}
-&\frac{-1}{\sqrt{1+4 \gamma}}
-\Big( \int \frac{dc}{c - \frac{\sqrt{1+4 \gamma} - 1}{2 \gamma}} -
-      \int \frac{dc}{c + \frac{\sqrt{1+4 \gamma} + 1}{2 \gamma}}
+&\frac{-1}{\sqrt{\Delta}}
+\Big( \int \frac{dc}{c - \frac{\sqrt{\Delta} - 1}{2 \gamma}} -
+      \int \frac{dc}{c + \frac{\sqrt{\Delta} + 1}{2 \gamma}}
 \Big) = \tau + \text{constant}, \\
-&\iff \frac{-1}{\sqrt{1+4 \gamma}}
-      \ln \bigg|\frac{c - \frac{\sqrt{1+4\gamma}-1}{2\gamma}}
-                     {c + \frac{\sqrt{1+4\gamma}+1}{2\gamma}} \bigg|
+&\iff \frac{-1}{\sqrt{\Delta}}
+      \ln \bigg|\frac{c - \frac{\sqrt{\Delta}-1}{2\gamma}}
+                     {c + \frac{\sqrt{\Delta}+1}{2\gamma}} \bigg|
  = \tau + \text{constant}, \\
-&\iff \frac{1}{\sqrt{1+4 \gamma}}
-      \ln \bigg|\frac{c + \frac{\sqrt{1+4\gamma}+1}{2\gamma}}
-                     {c - \frac{\sqrt{1+4\gamma}-1}{2\gamma}} \bigg|
+&\iff \frac{1}{\sqrt{\Delta}}
+      \ln \bigg|\frac{c + \frac{\sqrt{\Delta}+1}{2\gamma}}
+                     {c - \frac{\sqrt{\Delta}-1}{2\gamma}} \bigg|
  = \tau + \text{constant}, \\
-&\iff  \ln \bigg|\frac{c + \frac{\sqrt{1+4\gamma}+1}{2\gamma}}
-                     {c - \frac{\sqrt{1+4\gamma}-1}{2\gamma}} \bigg|
- = (\tau + \text{constant}) \sqrt{1+4 \gamma}.
+&\iff  \ln \bigg|\frac{2\gamma c + \sqrt{\Delta}+1}
+                      {2\gamma c - \sqrt{\Delta}+1} \bigg|
+ = (\tau + \text{constant}) \sqrt{\Delta}.
 \end{align}
 
-$c(0)=0$ gives the constant (note the absolute value above):
+TODO: Sign is off in implies absolute value above.
+
+Note that $|-\sqrt{\Delta}+1| = \sqrt{\Delta} - 1$. $c(0)=0$ gives the constant:
 \begin{equation}
 \text{constant} =
-\frac{1}{\sqrt{1+4\gamma}} \ln \frac{\sqrt{1+4\gamma}+1}{{\sqrt{1+4\gamma}-1}}
+\frac{1}{\sqrt{\Delta}} \ln \frac{\sqrt{\Delta}+1}{{\sqrt{\Delta}-1}}
 \end{equation}
 
 Which makes the solution:
 \begin{align}
-&\ln \bigg|\frac{c + \frac{\sqrt{1+4\gamma}+1}{2\gamma}}
-               {c - \frac{\sqrt{1+4\gamma}-1}{2\gamma}} \bigg|
- = \tau \sqrt{1+4 \gamma} +
-   \frac{1}{\sqrt{1+4\gamma}}\ln \frac{\sqrt{1+4\gamma}+1}{{\sqrt{1+4\gamma}-1}},\\
-&\implies foo
+&\ln \bigg|\frac{2\gamma c + \sqrt{\Delta}+1}
+                {2\gamma c - \sqrt{\Delta}+1} \bigg|
+ = \tau \sqrt{\Delta} + \ln \frac{\sqrt{\Delta}+1}{{\sqrt{\Delta}-1}},\\
+&\implies \bigg|\frac{2\gamma c + \sqrt{\Delta}+1}
+                     {2\gamma c - \sqrt{\Delta}+1} \bigg|
+ = \frac{\sqrt{\Delta}+1}{{\sqrt{\Delta}-1}} \mathrm{e}^{\sqrt{\Delta} \tau}
 \end{align}
 
 
