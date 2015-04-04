@@ -985,13 +985,71 @@ For c we get, using $s= s_I = 1$:
 \frac{dc}{d\tau} &= \frac{t_C}{C_0} \Big(
                      k_1 E_0 S_0 s - k_1 C_0 (E_0 + S_0 s + K_m) c + k_1 C_0^2 c^2
                      \Big), \\
-                 & = 1 - c - \gamma c^2
+                 & = - \gamma c^2 - c + 1
 \end{align}
 
 We solve this by separation of variables, like before:
 \begin{equation}
-\frac{dc}{1 - c - \gamma c^2} = d\tau
+\frac{dc}{- \gamma c^2 - c + 1} = d\tau
 \end{equation}
+
+By B\'{e}zout's identity for polynomials, there exists polynomials $C$
+and $D$ such that:
+\begin{equation}
+\frac{1}{P(x) Q(x)} = \frac{C}{Q(x)} + \frac{D}{P(x)},
+\end{equation}
+
+Where $CP+DQ = 1$. We will use this in partial fraction step below.
+
+Let $\Delta=1 + 4\gamma$. We investigate the denominator in (132):
+\begin{align}
+&-\gamma c^2 - c + 1 = - \gamma
+                        \Big(c - \frac{-1 + \sqrt{1+4 \gamma}}{2 \gamma}\Big)
+                        \Big(c + \frac{ 1 + \sqrt{1+4 \gamma}}{2 \gamma}\Big), \\
+&\implies \frac{1}{- \gamma c^2 - c + 1} = \frac{1}
+                        {- \gamma
+                        \Big(c - \frac{-1 + \sqrt{1+4 \gamma}}{2 \gamma}\Big)
+                        \Big(c + \frac{ 1 + \sqrt{1+4 \gamma}}{2 \gamma}\Big)} \\
+&= - \frac{1}{\sqrt{1+4\gamma}}
+   \Bigg(\frac{1}{c - \frac{-1 + \sqrt{1+4 \gamma}}{2 \gamma}} -
+        \frac{1}{c + \frac{1 + \sqrt{1+4 \gamma}}{2 \gamma}} \Bigg)
+   \quad \text{(see above identity)}
+\end{align}
+
+Integrating (132) we get:
+\begin{align}
+&\frac{-1}{\sqrt{1+4 \gamma}}
+\Big( \int \frac{dc}{c - \frac{\sqrt{1+4 \gamma} - 1}{2 \gamma}} -
+      \int \frac{dc}{c + \frac{\sqrt{1+4 \gamma} + 1}{2 \gamma}}
+\Big) = \tau + \text{constant}, \\
+&\iff \frac{-1}{\sqrt{1+4 \gamma}}
+      \ln \bigg|\frac{c - \frac{\sqrt{1+4\gamma}-1}{2\gamma}}
+                     {c + \frac{\sqrt{1+4\gamma}+1}{2\gamma}} \bigg|
+ = \tau + \text{constant}, \\
+&\iff \frac{1}{\sqrt{1+4 \gamma}}
+      \ln \bigg|\frac{c + \frac{\sqrt{1+4\gamma}+1}{2\gamma}}
+                     {c - \frac{\sqrt{1+4\gamma}-1}{2\gamma}} \bigg|
+ = \tau + \text{constant}, \\
+&\iff  \ln \bigg|\frac{c + \frac{\sqrt{1+4\gamma}+1}{2\gamma}}
+                     {c - \frac{\sqrt{1+4\gamma}-1}{2\gamma}} \bigg|
+ = (\tau + \text{constant}) \sqrt{1+4 \gamma}.
+\end{align}
+
+$c(0)=0$ gives the constant (note the absolute value above):
+\begin{equation}
+\text{constant} =
+\frac{1}{\sqrt{1+4\gamma}} \ln \frac{\sqrt{1+4\gamma}+1}{{\sqrt{1+4\gamma}-1}}
+\end{equation}
+
+Which makes the solution:
+\begin{align}
+&\ln \bigg|\frac{c + \frac{\sqrt{1+4\gamma}+1}{2\gamma}}
+               {c - \frac{\sqrt{1+4\gamma}-1}{2\gamma}} \bigg|
+ = \tau \sqrt{1+4 \gamma} +
+   \frac{1}{\sqrt{1+4\gamma}}\ln \frac{\sqrt{1+4\gamma}+1}{{\sqrt{1+4\gamma}-1}},\\
+&\implies foo
+\end{align}
+
 
 TODO: QQQ. Here atm. Good stopping point.
 
