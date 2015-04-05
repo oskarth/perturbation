@@ -3,6 +3,7 @@
 - fix punctuation in equations. , and . in right places.
 - check other submitted to see missing.
 - check where we are talking about initial cond c(0)=0
+- check e, define for mathrm{e} \e?
 
 ## Misc
 

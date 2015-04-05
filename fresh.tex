@@ -1054,25 +1054,28 @@ Which gives us:
 Note that $2 \gamma c + \sqrt{\Delta} + 1 > 1 > 0$ and
 $2 \gamma c - \sqrt{\Delta} + 1 < 0$.
 
-TODO: Ask Y 5 - That second inequality is true is not obvious to
+TODO: Ask Y 5 - That the second inequality is true is not obvious to
 me. Couldn't c be $C_0$?
 
 We then have:
 \begin{align}
 &(2\gamma c + \sqrt{\Delta} + 1)(\sqrt{\Delta} - 1) =
-   (\sqrt{\Delta} - 2\gamma c - 1)(\sqrt{\Delta} + 1) e^{\sqrt{\Delta} \tau}, \\
+   (\sqrt{\Delta} - 2\gamma c - 1)(\sqrt{\Delta} + 1) e^{\sqrt{\Delta} \tau} \\
 &\iff 2\gamma c (\sqrt{\Delta} - 1) + 4 \gamma =
-  \Big( -2\gamma c(\sqrt{\Delta} + 1) + 4\gamma \Big) e^{\sqrt{\Delta} \tau}, \\
-&\iff e... + e...
+  \Big( -2\gamma c(\sqrt{\Delta} + 1) + 4\gamma \Big) e^{\sqrt{\Delta} \tau} \\
+&\iff c (\sqrt{\Delta} - 1) + c (\sqrt{\Delta} + 1) e^{\sqrt{\Delta} \tau} =
+   2(e^{\sqrt{\Delta} \tau} - 1) \\
+&\implies c_I(\tau) =
+  \frac{2(e^{\sqrt{\Delta} \tau} - 1)}
+       {  (\sqrt{\Delta} + 1) e^{\sqrt{\Delta} \tau} + (\sqrt{\Delta} - 1)} \\
+&\iff c_I(\tau) =
+  \frac{2(e^{\sqrt{\sqrt{1+4\gamma}} \tau} - 1)}
+       {(\sqrt{1+4\gamma} + 1) e^{\sqrt{1+4\gamma} \tau} + \sqrt{1+4\gamma} - 1}
 \end{align}
 
-TODO: What is happening in this last step?
-
-
-
-
-
-TODO: QQQ. Here atm. Good stopping point.
+Which is our inner solution for c. Note that this is a different
+result from what Khoo and Heglund got. At present time it's unclear
+why there is a discrepancy.
 
 \subsection{Matching}
 
