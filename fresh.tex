@@ -512,7 +512,7 @@ E + S \leftarrow_{k_1} \rightarrow_{k_{-1}} C \rightarrow_{k_2} E + P
 
 This is an enzyme E and substrate S that combine, reversibly, to form a complex
 C, which in turn gives us a product and enzyme back. $k_1, k_{-1}, k_2$ are rate
-constants. We won't bother with the biological etails too much, but instead look
+constants. We won't bother with the biological details too much, but instead look
 at how we can analyze the above as a dynamical system.
 
 The \textit{law of mass action} tells us that two molecules A and B forming
@@ -576,15 +576,17 @@ constant}.
 \frac{dS}{dt} = \frac{-k_2 E_0 S}{K_m + S}
 \end{equation}
 
-together with $S(0) = S_0$ as initial condition is what is normally considered
-the QSSA, valid after some short amount of time has passed.
+together with $S(0) = S_0$ as initial condition. This is what is
+normally considered the QSSA, valid after some short amount of time
+has passed.
 
-We can justify this with a procedure similar to the previous section, as done by
-for example Lin and Segel \cite{lin1974mathematics}. Instead we are going to
-look at a slight variation of this, namely what happens when the amount of
-substrate isn't much bigger than the amount of enzymes. This is the
-\textit{Total Quasi Steady State assumption}, discovered by Borghans and Segel
-1996 \cite{borghans1996extending}.
+We can justify this with a procedure similar to one in the previous
+section, as done by for example Lin and Segel
+\cite{lin1974mathematics}. Instead we are going to look at a slight
+variation of this, namely what happens when the amount of substrate
+isn't much bigger than the amount of enzymes. This is the
+\textit{Total Quasi Steady State assumption}, discovered by Borghans
+and Segel 1996 \cite{borghans1996extending}.
 
 \subsection{TQSSA}
 
@@ -593,15 +595,16 @@ The basic idea behind TQSSA is to perform a change of variable
 \overline{S} = S + C
 \end{equation}
 
-This change of variable makes the approximation valid for more parameters. We
-get the following system of equations from (52), (53) and (57)
+This change of variable makes the approximation valid for a wider
+range of parameters. We get the following system of equations from
+(59), (60) and (64)
 \begin{align}
 \frac{d\overline{S}}{dt} &= - k_2 C, \\
 \frac{dC}{dt} &= k_1(E_0-C)(\overline{S}-C)-(k_{-1}+ k_2) C
 \end{align}
 
-With initial conditions $\overline{S}(0)=S_0, C(0)=0$, these are the rate
-equations for the TQSSA.
+Together with initial conditions $\overline{S}(0)=S_0, C(0)=0$, these
+are the rate equations for the TQSSA.
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=120mm]
@@ -614,18 +617,30 @@ equations for the TQSSA.
 We get some intuition of the behavior by inspecting the phase plane of
 the above equations. With the help of XPP (see appendix for the source
 code used), we can numerically simulate the system, as seen in figure
-1. There are two things to note: (1) the steady state is at (0,0) (not
+3. There are two things to note: (1) the steady state is at (0,0) (not
 shown in graph due to numerical rounding error) and (2) from the initial
 condition there's a rapid increase of concentration in complexity C,
 after which it slowly decrease (quasi-steady state) until it reached
 steady state.
-
+x
 \subsection{Timescales}
 
 To analyze the problem rigorously using perturbation theory, we need
 to find an expression that estimates these two time scales that the
 system is operating with, $t_C$ for the fast initial period and
 $t_{\overline{S}}$ for the slow quasi-steady state period.
+
+One way to get some intuition behind the use of different time scales
+is to think about the difference between seconds and years. Some
+phenomena happens on the scale of seconds or less, like many chemical
+reaction, whereas the development of cities happens on a scale of
+years. If you blink, the city landscape isn't going to change before
+your eyes. Using different time scales is a way to capture that
+observation in a rigorous fashion.
+
+We are first going to calculate the timescales for the normal QSSA, to
+get some intuition for the concept. We will then extend this to the
+TQSSA.
 
 To get the fast time scale, we can estimate S as $S_0$ since in that
 time period the substrate concentration won't change much. We just
@@ -635,7 +650,7 @@ get:
   \frac{dC}{dt} = k_1E_0 S_0 - (k_1 S_0 + k_{-1} + k_2)C
 \end{equation}
 
-With the help of initial condition $C(0)=0$, we get the solution:
+With the help of the initial condition $C(0)=0$, we get the solution:
 $C(0)=0$):
 \begin{equation}
   C(t) = A(1 -  e^{\lambda x}), \quad
@@ -656,18 +671,18 @@ period of time, which is the time scale we care about. We then use
 \end{equation}
 
 We now get $t_s$ with the help of an estimation technique by Segel
-\cite{segel1984modeling} that tells us to take $S_0$ divided by the
-maximum of $|dS/dt|$ using $S_S0$ in the previous equation. This gives
-us:
+\cite{segel1984modeling} that tells us to take
+$S_{max} - S_{min} = S_0$ divided by the maximum of
+$|dS/dt|$ using $S=S_0$ in the previous equation. This gives us:
 \begin{align}
   t_s &= \frac{S_0}{|dS/dt|_{max}}, \\
       &= \frac{K_m + S_0}{k_2 E_0}
 \end{align}
 
 So far we have only derived timescales for the normal QSSA. To get the
-timescales for TQSSA, Borghans et al. use the rewrite $\overline{S} =
-S + C$. By doing so, and assuming $dC/dt=0$ as before, the $dC/dt$
-equation gets a quadratic term, $C^2$:
+timescales for TQSSA, Borghans et al. use the rewrite
+$\overline{S} = S + C$. By doing so, and assuming $\frac{dC}{dt}=0$ as
+before, the $\frac{dC}{dt}$ equation gets a quadratic term, $C^2$:
 \begin{equation}
   C^2 - (E_0 + K_m + \overline{S})C + E_0 \overline{S} = 0
 \end{equation}
@@ -714,7 +729,7 @@ and $c_2$ are positive.
 With this we get the following inequalities. First, the discriminant
 of f(c) is positive:
 \begin{equation}
-  (E_0 + K_m + \overline{S})^2 - 4 E_0 + \overline{S} > 0
+  (E_0 + K_m + \overline{S})^2 - 4 E_0 \overline{S} > 0
 \end{equation}
 
 For a quadratic equation $x^2 + bx + c$, we have another identity for
@@ -740,7 +755,13 @@ With these inequalities, we can position the roots as follows:
   0 < K_m + \overline{S} &< c_2 < E_0 + K_m + \overline{S}
 \end{align}
 
-TODO: Ask Y 1 - where do we get this below inequality from?
+%In order for us to do the approximation $dC/dt = 0$, i.e. in order for
+%the TQSSA to be valid, the fast time scale has to be much smaller than
+%the slow time scale.
+%
+%Borghans et al. found that this at a minimum requires that.
+%
+%TODO ?
 
 If $E_0 < K_m + \overline{S}$ there is only one solution that
 satisfies the conservation law (58), since for $c_2$ we would have a
@@ -761,18 +782,18 @@ large. Multiplying with the conjugate we get:
 \begin{align}
   c_1(\overline{S}) &= \frac{E_0 \overline{S}}{E_0 + K_m + \overline{S} +
     \sqrt{(E_0 +K_m + \overline{S})^2 - 4 E_0 \overline{S}}}, \\
-  c_1(\overline{S}) &= \frac{2 E_0}{\frac{E_0 + K_m}{\overline{S}} + 1 +
+                    &= \frac{2 E_0}{\frac{E_0 + K_m}{\overline{S}} + 1 +
     \sqrt{(\frac{E_0 + K_m}{\overline{S}} + 1)^2 - \frac{4 E_0}{\overline{S}}}}
   \to  E_0 \enskip \text{as} \enskip \overline{S} \to \infty
 \end{align}
 
-TODO: Ask Y 2 - Why do we do this above check? What does it mean?
+TODO: Ask Y 1 - Why do we do this above check? What does it mean?
 
-TODO: Ask Y 3 - Why is this what we want to investigate? It's a
+TODO: Ask Y 2 - Why is this what we want to investigate? It's a
 rewrite of the Pade approximant of C, but we don't know that at this
 stage. Also, this inequality will always hold because it's a sum of
-positive concentrations/constant. Is it just to clarify the Taylor
-O(x)?
+positive concentrations/constant ($E_0 S_0$ is on both sides). Is it just
+to clarify the Taylor O(x)?
 
 If we have $(E_0 + K_m + \overline{S})^2 \geq E_0 \overline{S}$ then
 we can rewrite (89) as follows:
@@ -826,10 +847,11 @@ If $\overline{S} = E_0$ then:
 
 So if $E_0 < K_m + \overline{S}$ our approximation (94) is possible.
 
-TODO: Ask Y 4 - is the above accurate?
+TODO: Ask Y 3 - is the above accurate?
 
 Doing calucations similar to what we did in beginning of this section,
-we eventually end up with these two slightly modified time-scales:
+using equation (94), we eventually end up with these two slightly
+modified time-scales:
 \begin{align}
 t_C &= \frac{1}{k_1(E_0+S_0+K_m)}, \\
 t_{\overline{S}} &= \frac{E_0+S_0+K_m}{k_2+E_0}
@@ -872,14 +894,20 @@ C_0 = \frac{E_0 S_0}{E_0 + S_0 + K_m}
 
 Now we need a small parameter $\epsilon$ to begin looking for the
 outer solution, where the complex changes slowly. A necessary
-condition for TQSSA to hold is $0 < \epsilon \ll 1$:
+condition for the TQSSA to hold is $0 < \epsilon \ll 1$:
 \begin{equation}
 \epsilon = \frac{t_C}{t_{\overline{S}}} = \frac{k_2 E_0}{k_1(E_0+S_0+K_m)^2}
 \end{equation}
 
-This comes from Borghans. \textit{Assuming} $\tau \ll T$ we will calculate for the outer region, using the procedure by Khoo and Heglund \cite{khoo2008total}. Translating equation (65) and (66) with the help of the above equations and the chain rule:
+This comes from Borghans, and it makes sense given what we have
+learned about timescales - you can only treat a city landscape as
+static if you are looking at it on a short
+timescale. \textit{Assuming} $\tau \ll T$ we will calculate for the
+outer region, using the procedure by Khoo and Heglund
+\cite{khoo2008total}. Translating equation (65) and (66) with the help
+of the above equations and the chain rule:
 \begin{equation}
-\frac{dc}{dT} = \frac{dC}{dt} \enskip \frac{dt}{dT} \enskip \frac{dc}{dC}
+\frac{dc}{dT} = \frac{dC}{dt} \enskip \frac{dt}{dT} \enskip \frac{dc}{dC},
 \end{equation}
 
 We get:
@@ -910,9 +938,11 @@ Similarly to what we saw in section 3, as $\epsilon \to 0$, we have:
    \gamma c^2  - \frac{E_0+S_0 s+K_m}{E_0 + S_0 + K_m} c + s = 0
 \end{equation}
 
-As justified in (98), $1 \ll \gamma$ when $\overline{S}$ is
-sufficiently large or small compared to $E_0$. Our above quadratic is
-thus approximately:
+As justified in (95) to (98), $\gamma \ll 1$ when $\overline{S}$ is
+sufficiently large or small compared to $E_0$. Recall what we learned
+in section 3. We have established that, under certain conditions, the
+quadratic equation has only one solution. Our above quadratic is thus,
+to a first approximation:
 \begin{equation}
   s - \frac{E_0+S_0 s+K_m}{E_0 + S_0 + K_m} c = 0
 \end{equation}
@@ -1054,7 +1084,7 @@ Which gives us:
 Note that $2 \gamma c + \sqrt{\Delta} + 1 > 1 > 0$ and
 $2 \gamma c - \sqrt{\Delta} + 1 < 0$.
 
-TODO: Ask Y 5 - That the second inequality is true is not obvious to
+TODO: Ask Y 4 - That the second inequality is true is not obvious to
 me. Couldn't c be $C_0$?
 
 We then have:
@@ -1069,7 +1099,7 @@ We then have:
   \frac{2(e^{\sqrt{\Delta} \tau} - 1)}
        {  (\sqrt{\Delta} + 1) e^{\sqrt{\Delta} \tau} + (\sqrt{\Delta} - 1)} \\
 &\iff c_I(\tau) =
-  \frac{2(e^{\sqrt{\sqrt{1+4\gamma}} \tau} - 1)}
+  \frac{2(e^{\sqrt{1+4\gamma} \tau} - 1)}
        {(\sqrt{1+4\gamma} + 1) e^{\sqrt{1+4\gamma} \tau} + \sqrt{1+4\gamma} - 1}
 \end{align}
 
@@ -1079,34 +1109,93 @@ why there is a discrepancy.
 
 \subsection{Matching}
 
-As before, we are looking for a common limit, and our matching condition as
-$\epsilon \to 0, t_f \to \infty, t_s \to 0$ is
+As before in section 4.3, we are looking for a common limit, and our
+matching condition as
+$\epsilon \to 0 \text{, } \tau \to \infty \text{, and } T \to 0$ is:
 \begin{equation}
-\lim \epsilon 0 [y_o(t_s)|t_s=0] = \lim \epsilon \to 0[y_I(t_f)|t_f=\infty]
+\lim_{\epsilon \to 0} [y_O(T) |_{T=0}] =
+\lim_{\epsilon \to 0} [y_I(\tau) |_{\tau=\infty}]
 \end{equation}
 
-For s:
+For the substrate s this is:
+\begin{align}
+&\lim_{\epsilon \to 0} [s_O(T) |_{T=0}] =
+  \lim_{\epsilon \to 0} [s_I(\tau) |_{\tau=\infty}] \\
+&\iff \lim_{\epsilon \to 0} [s_O(T) |_{T=0}] =
+  \lim_{\epsilon \to 0} 1
+\end{align}
+
+We don't have an explicit expression for $s_O$, but the right hand
+side above is obviously 1, and evaluating the implicit expression for
+$s_O(0)$ from (125) we see that $s_O(0)=1$ is indeed a solution:
 \begin{equation}
-\lim \epsilon 0 [y_o(t_s)|t_s=0] = \lim \epsilon \to 0[y_I(t_f)|t_f=\infty] = 1
+(E_0+K_m) \ln{s_O(0)} + S_0 (s_O(0) - 1) = 0
 \end{equation}
 
-For c:
+The matching condition in (149) is thus simply equal to 1.
 
-TODO: Perform this limit check, help from Mathematica? Can I find by hand? Khoo
-finds
+For the complex c we have:
 \begin{equation}
-... = \approx 2(1+\sqrt{1-4\gamma})^{-1}
+\lim_{\epsilon \to 0} [c_O(T) |_{T=0}] =
+  \lim_{\epsilon \to 0} [c_I(\tau) |_{\tau=\infty}]
+\end{equation}
+
+%Recall that:
+%\begin{equation}
+%\epsilon \to 0 \iff k_2 E_0 \ll  k_1 (E_0 + S_0 + K_m)^2
+%\implies \text{???}
+%\end{equation}
+
+For $c_O(T)$ at $T=0$ we have:
+\begin{align}
+c_O(0) &= \frac{E_0 + S_0 + K_m}{E_0+S_0 s(0) +K_m} s(0) \\
+       &= \frac{E_0 + S_0 + K_m}{E_0+S_0  +K_m} \\
+       &= 1 \text { as } \epsilon \to 0
+\end{align}
+
+As we established earlier, $\gamma \ll 1$.We use this to proceed
+similarly to how we did in (92) to (94), and approximate the
+expression $\sqrt{1+4\gamma}$ as $1+O(1+4\gamma) \approx 1$ as
+$\gamma \to 0$. We then have for $c_I(\tau)$:
+\begin{align}
+c_I(\tau) &=
+     \frac{2(e^{\sqrt{1+4\gamma} \tau} - 1)}
+   {(\sqrt{1+4\gamma} + 1) e^{\sqrt{1+4\gamma} \tau} + \sqrt{1+4\gamma} - 1} \\
+&= \frac{2(e^{(1+O(1+4\gamma)) \tau} - 1)}
+        {(2 + O(1+4\gamma)) e^{(1+O(1+4\gamma)) \tau} + O(1+4\gamma)} \\
+&\approx \frac{2(e^{\tau} - 1)}
+              {(2 + O(1+4\gamma)) e^{\tau}} \\
+&= \frac{2(1 - \frac{1}{e^{\tau}})}
+        {2 + O(1+4\gamma)} \\
+&= \frac{2(1 - \frac{1}{e^{\tau}})}
+        {1 + \sqrt{1+4\gamma}}
+   \to \frac{2} {1 + \sqrt{1+4\gamma}} \quad \text{as } \tau \to \infty
+\end{align}
+
+Even though the expressions for $c_O$ and $c_I$ look different, they
+are both equal to 1 in the limiting as (161) $\to 1$ as $\tau \to 0$
+and $\gamma \to 0$. This corresponds to how well the TQSSA
+approximation works. Equation (153) is thus:
+
+\begin{equation}
+\approx \frac{2} {1 + \sqrt{1+4\gamma}}
+\end{equation}
+
+TODO: Ask Y 5 - Is the above reasoning correct?
+
+We note that Khoo finds the following for equation (153):
+\begin{equation}
+\approx \frac{2}{1+\sqrt{1-4\gamma}}
 \end{equation}
 
 \subsection{Uniform approximation}
 
-Like before, we take the common part and subtract the difference.
+We proceed as we did before in section 4.4, taking the common part and
+subtracting the difference:
 \begin{align}
 s_u &= s_O + s_I - 1 = s_O, \\
-c_u &= c_O + c_I - 2(1 + \sqrt{1-4\gamma})^{-1}
+c_u &= c_O + c_I - 2(1 + \sqrt{1+4\gamma})^{-1} =
 \end{align}
-
-TODO: Phase plane / numerical? Same as before. But compared to what?
 
 \section{Appendix}
 
