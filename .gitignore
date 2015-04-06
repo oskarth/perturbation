@@ -1,4 +1,7 @@
 .DS_Store
+auto
+*.fls
+*.fdb_latexmk
 *.gz
 *.aux
 *.swp
