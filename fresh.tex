@@ -26,11 +26,12 @@
 \maketitle
 
 \begin{abstract}
-Perturbation theory has a long history, and recent decades has seen applications
-in enzyme kinetics. We start with some basic polynomial examples of perturbation
-theory, and then progress to a boundary-value problem in a differential
-equation, before we tackle a real application in the form of Total Quasi Steady
-State from enzyme kinetics.
+  Perturbation theory has a long history, and recent decades has seen
+  applications in enzyme kinetics. We start with some basic polynomial
+  examples of perturbation theory, and then progress to a
+  boundary-value problem in a differential equation, before we tackle
+  a real application in the form of Total Quasi Steady State from
+  enzyme kinetics.
 \end{abstract}
 
 \clearpage
@@ -53,91 +54,97 @@ the reader from a very simple and familiar example, a quadratic
 equation, all the way to a useful research example in system biology:
 the total quasi steady state in enzyme kinetics.
 
-The article has been written with the goal that any student with a basic
-understanding of calculus, differential equations and linear algebra will be
-able to follow along. All the relevant biology and perturbation theory will be
-explained as we go along.
+The article has been written with the goal that any student with a
+basic understanding of calculus, differential equations and linear
+algebra will be able to follow along. All the relevant biology and
+perturbation theory will be explained as we go along.
 
 \section{A regular perturbation}
 
-We are going to start with one of the simplest non-trivial example imaginable:
-a quadratic equation.
+We are going to start with one of the simplest non-trivial example
+imaginable, a quadratic equation:
 \begin{equation}
-x^2 - 2x + \epsilon = 0
+x^2 - 2x + \epsilon = 0.
 \end{equation}
 
-We know how to solve this analytically. The roots of the equation are $x_1 = 1 +
-\sqrt{1 - \epsilon}$ and $x_2 = 1 - \sqrt{1 - \epsilon}$.
+We know how to solve this analytically. The roots of the equation are
+$x_1 = 1 + \sqrt{1 - \epsilon}$ and $x_2 = 1 - \sqrt{1 - \epsilon}$.
 
-The case we are interested in is the one where $\epsilon$ is very small. In this
-case, we can see that setting $\epsilon=0$ produces the roots $x=0$ and $x=2$
-respectively. In fact, for any given small $\epsilon$ we notice that solution
-changes very little. In that sense it's a very "boring" and predictable problem.
+The case we are interested in is the one where $\epsilon$ is very
+small. In this case, we can see that setting $\epsilon=0$ produces the
+roots $x=0$ and $x=2$ respectively. In fact, for any given small
+$\epsilon$ we notice that solution changes very little. In that sense
+it's a very "boring" and predictable problem.
 
-Can we make this observation, that a small change in $\epsilon$ only brings about a small change in the solution, more rigorous? One way is to rewrite the part
-of the solution containing $\epsilon$ as a Taylor series. Recall that a Taylor
-series for a function $f(x)$ around a point a looks like follows.
+Can we make this observation, that a small change in $\epsilon$ only
+brings about a small change in the solution, more rigorous? One way is
+to rewrite the part of the solution containing $\epsilon$ as a Taylor
+series. Recall the definition of a Taylor series for a function $f(x)$
+around a point a is
 \begin{equation}
-f(x) = \sum_{n=0}^{\infty} \frac{f^{n}(a)}{n!} (x-a)^n
+f(x) = \sum_{n=0}^{\infty} \frac{f^{n}(a)}{n!} (x-a)^n.
 \end{equation}
 
 The Taylor series for $f(\epsilon) = (1 - \epsilon)^{1/2}$ around 0
-(since we assume that $\epsilon$ is very small) is thus:
+(since we assume that $\epsilon$ is very small) is thus
 \begin{equation}
-\sqrt{1 - \epsilon} = 1 - \frac{\epsilon}{2} - \frac{\epsilon^2}{8} + O(\epsilon^3)
+\sqrt{1 - \epsilon} = 1 - \frac{\epsilon}{2} - \frac{\epsilon^2}{8} + O(\epsilon^3),
 \end{equation}
-
-Where $O(\epsilon^3)$ is some expression with a term $\epsilon^3$ in
+where $O(\epsilon^3)$ is some expression with a term $\epsilon^3$ in
 it. If we take the limit of this expression as $\epsilon \to 0$, it's
 obvious that our intuition is correct. That is, a small change in
-$\epsilon$ only brings about a small change in the solution. We get:
+$\epsilon$ only brings about a small change in the solution. We get
 \begin{align}
 x_1 &= \frac{\epsilon}{2} + \frac{\epsilon^2}{8} + O(\epsilon^3), \\
-x_2 &= 2 - \frac{\epsilon}{2} - \frac{\epsilon^2}{8} + O(\epsilon^3)
+x_2 &= 2 - \frac{\epsilon}{2} - \frac{\epsilon^2}{8} + O(\epsilon^3).
 \end{align}
 
-What is the point of all this? We said in the beginning that perturbation theory
-allows us to solve a larger class of problems, but what we have done so far
-hasn't given any indication of that being true. After all, we already have an
-analytical formula for the quadratic equation.
+What is the point of all this? We said in the beginning that
+perturbation theory allows us to solve a larger class of problems, but
+what we have done so far hasn't given any indication of that being
+true. After all, we already have an analytical formula for the
+quadratic equation.
 
-Let's start over, but this time let's assume we don't have the quadratic formula
-at our disposal. We will outline a method which would allow us to get arbitrarly
-good approximations for polynomials of any degree.
+Let's start over, but this time let's assume we don't have the
+quadratic formula at our disposal. We will outline a method which
+would allow us to get arbitrarly good approximations for polynomials
+of any degree.
 
 Let's assume the solution of (1) in terms of x can be expressed in the
-form of a power series of $\epsilon$.
+form of a power series of $\epsilon$
 \begin{equation}
 \sum_0^{\infty} a_k \epsilon^k = a_0 + a_1 \epsilon + a_2 \epsilon^2 + ...
 \end{equation}
 
-We will now insert this power series into (1), and then expand that expression
-in terms of powers of $\epsilon$. We only have to do this for the first few
-terms of the power series to get a decent approximation. If we want to we can
-always add more terms and get a more accurate approximation.
+We will now insert this power series into (1), and then expand that
+expression in terms of powers of $\epsilon$. We only have to do this
+for the first few terms of the power series to get a decent
+approximation. If we want to we can always add more terms and get a
+more accurate approximation. We have
 \begin{equation}
 (a_0 + a_1 \epsilon + a_2 \epsilon^2 + ...)^2 - 2(a_0 + a_1 \epsilon + a_2
-\epsilon^2 + ...) + \epsilon = 0
+\epsilon^2 + ...) + \epsilon = 0.
 \end{equation}
 
 We expand the expression using Big-Oh algebra. For example, for the
 first term, we get: $(a_0 + a_1 \epsilon + a_2 \epsilon^2)^2 = a_0^2 +
 2 a_0 a_1 \epsilon + (a_1^2 + 2 a_0 a_2) \epsilon^2 + O(\epsilon^3)$.
 
-The whole expression becomes the following:
+The whole expression becomes
 \begin{equation}
 a_0^2 - 2 a_0 + (2 a_0 a_1 - 2 a_1 + 1)\epsilon + (a_1^2 + 2 a_0 a_2 - 2 a_2)
-\epsilon^2 = O(\epsilon^3), \epsilon \to 0
+\epsilon^2 = O(\epsilon^3), \epsilon \to 0.
 \end{equation}
 
-Now we turn the problem of determining the coefficients $a_0$, $a_1$ etc. Since
-$\epsilon$ is a variable here rather than a parameter, we see that the
-coefficients before each power of $\epsilon$ separately all have to be equal to
-zero. We thus get the following system of equations for solving the coefficients.
+Now we turn the problem of determining the coefficients $a_0$, $a_1$
+etc. Since $\epsilon$ is a variable here rather than a parameter, we
+see that the coefficients before each power of $\epsilon$ separately
+all have to be equal to zero. We thus get the following system of
+equations for solving the coefficients:
 \begin{align}
 a_0^2 - 2 a_0 &=0, \\
 2 a_0 a_1 - 2 a_1 + 1 &= 0, \\
-a_1^2 + 2 a_0 a_2 - 2 a_2 &= 0
+a_1^2 + 2 a_0 a_2 - 2 a_2 &= 0.
 \end{align}
 
 Solving these equations in turn gives us, starting with the first
@@ -148,10 +155,10 @@ equation, $a_0 = 0$ or $a_0 = 2$. For $a_0 = 0$ we have $a_1 =
 We said at the beginning that we assume the solution is on the form of
 a power series of $\epsilon$. We have two options for the coefficients
 of this power series, and these corresponds to the two approximate
-solutions of the original equation. From the above and (6) we get:
+solutions of the original equation. From the above and (6) we get
 \begin{align}
 x_1 &= \frac{1}{2} \epsilon + \frac{1}{8} \epsilon^2 + O(\epsilon^3), \\
-x_2 &= 2 - \frac{1}{2} \epsilon - \frac{1}{8} \epsilon^2 + O(\epsilon^3)
+x_2 &= 2 - \frac{1}{2} \epsilon - \frac{1}{8} \epsilon^2 + O(\epsilon^3).
 \end{align}
 
 This is exactly the same as our previous solutions in (4) and (5),
@@ -168,13 +175,13 @@ solution. In general, singular problems are interesting precisely
 because their solutions can change significantly with just a small change in
 circumstances.
 
-As before, we will use a quadratic equation to illustrate how this works.
+As before, we will use a quadratic equation to illustrate how this works,
 \begin{equation}
-\epsilon x^2 - 2 x + 1 = 0
+\epsilon x^2 - 2 x + 1 = 0,
 \end{equation}
 
-As before, we take $\epsilon$ to be a very small number. This equation has the
-following solutions.
+where $\epsilon$ is a very small number. This equation has the
+solutions
 \begin{align}
 x_1 &= \frac{1 + \sqrt{1 - \epsilon}}{\epsilon}, \\
 x_2 &= \frac{1 - \sqrt{1 - \epsilon}}{\epsilon}.
@@ -187,29 +194,30 @@ is indicative that we are dealing with a singular perturbation problem.
 
 Let's try using the same method as we did before. We assume x can be
 expressed in the form of a power series of $\epsilon$. Inserting this
-in our equation gives us the following.
+in our equation gives us
 \begin{equation}
 \epsilon (a_0 + a_1 \epsilon + a_2 \epsilon^2)^2 - 2(a_0 + \epsilon a_1 +
-a_2 \epsilon^2) + 1 = 0
+a_2 \epsilon^2) + 1 = 0,
 \end{equation}
 
-which gets expanded into.
+which gets expanded into
 \begin{equation}
 (- 2 a_0 + 1) + (a_0^2 - 2 a_1) \epsilon + (2 a_0 a_1 -2 a_2) \epsilon^2 +
-O(\epsilon^3)
+O(\epsilon^3),
 \end{equation}
 
-and leads to.
+and leads to
 \begin{align}
 - 2 a_0 + 1 &= 0, \\
 a_0^2 - 2 a_1 &= 0, \\
-2 a_0 a_1 -2 a_2 &= 0
+2 a_0 a_1 -2 a_2 &= 0.
 \end{align}
 
-$a_0 = \frac{1}{2}$, $a_1=\frac{1}{8}$, $a_2= \frac{1}{64}$, but this gives us
-only one of the roots, $x_1$.
+The solution of this system of equations is $a_0 = \frac{1}{2}$,
+$a_1=\frac{1}{8}$, $a_2= \frac{1}{64}$, but this gives us only one of
+the roots,
 \begin{equation}
-x_1 = \frac{1}{2} + \frac{1}{8} \epsilon + O(\epsilon^2)
+x_1 = \frac{1}{2} + \frac{1}{8} \epsilon + O(\epsilon^2).
 \end{equation}
 
 By the Fundamental Theorem of Algebra, we would expect to see two solutions.
@@ -217,16 +225,16 @@ What happened to the other root? We missed it because it's not on the form of
 a perturbation series. So what do we do?
 
 The key here is that we can do a change in variable to turn the problem into a
-regular perturbation problem.
+regular perturbation proble:
 \begin{equation}
-x(\epsilon) = \frac{y(\epsilon)}{\delta(\epsilon)}
+x(\epsilon) = \frac{y(\epsilon)}{\delta(\epsilon)}.
 \end{equation}
 
 Here we are treating $x$ as a function, $y(\epsilon)$ is $O(1)$ and we want to
 determine the re-scaling factor function $\delta(\epsilon)$. Our original
 equation becomes
 \begin{equation}
-\frac{\epsilon}{\delta^2} y^2 - \frac{2}{\delta} y + 1 = 0
+\frac{\epsilon}{\delta^2} y^2 - \frac{2}{\delta} y + 1 = 0.
 \end{equation}
 
 Our goal is to simplify this equation. We do this by dropping relatively
@@ -255,20 +263,20 @@ $O(\frac{1}{e})$, and 1 is relatively small compared to that when $\epsilon \to
 0$. We have
 \begin{align}
 P(x) = \epsilon x^2 - 2x + 1, \\
-\epsilon P\Big(\frac{y}{\epsilon}\Big) = y^2 - 2 y + \epsilon
+\epsilon P\Big(\frac{y}{\epsilon}\Big) = y^2 - 2 y + \epsilon,
 \end{align}
 
-Where the last part is exactly the same as our regular perturbation problem.
+where the last part is exactly the same as our regular perturbation problem.
 Like before, this gives us
 \begin{align}
 y_1 &= \frac{1}{2} \epsilon + \frac{1}{8} \epsilon^2 + O(\epsilon^3), \\
-y_2 &= 2 - \frac{1}{2} \epsilon - \frac{1}{8} \epsilon^2 + O(\epsilon^3)
+y_2 &= 2 - \frac{1}{2} \epsilon - \frac{1}{8} \epsilon^2 + O(\epsilon^3),
 \end{align}
 
 which means that
 \begin{align}
 x_1 &= \frac{1}{2} + \frac{1}{8} \epsilon + O(\epsilon^2), \\
-x_2 &= \frac{2}{\epsilon} - \frac{1}{2} + \frac{1}{8} \epsilon + O(\epsilon^2)
+x_2 &= \frac{2}{\epsilon} - \frac{1}{2} + \frac{1}{8} \epsilon + O(\epsilon^2).
 \end{align}
 
 The second root is our missing solution, and it corresponds to $x \to \infty$ as
@@ -303,9 +311,9 @@ then we match them together into one unified solution.
 
 \subsection{Outer solution}
 
-We are now going to look at a differential equation.
+We are now going to look at a differential equation
 \begin{equation}
-\epsilon y'' + 2 y' + y, y(0)=0, y(1)=1, 0 < x < 1
+\epsilon y'' + 2 y' + y, \enskip y(0)=0, \enskip y(1)=1, \enskip 0 < x < 1.
 \end{equation}
 
 If we naively set $\epsilon = 0$ we see that the resulting equation $2 y' + y$
@@ -313,7 +321,7 @@ has the general solution $C e^{- \frac{1}{2}x}$. This can't satisfy both
 boundary conditions at once. If it satisfies $y(0)=0$ we have $y=0$ as the only
 solution, and if it satisfies $y(1)=1$ we have
 \begin{equation}
-y_O=e^{\frac{1}{2} (1 - x)}
+y_O=e^{\frac{1}{2} (1 - x)}.
 \end{equation}
 
 We are going to assume this is a good approximation somewhere. We are also going
@@ -329,20 +337,20 @@ other one with the help of pairwise balancing.
 We are assuming the boundary layer is near 0, and that it has a thickness
 $\delta(\epsilon)$. We introduce a re-scaling variable
 \begin{equation}
-\overline{x} = \frac{x}{\delta}
+\overline{x} = \frac{x}{\delta}.
 \end{equation}
 
 Having two scales like this is typical for singular perturbation problems. Our
 original equation (31) becomes
 \begin{equation}
 \frac{\epsilon}{\delta^2} \frac{d^2y}{d\overline{x}^2} + \frac{2}{\delta}
-\frac{dy}{d\overline{x}} + y = 0
+\frac{dy}{d\overline{x}} + y = 0.
 \end{equation}
 
 We now do pairwise balancing. We have the following orders of
 magnitude
 \begin{equation}
-\frac{\epsilon}{\delta^2}, \frac{1}{\delta}, 1
+\frac{\epsilon}{\delta^2}, \frac{1}{\delta}, 1.
 \end{equation}
 
 We must have $\frac{\epsilon}{\delta^2}$ present, so the question is if it
@@ -363,21 +371,21 @@ but then $\frac{1}{\delta}$ is big compared to 1.
 
 in which case 1 is indeed insignificant.
 
-We have, multiplying by $\epsilon$, the inner equation:
+We have, multiplying by $\epsilon$, the inner equation
 \begin{equation}
 \frac{\delta^2 y}{\delta \overline{x}^2} + 2 \frac{dy}{d\overline{x}} + \epsilon
-y = 0
+y = 0.
 \end{equation}
 
-To a first approximation we can neglect the last term
+To a first approximation we can neglect the last term, so we have
 \begin{equation}
-\frac{\delta^2 y}{\delta \overline{x}^2} + 2 \frac{dy}{d\overline{x}} = 0
+\frac{\delta^2 y}{\delta \overline{x}^2} + 2 \frac{dy}{d\overline{x}} = 0.
 \end{equation}
 
 Together with the other initial condition $y(0)=0$ we get the general inner
-solution, valid in a region of thickness $\epsilon$ close to $x=0$
+solution, valid in a region of thickness $\epsilon$ close to $x=0$,
 \begin{equation}
-y_I = C(1 - e^{-2\overline{x}})
+y_I = C(1 - e^{-2\overline{x}}).
 \end{equation}
 
 We now have an outer and inner solution, and we turn to matching these to
@@ -393,7 +401,7 @@ layer, i.e. as $\overline{x} \to \infty$, the value of $y_I$ should be equal to
 the value of $y_O$ as $x \to 0$, that is
 \begin{equation}
 \lim_{\overline{x} \to \infty} y_I = \lim_{x\to 0+} y_O \iff 
-\lim_{\overline{x} \to \infty} C(1 - e^{-2\overline{x}}) = \lim_{x \to 0+} e^{\frac{1}{2}(1-x)}
+\lim_{\overline{x} \to \infty} C(1 - e^{-2\overline{x}}) = \lim_{x \to 0+} e^{\frac{1}{2}(1-x)}.
 \end{equation}
 
 This is called a \textit{matching condition}. The right-hand side is
@@ -404,23 +412,22 @@ e^{\frac{1}{2}}$.
 
 We now have two separate approximations. We would like to have one single
 approximation that is valid everywhere. We do this by adding the two
-approximations together and removing their common part.
+approximations together and removing their common part:
 \begin{equation}
-y_U = y_o(x) + y_I(\frac{x}{\delta}) - e^{\frac{1}{2}}
+y_U = y_o(x) + y_I(\frac{x}{\delta}) - e^{\frac{1}{2}}.
 \end{equation}
 
 The common part comes from the matching condition in the previous section. In
 the inner region the other terms are negliable, and vice versa in the outer
-region.
+region
 \begin{align}
 y_U &= e^{\frac{1}{2}(1-x)} e^{\frac{1}{2}}(1 - e^{\frac{-2x}{\epsilon}}) -
 e^{\frac{1}{2}} \\
-    &=  e^{\frac{1}{2}}(e^{\frac{-x}{2}} - e^{\frac{-2x}{\epsilon}})
+    &=  e^{\frac{1}{2}}(e^{\frac{-x}{2}} - e^{\frac{-2x}{\epsilon}}),
 \end{align}
 
-Which is our uniform approximation for the whole solutions.
-
-We can compare this to the exact solution and see that it is indeed a good
+which is our uniform approximation for the whole solutions. We can
+compare this to the exact solution and see that it is indeed a good
 approximation.
 
 \subsection{Comparison with exact solution}
@@ -430,34 +437,34 @@ solution is. Our original equation (31) can however be solved exactly,
 so let's do that.
 
 The characteristic polynomial $\epsilon r^2 +2r + 1 = 0$ has the solutions
-$\frac{-1 \pm \sqrt{1-\epsilon}}{\epsilon}$. We have:
+$\frac{-1 \pm \sqrt{1-\epsilon}}{\epsilon}$. We have that
 \begin{equation}
 y_{\epsilon}(x)=c_1 e^{\frac{-1 + \sqrt{1-\epsilon}}{\epsilon} x} + c_2
-e^{\frac{-1 - \sqrt{1-\epsilon}}{\epsilon} x}
+e^{\frac{-1 - \sqrt{1-\epsilon}}{\epsilon} x}.
 \end{equation}
 
 With the help of the boundary conditions $y(0)=0, y(1)=1$ we see that
 \begin{equation}
   c2 = - c1 = - \frac{1}{e^{\frac{-1 + \sqrt{1-\epsilon}}{\epsilon}}
-    - e^{\frac{-1 - \sqrt{1-\epsilon}}{\epsilon}}}
+    - e^{\frac{-1 - \sqrt{1-\epsilon}}{\epsilon}}}.
 \end{equation}
 
-We use a Taylor expansion as before and define $\alpha_1$ and $\alpha_2$ as follows:
+We use a Taylor expansion as before and define
 \begin{align}
-  \alpha_1 &= \frac{1 - \sqrt{1-\epsilon}}{\epsilon} = \frac{1}{2} + O(\epsilon) \\
-  \alpha_2 &= 1+ \sqrt{1-\epsilon} = 2 + O(\epsilon)
+  \alpha_1 &= \frac{1 - \sqrt{1-\epsilon}}{\epsilon} = \frac{1}{2} + O(\epsilon), \\
+  \alpha_2 &= 1+ \sqrt{1-\epsilon} = 2 + O(\epsilon).
 \end{align}
 
-We can then express the solution as follows:
+We can then express the solution as
 \begin{equation}
-  y_{\epsilon}(x) = \frac{1}{e^{-\alpha_1(\epsilon)} - e^{\frac{-\alpha_2(\epsilon)}{\epsilon}}} \Big(e^{-\alpha_1(\epsilon)x} - e^{\frac{-\alpha_2(\epsilon)x}{\epsilon}}\Big)
+  y_{\epsilon}(x) = \frac{1}{e^{-\alpha_1(\epsilon)} - e^{\frac{-\alpha_2(\epsilon)}{\epsilon}}} \Big(e^{-\alpha_1(\epsilon)x} - e^{\frac{-\alpha_2(\epsilon)x}{\epsilon}}\Big).
 \end{equation}
 
 There are two terms in this solution. As $\epsilon \to 0+$, for fixed
 $x \in (0,1)$, all the expression involving a division with $\epsilon$
-disappears. The solution becomes:
+disappears. The solution becomes
 \begin{equation}
-  y_{\epsilon}(x) \to \frac{e^{\frac{-x}{2}}}{e^{\frac{-1}{2}}} = e^{\frac{1}{2}(1-x)}
+  y_{\epsilon}(x) \to \frac{e^{\frac{-x}{2}}}{e^{\frac{-1}{2}}} = e^{\frac{1}{2}(1-x)}.
 \end{equation}
 
 This is exactly the outer solution we got before, satisfying $y(1)=1$
@@ -469,45 +476,42 @@ exact solution is thus (we distinguish between an approximation of the
 exact solution, and the outer approximation):
 \begin{equation}
 y_{\epsilon}(x) \approx e^{\frac{1}{2}}(e^{-\frac{x}{2}} -
-  e^{-\frac{2x}{\epsilon}}), \quad 0 < \epsilon \ll 1
+  e^{-\frac{2x}{\epsilon}}), \quad 0 < \epsilon \ll 1.
 \end{equation}
 
-When we graph (50) and (51) for any given $\epsilon$ we see that,
-outside of a small region near 0, the outer approximation is indeed a
-good approximation.
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=120mm]
 {tmp_ode-outer.png}
-\caption{The full line is the outer approximation, $\epsilon=0.1$}
+\caption{The full line is the outer approximation, $\epsilon=0.1$.}
 \label{overflow}
 \end{figure}
+When we graph (50) and (51) for any given $\epsilon$ we see that,
+outside of a small region near 0, the outer approximation is indeed a
+good approximation. We get the second graph by doing the same thing for the inner solution.
 
-Note that the outer approximation starts at $y(0)=e^{\frac{1}{2}}$,
-and thus misses the contribution $\epsilon$ has on the solution for
-very small x values.
-
-If we were to do the same thing for the inner solution, we would get
-the following graph.
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=120mm]
 {tmp_ode-inner.png}
-\caption{The full line is the inner approximation, $\epsilon=0.1$}
+\caption{The full line is the inner approximation, $\epsilon=0.1$.}
 \label{overflow}
 \end{figure}
 
-Notice the agreement between the exact and inner approximation in a
-region close to $x=0$ (which we can move arbitrarily closer by using a
-smaller $\epsilon$).
+For the first graph, note that the outer approximation starts at
+$y(0)=e^{\frac{1}{2}}$, and thus misses the contribution $\epsilon$
+has on the solution for very small x values.
+
+For the second graph, notice the agreement between the exact and inner
+approximation in a region close to $x=0$ (which we can move
+arbitrarily closer by using a smaller $\epsilon$).
 
 \section{Total Quasi Steady State}
-
 \subsection{A biological problem}
 
 In enzyme kinetics we often come across chemical reactions like
 \begin{equation}
-E + S \leftarrow_{k_1} \rightarrow_{k_{-1}} C \rightarrow_{k_2} E + P
+E + S \leftarrow_{k_1} \rightarrow_{k_{-1}} C \rightarrow_{k_2} E + P.
 \end{equation}
 
 This is an enzyme E and substrate S that combine, reversibly, to form a complex
@@ -521,13 +525,13 @@ the more concentration of A or B we have, the faster they turn into complex C.
 This has been experimentally verified by Guldberg and Waage in 1867, and many
 times since.
 
-With this law, we can translate our chemical reaction a system of differential
-equations.
+With this law, we can translate our chemical reaction to a system of differential
+equations:
 \begin{align}
 \frac{dE}{dt} &= -k_1(E*S) + k_{-1}C + k_2C, \\
 \frac{dS}{dt} &= -k1(E*S) + k_{-1}C, \\
 \frac{dC}{dt} &= k_1(E*S) - k_{-1}C - k_2C, \\
-\frac{dP}{dt} &= k_2C
+\frac{dP}{dt} &= k_2C.
 \end{align}
 
 In the study of enzyme kinetics, we normally have some initial conditions to help
@@ -535,20 +539,19 @@ us out: $S(0) = S_0, E(0) = E_0, C(0)=0, P(0)=0$.
 
 We see immediately that
 \begin{equation}
-\frac{dE}{dt} + \frac{dC}{dt} = 0
+\frac{dE}{dt} + \frac{dC}{dt} = 0.
 \end{equation}
 
 Together with the initial conditions we get that
 \begin{equation}
-E + C = E_0
+E + C = E_0,
 \end{equation}
-
-Which we can use to eliminate E from the equation. This is called a conservation
+which we can use to eliminate E from the equation. This is called a conservation
 law.  We also don't care about P, as it doesn't feed back into the other
 equations. We are left with
 \begin{align}
 \frac{dS}{dt} &= -k_1(E_0 - C)S + k_{-1}C, \\
-\frac{dC}{dt} &= k_1(E_0 - C)S - k_{-1}C - k_2 C
+\frac{dC}{dt} &= k_1(E_0 - C)S - k_{-1}C - k_2 C.
 \end{align}
 
 This is a two-dimensional system, which is much easier to deal with. Can we do
@@ -559,19 +562,19 @@ means that C can be treated as constant after a short initial period. By
 exploiting this fact, we can reduce the system to one equation. This is called
 the \textit{Quasi-Steady State approximation}.
 
-Assume that C is constant $\iff \frac{dC}{dt} = 0$ after a short period of time,
-then we can could write, as $\frac{dC}{dt}$ can be treated as 0,
+Assume that C is constant $\iff \frac{dC}{dt} = 0$ after a short period of time.
+Then we can could write, as $\frac{dC}{dt}$ can be treated as 0,
 \begin{equation}
 \frac{dS}{dt} = -k2 C
 \end{equation}
 
 with
 \begin{equation}
-C = \frac{E_0 S}{K_m +S}
+C = \frac{E_0 S}{K_m +S},
 \end{equation}
 
 where $K_m = \frac{k_{-1} + k_2}{k_1}$ is the so called {Michaelis-Menten
-constant}.
+constant}. We have
 \begin{equation}
 \frac{dS}{dt} = \frac{-k_2 E_0 S}{K_m + S}
 \end{equation}
@@ -592,7 +595,7 @@ and Segel 1996 \cite{borghans1996extending}.
 
 The basic idea behind TQSSA is to perform a change of variable
 \begin{equation}
-\overline{S} = S + C
+\overline{S} = S + C.
 \end{equation}
 
 This change of variable makes the approximation valid for a wider
@@ -600,7 +603,7 @@ range of parameters. We get the following system of equations from
 (59), (60) and (64)
 \begin{align}
 \frac{d\overline{S}}{dt} &= - k_2 C, \\
-\frac{dC}{dt} &= k_1(E_0-C)(\overline{S}-C)-(k_{-1}+ k_2) C
+\frac{dC}{dt} &= k_1(E_0-C)(\overline{S}-C)-(k_{-1}+ k_2) C.
 \end{align}
 
 Together with initial conditions $\overline{S}(0)=S_0, C(0)=0$, these
@@ -622,7 +625,7 @@ shown in graph due to numerical rounding error) and (2) from the initial
 condition there's a rapid increase of concentration in complexity C,
 after which it slowly decrease (quasi-steady state) until it reached
 steady state.
-x
+
 \subsection{Timescales}
 
 To analyze the problem rigorously using perturbation theory, we need
@@ -645,64 +648,57 @@ TQSSA.
 To get the fast time scale, we can estimate S as $S_0$ since in that
 time period the substrate concentration won't change much. We just
 care about rough orders of magnitudes for the timescales. From (60) we
-get:
+get
 \begin{equation}
-  \frac{dC}{dt} = k_1E_0 S_0 - (k_1 S_0 + k_{-1} + k_2)C
+  \frac{dC}{dt} = k_1E_0 S_0 - (k_1 S_0 + k_{-1} + k_2)C.
 \end{equation}
 
-With the help of the initial condition $C(0)=0$, we get the solution:
-$C(0)=0$):
+With the help of the initial condition $C(0)=0$, we get the solution
 \begin{equation}
   C(t) = A(1 -  e^{\lambda x}), \quad
   \lambda = (-S_0 k_1 + k_{-1} + k_2), \quad
-  A =\frac{k1 E_0 S_0}{S_0 k1 + k_{-1} + k_2}
+  A =\frac{k1 E_0 S_0}{S_0 k1 + k_{-1} + k_2}.
 \end{equation}
 
-The timescale here is $t_C = \lambda^{-1}$, which we can rewrite as:
+The timescale here is $t_C = \lambda^{-1}$, which we can rewrite as
 \begin{equation}
-  t_C = \frac{1}{k_1(S_0+K_m)}
+  t_C = \frac{1}{k_1(S_0+K_m)}.
 \end{equation}
 
 To get the other time scale we first use that $dC/dt = 0$ after some
 period of time, which is the time scale we care about. We then use
 (61) and (62) as before to get (63):
 \begin{equation}
-  \frac{dS}{dt} = -\frac{k_2 E_0 S}{K_m + S}
+  \frac{dS}{dt} = -\frac{k_2 E_0 S}{K_m + S}.
 \end{equation}
 
 We now get $t_s$ with the help of an estimation technique by Segel
 \cite{segel1984modeling} that tells us to take
 $S_{max} - S_{min} = S_0$ divided by the maximum of
-$|dS/dt|$ using $S=S_0$ in the previous equation. This gives us:
+$|dS/dt|$ using $S=S_0$ in the previous equation. This gives us
 \begin{align}
-  t_s &= \frac{S_0}{|dS/dt|_{max}}, \\
-      &= \frac{K_m + S_0}{k_2 E_0}
+  t_s &= \frac{S_0}{|dS/dt|_{max}} \\
+      &= \frac{K_m + S_0}{k_2 E_0}.
 \end{align}
 
 So far we have only derived timescales for the normal QSSA. To get the
 timescales for TQSSA, Borghans et al. use the rewrite
 $\overline{S} = S + C$. By doing so, and assuming $\frac{dC}{dt}=0$ as
-before, the $\frac{dC}{dt}$ equation gets a quadratic term, $C^2$:
+before, the $\frac{dC}{dt}$ equation gets a quadratic term
 \begin{equation}
-  C^2 - (E_0 + K_m + \overline{S})C + E_0 \overline{S} = 0
+  C^2 - (E_0 + K_m + \overline{S})C + E_0 \overline{S} = 0.
 \end{equation}
 
-We define a function f with the goal of solving for C:
+We define a function f with the goal of solving for C as
 \begin{align}
-  f(c) &= C^2 - (E_0 + K_m + \overline{S})C + E_0 \overline{S}
+  f(c) &= C^2 - (E_0 + K_m + \overline{S})C + E_0 \overline{S}.
 \end{align}
-
-\iffalse
-TODO: remove this?
-&= \Big(C - \frac{(E_0 + K_m + \overline{S})}{2}\Big)^2 + E_0 \overline{S} -
-\frac{(E_0 + K_m + \overline{S})^2}{4}
-\fi
 
 If we have a quadratic equation $x^2+bx+c$, assuming there are two
 roots $x_1$ and $x_2$, then the quadratic equation can be factored
-into $(x - x_1)(x - x_2)$, where:
+into $(x - x_1)(x - x_2)$, where
 \begin{equation}
-  x_1 x_2 = c
+  x_1 x_2 = c.
 \end{equation}
 
 Is there a unique positive solution to (74)? No. We know $f(0) = E_0
@@ -714,9 +710,9 @@ are both negative.
 
 Are there positive solutions? Yes. We have:
 \begin{align}
-  f(0) &= E_0 \overline{S} > 0 \\
+  f(0) &= E_0 \overline{S} > 0, \\
   f(E_0) &= E_0^2 - (E_0 + K_m + \overline{S})E_0 + E_0 \overline{S} \\
-         &= - K_m E_0 < 0
+         &= - K_m E_0 < 0.
 \end{align}
 
 Using the Intermediate Value Theorem for continuous functions, there
@@ -729,30 +725,30 @@ and $c_2$ are positive.
 With this we get the following inequalities. First, the discriminant
 of f(c) is positive:
 \begin{equation}
-  (E_0 + K_m + \overline{S})^2 - 4 E_0 \overline{S} > 0
+  (E_0 + K_m + \overline{S})^2 - 4 E_0 \overline{S} > 0.
 \end{equation}
 
 For a quadratic equation $x^2 + bx + c$, we have another identity for
 its roots:
 \begin{align}
-  x_1 + x_2 &= \frac{-b + \sqrt{\Delta}}{2} + \frac{-b - \sqrt{\Delta}}{2} = -b
+  x_1 + x_2 &= \frac{-b + \sqrt{\Delta}}{2} + \frac{-b - \sqrt{\Delta}}{2} = -b.
 \end{align}
 
-Hence:
+Hence
 \begin{align}
-  c_1 + c_2 = E_0 + K_m + \overline{S} \iff c_2 = E_0 + K_m + \overline{S} - c_1
+  c_1 + c_2 = E_0 + K_m + \overline{S} \iff c_2 = E_0 + K_m + \overline{S} - c_1.
 \end{align}
 
 And we have our second set of inequalities:
 \begin{align}
   c_1 &< E_0 &\implies c_2 &> K_m + \overline{S}, \\
-  c_1 &> 0 &\implies c_2 &< E_0 K_m + \overline{S}
+  c_1 &> 0 &\implies c_2 &< E_0 K_m + \overline{S}.
 \end{align}
 
 With these inequalities, we can position the roots as follows:
 \begin{align}
-  0 &< c_1 < E_0 \\
-  0 < K_m + \overline{S} &< c_2 < E_0 + K_m + \overline{S}
+  0 &< c_1 < E_0, \\
+  0 < K_m + \overline{S} &< c_2 < E_0 + K_m + \overline{S}.
 \end{align}
 
 %In order for us to do the approximation $dC/dt = 0$, i.e. in order for
@@ -768,23 +764,23 @@ satisfies the conservation law (58), since for $c_2$ we would have a
 contradiction:
 \begin{align}
   0 < E_0 &= E + c_2, \\
-  E_0 < K_m + \overline{S} &< c_2 \implies E_0 < 0
+  E_0 < K_m + \overline{S} &< c_2 \implies E_0 < 0.
 \end{align}
 
-Thus our only solution, as a function of $\overline{S}$, is:
+Thus our only solution, as a function of $\overline{S}$, is
 \begin{equation}
   c_1(\overline{S}) = \frac{E_0 + K_m + \overline{S} - \sqrt{(E_0 +
-      K_m + \overline{S})^2 - 4 E_0 \overline{S}}}{2}
+      K_m + \overline{S})^2 - 4 E_0 \overline{S}}}{2}.
 \end{equation}
 
 We want to investigate what happens when $\overline{S}$ is very
-large. Multiplying with the conjugate we get:
+large. Multiplying with the conjugate we get
 \begin{align}
   c_1(\overline{S}) &= \frac{E_0 \overline{S}}{E_0 + K_m + \overline{S} +
     \sqrt{(E_0 +K_m + \overline{S})^2 - 4 E_0 \overline{S}}}, \\
                     &= \frac{2 E_0}{\frac{E_0 + K_m}{\overline{S}} + 1 +
     \sqrt{(\frac{E_0 + K_m}{\overline{S}} + 1)^2 - \frac{4 E_0}{\overline{S}}}}
-  \to  E_0 \enskip \text{as} \enskip \overline{S} \to \infty
+  \to  E_0 \enskip \text{as} \enskip \overline{S} \to \infty.
 \end{align}
 
 TODO: Ask Y 1 - Why do we do this above check? What does it mean?
@@ -805,12 +801,12 @@ we can rewrite (89) as follows:
       &= \frac{2 E_0 \overline{S}}
               {\Big(E_0 + K_m + \overline{S}\Big)
               \Big(1 + \sqrt{1- \frac{4 E_0 \overline{S}}
-                  {(E_0 + K_m + \overline{S})^2}}\Big)}
+                  {(E_0 + K_m + \overline{S})^2}}\Big)}.
 \end{align}
 
 Recall that for an expression like $\sqrt{1-x}$ the Taylor expansion
 around $x=0$ is $1 - O(x)$. This converges for $|x| < 1$. In our case
-that means we can simplify the above as:
+that means we can simplify the above as
 \begin{align}
    c_1 &= \frac{2 E_0 \overline{S}}
               {\Big(E_0 + K_m + \overline{S}\Big)
@@ -818,31 +814,30 @@ that means we can simplify the above as:
                 O\Big(\frac{4 E_0 \overline{S}}
                            {(E_0 + K_m + \overline{S})^2}\Big)\Big)\Big)} \\
       &\approx \frac{E_0 \overline{S}}
-                    {E_0 + K_m + \overline{S}}
+                    {E_0 + K_m + \overline{S}}.
 \end{align}
 
-Let's now look at when the following inequality holds:
+Let's now look at when the following inequality holds
 \begin{equation}
-(E_0 + K_m + \overline{S})^2 \gg E_0 \overline{S}
+(E_0 + K_m + \overline{S})^2 \gg E_0 \overline{S}.
 \end{equation}
-
-This is equivalent to:
+This is equivalent to
 \begin{align}
 1 \ll
   \frac{(E_0 + K_m + \overline{S})^2}
            {E_0 \overline{S}} &= 
 \frac{(E_0 + K_m + \overline{S})}
-      {E_0} \frac{(E_0 + K_m + \overline{S})}{\overline{S}}, \\
+      {E_0} \frac{(E_0 + K_m + \overline{S})}{\overline{S}} \\
 &= \Big(1 + \frac{K_m}{E_0} + \frac{\overline{S}}{E_0}\Big)
-   \Big(1 + \frac{E_0}{\overline{S}} + \frac{K_m}{\overline{S}}\Big)
+   \Big(1 + \frac{E_0}{\overline{S}} + \frac{K_m}{\overline{S}}\Big).
 \end{align}
 
 This is true for $\overline{S}$ sufficiently large or small compared
 to $E_0$.
 
-If $\overline{S} = E_0$ then:
+If $\overline{S} = E_0$ then
 \begin{equation}
-\Big(1 + \frac{K_m}{E_0} + \frac{\overline{E}}{S_0}\Big)\Big(1 + \frac{E_0}{\overline{S}} + \frac{K_m}{\overline{S}}\Big) = \Big(2 + \frac{K_m}{E_0}\Big) \Big(2 + \frac{K_m}{E_0}\Big) \gg 1
+\Big(1 + \frac{K_m}{E_0} + \frac{\overline{E}}{S_0}\Big)\Big(1 + \frac{E_0}{\overline{S}} + \frac{K_m}{\overline{S}}\Big) = \Big(2 + \frac{K_m}{E_0}\Big) \Big(2 + \frac{K_m}{E_0}\Big) \gg 1.
 \end{equation}
 
 So if $E_0 < K_m + \overline{S}$ our approximation (94) is possible.
@@ -854,10 +849,10 @@ using equation (94), we eventually end up with these two slightly
 modified time-scales:
 \begin{align}
 t_C &= \frac{1}{k_1(E_0+S_0+K_m)}, \\
-t_{\overline{S}} &= \frac{E_0+S_0+K_m}{k_2+E_0}
+t_{\overline{S}} &= \frac{E_0+S_0+K_m}{k_2+E_0},
 \end{align}
 
-$K_m = \frac{k_{-1}+k_2}{k_1}$ as before. We will now analyze this
+with $K_m = \frac{k_{-1}+k_2}{k_1}$ as before. We will now analyze this
 like we did in the last section. But first, we have to scale the
 system using our newly discovered timescales.
 
@@ -870,33 +865,33 @@ each term is indicated by a dimensionless factor preceding that term}
 \cite{lin1974mathematics}.
 
 We will now introduce scaled, dimensionless variables. We get these variables by
-dividing with their respective scales. We have the two time variables:
+dividing with their respective scales. We have the two time variables
 \begin{align}
 \tau &= \frac{t}{t_C}, \\
-T &= \frac{t}{t_{\overline{S}}}
+T &= \frac{t}{t_{\overline{S}}},
 \end{align}
 
-$\tau$ is the fast time scale, and $T$ the slow one. We also scale C and
-$\overline{S}$ by their maximum:
+where $\tau$ is the fast time scale, and $T$ the slow one. We also
+scale C and $\overline{S}$ by their maximum:
 \begin{align}
 c &= \frac{C}{C_0}, \\
-s &= \frac{\overline{S}}{S_0}
+s &= \frac{\overline{S}}{S_0}.
 \end{align}
 
 $S_0$ is max since it starts from some constant and then turns into
 complex, as we saw before. We derive C's max $C_0$ by using the
 approximation we got for C in (94) and $S=S_0$:
 \begin{equation}
-C_0 = \frac{E_0 S_0}{E_0 + S_0 + K_m}
+C_0 = \frac{E_0 S_0}{E_0 + S_0 + K_m}.
 \end{equation}
 
 \subsection{Outer solution}
 
 Now we need a small parameter $\epsilon$ to begin looking for the
 outer solution, where the complex changes slowly. A necessary
-condition for the TQSSA to hold is $0 < \epsilon \ll 1$:
+condition for the TQSSA to hold is $0 < \epsilon \ll 1$ where
 \begin{equation}
-\epsilon = \frac{t_C}{t_{\overline{S}}} = \frac{k_2 E_0}{k_1(E_0+S_0+K_m)^2}
+\epsilon = \frac{t_C}{t_{\overline{S}}} = \frac{k_2 E_0}{k_1(E_0+S_0+K_m)^2}.
 \end{equation}
 
 This comes from Borghans, and it makes sense given what we have
@@ -905,37 +900,37 @@ static if you are looking at it on a short
 timescale. \textit{Assuming} $\tau \ll T$ we will calculate for the
 outer region, using the procedure by Khoo and Heglund
 \cite{khoo2008total}. Translating equation (65) and (66) with the help
-of the above equations and the chain rule:
+of the above equations and the chain rule,
 \begin{equation}
 \frac{dc}{dT} = \frac{dC}{dt} \enskip \frac{dt}{dT} \enskip \frac{dc}{dC},
 \end{equation}
 
-We get:
+we get
 \begin{align}
 \frac{dc}{dT} &= \frac{t_{\overline{S}}}{C_0}
        \Big[k_1 \Big(E_0 S_0 s - (E_0 + S_0 s + K_m) C_0 c + (C_0 c)^2
-                   \Big)\Big], \\
+                   \Big)\Big] \\
               &= \frac{(E_0+S_0+K_m)^2 k_1}{(k_2 + E_0)}
                  \Big(s - \frac{E_0+S_0 s+K_m}{E_0 + S_0 + K_m} c
-                        + \frac{(C_0)^2}{E_0 S_0} c^2 \Big), \\
+                        + \frac{(C_0)^2}{E_0 S_0} c^2 \Big) \\
               &= \frac{1}{\epsilon}
                  \Big(s - \frac{E_0+S_0 s+K_m}{E_0 + S_0 + K_m} c
                         +  \gamma c^2 \Big)
 \end{align}
 
-With:
+with
 \begin{equation}
-\gamma = \frac{(C_0)^2}{E_0 S_0} = \frac{E_0 S_0}{(E_0 + S_0 + K_m)^2}
+\gamma = \frac{(C_0)^2}{E_0 S_0} = \frac{E_0 S_0}{(E_0 + S_0 + K_m)^2}.
 \end{equation}
 
-We now have an equation of the form:
+We now have an equation of the form
 \begin{equation}
-  \epsilon \frac{dc}{dT} = \gamma c^2 - \frac{E_0+S_0 s+K_m}{E_0 + S_0 + K_m} c + s
+  \epsilon \frac{dc}{dT} = \gamma c^2 - \frac{E_0+S_0 s+K_m}{E_0 + S_0 + K_m} c+ s.
 \end{equation}
 
-Similarly to what we saw in section 3, as $\epsilon \to 0$, we have:
+Similarly to what we saw in section 3, as $\epsilon \to 0$, we have that
 \begin{equation}
-   \gamma c^2  - \frac{E_0+S_0 s+K_m}{E_0 + S_0 + K_m} c + s = 0
+   \gamma c^2  - \frac{E_0+S_0 s+K_m}{E_0 + S_0 + K_m} c + s = 0.
 \end{equation}
 
 As justified in (95) to (98), $\gamma \ll 1$ when $\overline{S}$ is
@@ -944,52 +939,52 @@ in section 3. We have established that, under certain conditions, the
 quadratic equation has only one solution. Our above quadratic is thus,
 to a first approximation:
 \begin{equation}
-  s - \frac{E_0+S_0 s+K_m}{E_0 + S_0 + K_m} c = 0
+  s - \frac{E_0+S_0 s+K_m}{E_0 + S_0 + K_m} c = 0.
 \end{equation}
 
 Thus we obtain our outer solution (note the subscript 'O' as in the
 author's first name):
 \begin{equation}
-  c_O = \frac{E_0 + S_0 + K_m}{E_0+S_0 s+K_m} s
+  c_O = \frac{E_0 + S_0 + K_m}{E_0+S_0 s+K_m} s.
 \end{equation}
 
 If we substitute this in (65), after scaling for the slow timescale,
 we get an expression for the outer solution of s:
 \begin{equation}
-\frac{ds}{dT} = - \frac{E_0 + S_0 + K_m}{E_0 + S_0s + K_m}s, \enskip s(0) = 1
+\frac{ds}{dT} = - \frac{E_0 + S_0 + K_m}{E_0 + S_0s + K_m}s, \enskip s(0) = 1.
 \end{equation}
 
 We can solve this by separation of variables:
 \begin{equation}
-\int \frac{E_0 + S_0 s + K_m}{(E_0 + S_0 + K_m) s} ds = \int - dT
+\int \frac{E_0 + S_0 s + K_m}{(E_0 + S_0 + K_m) s} ds = \int - dT.
 \end{equation}
 
 The left hand side is an equation of the form:
 \begin{align}
 &\int \frac{a + b x + c}{(a + b + c) x} dx
-        \quad \text{[u = a + bx + c],} \\
-&\iff \frac{1}{a+b+c} \int \frac{u}{u - a -c} du, \\
+        \quad \text{[u = a + bx + c]} \\
+&\iff \frac{1}{a+b+c} \int \frac{u}{u - a -c} du \\
 &\iff \frac{1}{a+b+c} \int \Big(\frac{a+c}{u - a -c} + 1\Big)
-                          du, \\
+                          du \\
 &\iff \frac{a+c}{a+b+c} \int \frac{1}{u - a - c} du
-                    + \frac{1}{a+b+c} \int 1 du, \\
-&\iff \frac{(a+c) \ln{x}}{a+b+c} + \frac{bx}{a+b+c} + \text{constant}
+                    + \frac{1}{a+b+c} \int 1 du \\
+&\iff \frac{(a+c) \ln{x}}{a+b+c} + \frac{bx}{a+b+c} + \text{constant}.
 \end{align}
 
-This makes the solution to (117):
+This makes the solution to (117)
 \begin{equation}
-\frac{E_0+K_m}{E_0 + S_0 + K_m} \ln{s} + \frac{S_0}{E_0 + S_0 + K_m} s = - T + \text{constant}
+\frac{E_0+K_m}{E_0 + S_0 + K_m} \ln{s} + \frac{S_0}{E_0 + S_0 + K_m} s = - T + \text{constant}.
 \end{equation}
 
 Using the initial condition $s(0)=1$, and the fact that $t=0$, we get
-the constant:
+the constant
 \begin{equation}
-  \frac{S_0}{E_0 + S_0 + K_m}
+  \frac{S_0}{E_0 + S_0 + K_m}.
 \end{equation}
 
 This gives us the outer solution for s, $s_O$:
 \begin{equation}
-  (E_0+K_m) \ln{s_O(T)} + S_0 (s_O(T) - 1) + (E_0 + S_0 + K_m) T = 0
+  (E_0+K_m) \ln{s_O(T)} + S_0 (s_O(T) - 1) + (E_0 + S_0 + K_m) T = 0.
 \end{equation}
 
 \subsection{Inner solution}
@@ -998,44 +993,43 @@ The outer solution can't satisfy the initial conditions, which is why
 we have an inner solution where the complex changes
 quickly. Proceeding as with the outer solution, we scale (65):
 \begin{align}
-\frac{ds}{d\tau} &= \frac{t_C}{S_0} \Big( - k_2 C_0 c \Big), \\
-                 &= \frac{-k_2 E_0}{k_1(E_0 + S_0 + K_m)^2} c, \\
-                 &= \epsilon c
+\frac{ds}{d\tau} &= \frac{t_C}{S_0} \Big( - k_2 C_0 c \Big) \\
+                 &= \frac{-k_2 E_0}{k_1(E_0 + S_0 + K_m)^2} c \\
+                 &= \epsilon c.
 \end{align}
 
 As $\epsilon \to 0$, the above becomes $\frac{ds}{d\tau} = 0$. That
 is, s is approximately constant at this fast time scale. Together with
-the initial condition $s(0)=1$, we have the inner solution for s:
+the initial condition $s(0)=1$, we have the inner solution for s
 \begin{equation}
-s_I(\tau) = s(0) = 1
+s_I(\tau) = s(0) = 1.
 \end{equation}
 
-For c we get, using $s= s_I = 1$:
+For c we get, using $s= s_I = 1$,
 \begin{align}
 \frac{dc}{d\tau} &= \frac{t_C}{C_0} \Big(
                      k_1 E_0 S_0 s - k_1 C_0 (E_0 + S_0 s + K_m) c + k_1 C_0^2 c^2
-                     \Big), \\
-                 & = - \gamma c^2 - c + 1
+                     \Big) \\
+                 & = - \gamma c^2 - c + 1.
 \end{align}
-
 We solve this by separation of variables, like before:
 \begin{equation}
-\frac{dc}{- \gamma c^2 - c + 1} = d\tau
+\frac{dc}{- \gamma c^2 - c + 1} = d\tau.
 \end{equation}
 
 By B\'{e}zout's identity for polynomials, there exists polynomials $C$
-and $D$ such that:
+and $D$ such that
 \begin{equation}
 \frac{1}{P(x) Q(x)} = \frac{C}{Q(x)} + \frac{D}{P(x)},
 \end{equation}
 
-Where $CP+DQ = 1$. We will use this in partial fraction step below.
+where $CP+DQ = 1$. We will use this in partial fraction step below.
 
 Let $\Delta=1 + 4\gamma$. We investigate the denominator in (132):
 \begin{align}
 &-\gamma c^2 - c + 1 = - \gamma
                         \Big(c - \frac{-1 + \sqrt{\Delta}}{2 \gamma}\Big)
-                        \Big(c + \frac{ 1 + \sqrt{\Delta}}{2 \gamma}\Big), \\
+                        \Big(c + \frac{ 1 + \sqrt{\Delta}}{2 \gamma}\Big) \\
 &\implies \frac{1}{- \gamma c^2 - c + 1} = \frac{1}
                         {- \gamma
                         \Big(c - \frac{-1 + \sqrt{\Delta}}{2 \gamma}\Big)
@@ -1043,42 +1037,40 @@ Let $\Delta=1 + 4\gamma$. We investigate the denominator in (132):
 &= - \frac{1}{\sqrt{\Delta}}
    \Bigg(\frac{1}{c - \frac{-1 + \sqrt{\Delta}}{2 \gamma}} -
         \frac{1}{c + \frac{1 + \sqrt{\Delta}}{2 \gamma}} \Bigg)
-   \quad \text{(see above identity)}
+   \quad \text{(see above identity)}.
 \end{align}
 
-Integrating (132) we get:
+Integrating (132) we get
 \begin{align}
 &\frac{-1}{\sqrt{\Delta}}
 \Big( \int \frac{dc}{c - \frac{\sqrt{\Delta} - 1}{2 \gamma}} -
       \int \frac{dc}{c + \frac{\sqrt{\Delta} + 1}{2 \gamma}}
-\Big) = \tau + \text{constant}, \\
+\Big) = \tau + \text{constant} \\
 &\iff \frac{-1}{\sqrt{\Delta}}
       \ln \bigg|\frac{c - \frac{\sqrt{\Delta}-1}{2\gamma}}
                      {c + \frac{\sqrt{\Delta}+1}{2\gamma}} \bigg|
- = \tau + \text{constant}, \\
+ = \tau + \text{constant} \\
 &\iff \frac{1}{\sqrt{\Delta}}
       \ln \bigg|\frac{c + \frac{\sqrt{\Delta}+1}{2\gamma}}
                      {c - \frac{\sqrt{\Delta}-1}{2\gamma}} \bigg|
- = \tau + \text{constant}, \\
+ = \tau + \text{constant} \\
 &\iff  \ln \bigg|\frac{2\gamma c + \sqrt{\Delta}+1}
                       {2\gamma c - \sqrt{\Delta}+1} \bigg|
  = (\tau + \text{constant}) \sqrt{\Delta}.
 \end{align}
 
-Note that $|-\sqrt{\Delta}+1| = \sqrt{\Delta} - 1$. $c(0)=0$ gives the constant:
+Note that $|-\sqrt{\Delta}+1| = \sqrt{\Delta} - 1$. $c(0)=0$ makes the constant
 \begin{equation}
-\text{constant} =
-\frac{1}{\sqrt{\Delta}} \ln \frac{\sqrt{\Delta}+1}{{\sqrt{\Delta}-1}}
+\frac{1}{\sqrt{\Delta}} \ln \frac{\sqrt{\Delta}+1}{{\sqrt{\Delta}-1}},
 \end{equation}
-
-Which gives us:
+which gives us
 \begin{align}
 &\ln \bigg|\frac{2\gamma c + \sqrt{\Delta}+1}
                 {2\gamma c - \sqrt{\Delta}+1} \bigg|
- = \tau \sqrt{\Delta} + \ln \frac{\sqrt{\Delta}+1}{{\sqrt{\Delta}-1}},\\
+ = \tau \sqrt{\Delta} + \ln \frac{\sqrt{\Delta}+1}{{\sqrt{\Delta}-1}}\\
 &\implies \bigg|\frac{2\gamma c + \sqrt{\Delta}+1}
                      {2\gamma c - \sqrt{\Delta}+1} \bigg|
- = \frac{\sqrt{\Delta}+1}{{\sqrt{\Delta}-1}} \mathrm{e}^{\sqrt{\Delta} \tau}
+ = \frac{\sqrt{\Delta}+1}{{\sqrt{\Delta}-1}} \mathrm{e}^{\sqrt{\Delta} \tau}.
 \end{align}
 
 Note that $2 \gamma c + \sqrt{\Delta} + 1 > 1 > 0$ and
@@ -1100,10 +1092,10 @@ We then have:
        {  (\sqrt{\Delta} + 1) e^{\sqrt{\Delta} \tau} + (\sqrt{\Delta} - 1)} \\
 &\iff c_I(\tau) =
   \frac{2(e^{\sqrt{1+4\gamma} \tau} - 1)}
-       {(\sqrt{1+4\gamma} + 1) e^{\sqrt{1+4\gamma} \tau} + \sqrt{1+4\gamma} - 1}
+       {(\sqrt{1+4\gamma} + 1) e^{\sqrt{1+4\gamma} \tau} + \sqrt{1+4\gamma} - 1},
 \end{align}
 
-Which is our inner solution for c. Note that this is a different
+which is our inner solution for c. Note that this is a different
 result from what Khoo and Heglund got. At present time it's unclear
 why there is a discrepancy.
 
@@ -1111,33 +1103,33 @@ why there is a discrepancy.
 
 As before in section 4.3, we are looking for a common limit, and our
 matching condition as
-$\epsilon \to 0 \text{, } \tau \to \infty \text{, and } T \to 0$ is:
+$\epsilon \to 0 \text{, } \tau \to \infty \text{, and } T \to 0$ is
 \begin{equation}
 \lim_{\epsilon \to 0} [y_O(T) |_{T=0}] =
-\lim_{\epsilon \to 0} [y_I(\tau) |_{\tau=\infty}]
+\lim_{\epsilon \to 0} [y_I(\tau) |_{\tau=\infty}].
 \end{equation}
 
-For the substrate s this is:
+For the substrate s this is
 \begin{align}
 &\lim_{\epsilon \to 0} [s_O(T) |_{T=0}] =
   \lim_{\epsilon \to 0} [s_I(\tau) |_{\tau=\infty}] \\
 &\iff \lim_{\epsilon \to 0} [s_O(T) |_{T=0}] =
-  \lim_{\epsilon \to 0} 1
+  \lim_{\epsilon \to 0} 1.
 \end{align}
 
 We don't have an explicit expression for $s_O$, but the right hand
 side above is obviously 1, and evaluating the implicit expression for
 $s_O(0)$ from (125) we see that $s_O(0)=1$ is indeed a solution:
 \begin{equation}
-(E_0+K_m) \ln{s_O(0)} + S_0 (s_O(0) - 1) = 0
+(E_0+K_m) \ln{s_O(0)} + S_0 (s_O(0) - 1) = 0.
 \end{equation}
 
 The matching condition in (149) is thus simply equal to 1.
 
-For the complex c we have:
+For the complex c we have
 \begin{equation}
 \lim_{\epsilon \to 0} [c_O(T) |_{T=0}] =
-  \lim_{\epsilon \to 0} [c_I(\tau) |_{\tau=\infty}]
+  \lim_{\epsilon \to 0} [c_I(\tau) |_{\tau=\infty}].
 \end{equation}
 
 %Recall that:
@@ -1146,11 +1138,11 @@ For the complex c we have:
 %\implies \text{???}
 %\end{equation}
 
-For $c_O(T)$ at $T=0$ we have:
+For $c_O(T)$ at $T=0$ we have
 \begin{align}
 c_O(0) &= \frac{E_0 + S_0 + K_m}{E_0+S_0 s(0) +K_m} s(0) \\
        &= \frac{E_0 + S_0 + K_m}{E_0+S_0  +K_m} \\
-       &= 1 \text { as } \epsilon \to 0
+       &= 1 \text { as } \epsilon \to 0.
 \end{align}
 
 As we established earlier, $\gamma \ll 1$.We use this to proceed
@@ -1169,23 +1161,23 @@ c_I(\tau) &=
         {2 + O(1+4\gamma)} \\
 &= \frac{2(1 - \frac{1}{e^{\tau}})}
         {1 + \sqrt{1+4\gamma}}
-   \to \frac{2} {1 + \sqrt{1+4\gamma}} \quad \text{as } \tau \to \infty
+   \to \frac{2} {1 + \sqrt{1+4\gamma}} \quad \text{as } \tau \to \infty.
 \end{align}
 
 Even though the expressions for $c_O$ and $c_I$ look different, they
 are both equal to 1 in the limiting as (161) $\to 1$ as $\tau \to 0$
 and $\gamma \to 0$. This corresponds to how well the TQSSA
-approximation works. Equation (153) is thus:
+approximation works. Equation (153) is thus
 
 \begin{equation}
-\approx \frac{2} {1 + \sqrt{1+4\gamma}}
+\approx \frac{2} {1 + \sqrt{1+4\gamma}}.
 \end{equation}
 
 TODO: Ask Y 5 - Is the above reasoning correct?
 
 We note that Khoo finds the following for equation (153):
 \begin{equation}
-\approx \frac{2}{1+\sqrt{1-4\gamma}}
+\approx \frac{2}{1+\sqrt{1-4\gamma}}.
 \end{equation}
 
 \subsection{Uniform approximation}
@@ -1194,7 +1186,7 @@ We proceed as we did before in section 4.4, taking the common part and
 subtracting the difference:
 \begin{align}
 s_u &= s_O + s_I - 1 = s_O, \\
-c_u &= c_O + c_I - 2(1 + \sqrt{1+4\gamma})^{-1}
+c_u &= c_O + c_I - 2(1 + \sqrt{1+4\gamma})^{-1}.
 \end{align}
 
 This is our uniform solution to the problem posed in the beginning of

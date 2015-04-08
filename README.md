@@ -5,6 +5,8 @@
 - check where we are talking about initial cond c(0)=0
 - check e, define for mathrm{e} \e?
 
+write complete sentences. dont' use so many :, and use comma and period appropriately in equations.
+
 ## Misc
 
 To generate references, do a multi-pass.
