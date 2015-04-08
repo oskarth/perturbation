@@ -18,7 +18,7 @@
 
 \title{Perturbation theory and TQSSA}
 \author{Oskar Thor\'{e}n}
-\date{2015-04-05}
+\date{2015-04-08}
 
 \begin{document}
 
@@ -28,10 +28,10 @@
 \begin{abstract}
   Perturbation theory has a long history, and recent decades has seen
   applications in enzyme kinetics. We start with some basic polynomial
-  examples of perturbation theory, and then progress to a
-  boundary-value problem in a differential equation, before we tackle
-  a real application in the form of Total Quasi Steady State from
-  enzyme kinetics.
+  examples of perturbation theory, progress to a boundary-value
+  problem in a differential equation, and then tackle a real
+  application in the form of Total Quasi Steady State from enzyme
+  kinetics.
 \end{abstract}
 
 \clearpage
@@ -43,13 +43,13 @@
 Perturbation theory has its roots in celestial mechanics and
 aerodynamics. There are two particularly interesting victories that
 perturbation theory has enabled. The first was the discovery of
-Neptune, and the second is the theoretical foundation for
+Neptune, and the second was the theoretical foundation for
 aerodynamics.
 
 The promise of perturbation theory is that it allows us to solve a
-larger class of problems, for example, in differential equation, than
+larger class of problems, for example, in differential equations, than
 we could otherwise with analytical methods. It does this by giving us
-approximate, but rigorous, solutions. In this article we will guide
+approximate but rigorous solutions. In this article we will guide
 the reader from a very simple and familiar example, a quadratic
 equation, all the way to a useful research example in system biology:
 the total quasi steady state in enzyme kinetics.
@@ -57,16 +57,16 @@ the total quasi steady state in enzyme kinetics.
 The article has been written with the goal that any student with a
 basic understanding of calculus, differential equations and linear
 algebra will be able to follow along. All the relevant biology and
-perturbation theory will be explained as we go along.
+perturbation theory will be explained as it becomes necessary.
 
+\newpage
 \section{A regular perturbation}
 
-We are going to start with one of the simplest non-trivial example
+We are going to start with one of the simplest non-trivial examples
 imaginable, a quadratic equation:
 \begin{equation}
 x^2 - 2x + \epsilon = 0.
 \end{equation}
-
 We know how to solve this analytically. The roots of the equation are
 $x_1 = 1 + \sqrt{1 - \epsilon}$ and $x_2 = 1 - \sqrt{1 - \epsilon}$.
 
@@ -78,9 +78,9 @@ it's a very "boring" and predictable problem.
 
 Can we make this observation, that a small change in $\epsilon$ only
 brings about a small change in the solution, more rigorous? One way is
-to rewrite the part of the solution containing $\epsilon$ as a Taylor
-series. Recall the definition of a Taylor series for a function $f(x)$
-around a point a is
+to rewrite the part of the solution containing $\epsilon$ as a
+\textit{Taylor series}. Recall the definition of a Taylor series for a
+function $f(x)$ around a point a is
 \begin{equation}
 f(x) = \sum_{n=0}^{\infty} \frac{f^{n}(a)}{n!} (x-a)^n.
 \end{equation}
@@ -95,8 +95,8 @@ it. If we take the limit of this expression as $\epsilon \to 0$, it's
 obvious that our intuition is correct. That is, a small change in
 $\epsilon$ only brings about a small change in the solution. We get
 \begin{align}
-x_1 &= \frac{\epsilon}{2} + \frac{\epsilon^2}{8} + O(\epsilon^3), \\
-x_2 &= 2 - \frac{\epsilon}{2} - \frac{\epsilon^2}{8} + O(\epsilon^3).
+x_1 &= 2 - \frac{\epsilon}{2} - \frac{\epsilon^2}{8} + O(\epsilon^3), \\
+x_2 &= \frac{\epsilon}{2} + \frac{\epsilon^2}{8} + O(\epsilon^3).
 \end{align}
 
 What is the point of all this? We said in the beginning that
@@ -110,201 +110,200 @@ quadratic formula at our disposal. We will outline a method which
 would allow us to get arbitrarly good approximations for polynomials
 of any degree.
 
-Let's assume the solution of (1) in terms of x can be expressed in the
-form of a power series of $\epsilon$
+Let's assume the solutions of (1) in terms of x can be expressed in
+the form of some power series of $\epsilon$, where $\epsilon$ is a
+small number:
 \begin{equation}
 \sum_0^{\infty} a_k \epsilon^k = a_0 + a_1 \epsilon + a_2 \epsilon^2 + ...
 \end{equation}
-
-We will now insert this power series into (1), and then expand that
+Another name for this type of series is \textit{perturbation series}.
+We will now insert this perturbation series into (1), and then expand that
 expression in terms of powers of $\epsilon$. We only have to do this
-for the first few terms of the power series to get a decent
+for the first few terms of the perturbation series to get a decent
 approximation. If we want to we can always add more terms and get a
 more accurate approximation. We have
 \begin{equation}
 (a_0 + a_1 \epsilon + a_2 \epsilon^2 + ...)^2 - 2(a_0 + a_1 \epsilon + a_2
 \epsilon^2 + ...) + \epsilon = 0.
 \end{equation}
-
 We expand the expression using Big-Oh algebra. For example, for the
 first term, we get: $(a_0 + a_1 \epsilon + a_2 \epsilon^2)^2 = a_0^2 +
 2 a_0 a_1 \epsilon + (a_1^2 + 2 a_0 a_2) \epsilon^2 + O(\epsilon^3)$.
-
 The whole expression becomes
 \begin{equation}
 a_0^2 - 2 a_0 + (2 a_0 a_1 - 2 a_1 + 1)\epsilon + (a_1^2 + 2 a_0 a_2 - 2 a_2)
 \epsilon^2 = O(\epsilon^3), \epsilon \to 0.
 \end{equation}
 
-Now we turn the problem of determining the coefficients $a_0$, $a_1$
-etc. Since $\epsilon$ is a variable here rather than a parameter, we
-see that the coefficients before each power of $\epsilon$ separately
-all have to be equal to zero. We thus get the following system of
-equations for solving the coefficients:
+Now we turn to the problem of determining the coefficients $a_0$,
+$a_1$ etc. Since $\epsilon$ is treated as a variable, as opposed to as
+a parameter, we see that the coefficients before each power of
+$\epsilon$ separately all have to be equal to zero. We thus get the
+following system of equations for solving the coefficients:
 \begin{align}
 a_0^2 - 2 a_0 &=0, \\
 2 a_0 a_1 - 2 a_1 + 1 &= 0, \\
 a_1^2 + 2 a_0 a_2 - 2 a_2 &= 0.
 \end{align}
-
 Solving these equations in turn gives us, starting with the first
 equation, $a_0 = 0$ or $a_0 = 2$. For $a_0 = 0$ we have $a_1 =
 \frac{1}{2}$ and $a_2 = \frac{1}{8}$. For $a_0 = 2$ we have $a_1 = -
 \frac{1}{2}$ and $a_2 = - \frac{1}{8}$.
 
-We said at the beginning that we assume the solution is on the form of
-a power series of $\epsilon$. We have two options for the coefficients
-of this power series, and these corresponds to the two approximate
+We said at the beginning that we assume the solution is in the form of
+a perturbation series. We have two options for the coefficients of
+this perturbation series, and these corresponds to the two approximate
 solutions of the original equation. From the above and (6) we get
 \begin{align}
 x_1 &= \frac{1}{2} \epsilon + \frac{1}{8} \epsilon^2 + O(\epsilon^3), \\
 x_2 &= 2 - \frac{1}{2} \epsilon - \frac{1}{8} \epsilon^2 + O(\epsilon^3).
 \end{align}
-
 This is exactly the same as our previous solutions in (4) and (5),
-without the use of the quadratica formula. We have thus found a
-general method for finding approximate solutions to polynomials of any
-degree with a small parameter $\epsilon$.
+without the use of the quadratic formula. There was nothing we did
+that assumed a second degree polynomial. We have thus found a general
+method for finding approximate solutions to polynomials of any degree
+with a small parameter $\epsilon$.
 
+\newpage
 \section{A singular perturbation}
 
-In the last section we dealt with a so called regular perturbation problem. In this section
-we will deal with a singular perturbation problem. What is the difference? In a
-singular perturbation problem, the small $\epsilon$ \textit{matters} for the
-solution. In general, singular problems are interesting precisely
-because their solutions can change significantly with just a small change in
-circumstances.
+In the last section we dealt with a so called regular perturbation
+problem. In this section we will deal with a singular perturbation
+problem. What is the difference? In a singular perturbation problem,
+the small $\epsilon$ \textit{matters} for the solution. In general,
+singular problems are interesting precisely because their solutions
+can change significantly with just a small change in circumstances.
 
-As before, we will use a quadratic equation to illustrate how this works,
+As before, we will use a quadratic equation to illustrate how this
+works,
 \begin{equation}
 \epsilon x^2 - 2 x + 1 = 0,
 \end{equation}
-
 where $\epsilon$ is a very small number. This equation has the
 solutions
 \begin{align}
 x_1 &= \frac{1 + \sqrt{1 - \epsilon}}{\epsilon}, \\
 x_2 &= \frac{1 - \sqrt{1 - \epsilon}}{\epsilon}.
 \end{align}
-
-The first thing we notice is that even though $\epsilon$ is very small, we can't
-set it to zero. If we were to do it in (14), we would only get a one degree
-polynomial. The fact that we are losing solutions is a qualitative change, and
-is indicative that we are dealing with a singular perturbation problem.
+The first thing we notice is that even though $\epsilon$ is very
+small, we can't set it to zero. If we were to do it in (14), we would
+only get a one degree polynomial. The fact that we are losing
+solutions is a qualitative change and is indicative that we are
+dealing with a singular perturbation problem.
 
 Let's try using the same method as we did before. We assume x can be
-expressed in the form of a power series of $\epsilon$. Inserting this
-in our equation gives us
+expressed in the form of a perturbation series. Inserting this in our
+equation gives us
 \begin{equation}
 \epsilon (a_0 + a_1 \epsilon + a_2 \epsilon^2)^2 - 2(a_0 + \epsilon a_1 +
 a_2 \epsilon^2) + 1 = 0,
 \end{equation}
-
 which gets expanded into
 \begin{equation}
 (- 2 a_0 + 1) + (a_0^2 - 2 a_1) \epsilon + (2 a_0 a_1 -2 a_2) \epsilon^2 +
 O(\epsilon^3),
 \end{equation}
-
 and leads to
 \begin{align}
 - 2 a_0 + 1 &= 0, \\
 a_0^2 - 2 a_1 &= 0, \\
 2 a_0 a_1 -2 a_2 &= 0.
 \end{align}
-
-The solution of this system of equations is $a_0 = \frac{1}{2}$,
-$a_1=\frac{1}{8}$, $a_2= \frac{1}{64}$, but this gives us only one of
-the roots,
+The only solution to this system of equations is $a_0 = \frac{1}{2}$,
+$a_1=\frac{1}{8}$, $a_2 = \frac{1}{16}$. This gives us only one of the
+roots,
 \begin{equation}
 x_1 = \frac{1}{2} + \frac{1}{8} \epsilon + O(\epsilon^2).
 \end{equation}
+Note that the $a_2$ coefficient is included in the $O(\epsilon^2)$
+expression. By the \textit{Fundamental Theorem of Algebra}, we would
+expect to see two solutions. What happened to the other root? We
+missed it because it's not on the form of a perturbation series. So
+what do we do?
 
-By the Fundamental Theorem of Algebra, we would expect to see two solutions.
-What happened to the other root? We missed it because it's not on the form of
-a perturbation series. So what do we do?
-
-The key here is that we can do a change in variable to turn the problem into a
-regular perturbation proble:
+The key here is that we can do a change in variable to turn the
+problem into a regular perturbation problem:
 \begin{equation}
 x(\epsilon) = \frac{y(\epsilon)}{\delta(\epsilon)}.
 \end{equation}
-
 Here we are treating $x$ as a function, $y(\epsilon)$ is $O(1)$ and we want to
 determine the re-scaling factor function $\delta(\epsilon)$. Our original
 equation becomes
 \begin{equation}
 \frac{\epsilon}{\delta^2} y^2 - \frac{2}{\delta} y + 1 = 0.
 \end{equation}
+Our goal is to simplify this equation. We do this by dropping
+insignificant terms. As we have seen, it turns out that the first term
+in the equation is not insignificant, so we have to leave it in. Is
+there some other term that we, to a first approximation, can drop?
 
-Our goal is to simplify this equation. We do this by dropping relatively
-insignificant terms. As we have seen, it turns out that the first term in the
-equation is not insignificant, so we have to leave it in. Is there some other
-term that we, to a first approximation, can drop?
+All three terms in the above equation have some order of
+magnitude. The method of dominant balance tells us to look for pairs
+that balance ($\sim$), where balance means they are of the same order
+of magnitude. We have already determined that the first term can't be
+dropped, so we have two possibilities.
 
-All the three terms in the above equation have some order of magnitude. The method
-of dominant balance tells us to look for pairs that balance, where balance means
-they are of the same order of magnitude. We have already determined that the
-first term can't be dropped, so we have two options:
+The first possibility is that $\frac{\epsilon}{\delta^2} y^2 \sim 1$,
+with $\frac{2}{\delta}$ being insignificant.
+$\frac{\epsilon}{\delta^2} = 1 \implies \delta =
+\epsilon^{\frac{1}{2}}$.
+But then $\frac{2}{\delta} = \frac{2}{\sqrt{\epsilon}}$ which isn't
+small as $\epsilon \to 0$.
 
-\textbf{Case 1.} $\frac{\epsilon}{\delta^2} y^2$ balances 1, with $\frac{2}{\delta}$
-being relatively insignificant.
-
-$\frac{\epsilon}{\delta^2} = 1 \implies \delta = \epsilon^{\frac{1}{2}}$. But
-then $\frac{2}{\delta} = \frac{2}{\sqrt{\epsilon}}$ which isn't small as
-$\epsilon \to 0$.
-
-\textbf{Case 2.} $\frac{\epsilon}{\delta^2} y^2$ balance $\frac{2}{\delta} y$,
-with 1 being relatively insignificant.
-
-This means $\frac{\epsilon}{\delta^2} = \frac{1}{\delta}$ which implies that
+The second possibility is that
+$\frac{\epsilon}{\delta^2} y^2 \sim \frac{2}{\delta} y$, with 1 being
+insignificant. This means
+$\frac{\epsilon}{\delta^2} = \frac{1}{\delta}$ which implies that
 $\delta = \epsilon$. This seems correct as both expressions are
-$O(\frac{1}{e})$, and 1 is relatively small compared to that when $\epsilon \to
-0$. We have
+$O(\frac{1}{e})$, and 1 is small compared to this when
+$\epsilon \to 0$. We get
 \begin{align}
 P(x) = \epsilon x^2 - 2x + 1, \\
 \epsilon P\Big(\frac{y}{\epsilon}\Big) = y^2 - 2 y + \epsilon,
 \end{align}
-
-where the last part is exactly the same as our regular perturbation problem.
-Like before, this gives us
+where the last part is exactly the same as our regular perturbation
+problem in equation (1). As before, this gives us
 \begin{align}
 y_1 &= \frac{1}{2} \epsilon + \frac{1}{8} \epsilon^2 + O(\epsilon^3), \\
 y_2 &= 2 - \frac{1}{2} \epsilon - \frac{1}{8} \epsilon^2 + O(\epsilon^3),
 \end{align}
-
 which means that
 \begin{align}
 x_1 &= \frac{1}{2} + \frac{1}{8} \epsilon + O(\epsilon^2), \\
 x_2 &= \frac{2}{\epsilon} - \frac{1}{2} + \frac{1}{8} \epsilon + O(\epsilon^2).
 \end{align}
+The first root approaches $\frac{1}{2}$ as $\epsilon \to 0$, and the
+second root is our missing solution that approaches $\infty$ as
+$\epsilon \to 0$. This is the essence of singular perturbation theory
+- to find the singular behavior and do a change of variable to turn it
+into a regular perturbation problem.
 
-The second root is our missing solution, and it corresponds to $x \to \infty$ as
-$\epsilon \to 0$. This is the essence of singular perturbation theory - to find
-the singular behavior and do a change of variable to turn it into a regular
-perturbation problem.
-
+\newpage
 \section{ODE and boundary theory}
 
-Boundary layer theory has its origins in aerodynamics and Prandtl. He
-discovered that the way fluids, like air around a plane and water
-around some obstacle, flows is almost completely void of viscosity, or
-stickiness, except for in a very thin region near the boundary of the
-plane of the obsacle. This allowed for the separate treatment - one
-where viscosity can be discarded, and one where it matters a lot - of
-what would back then be one single complex problem, which simplified
-matters greatly.
+Boundary layer theory has its origins in aerodynamics and the work of
+Prandtl. He discovered that the way fluids, like air around a plane
+and water around some obstacle, flow is almost completely void of
+viscosity, or stickiness, except for in a very thin region near the
+boundary of the plane of the obstacle. This observation meant that one
+could treat these two phenomena as separate problems - one where
+viscosity can be discarded, and one where it matters a lot - as
+opposed to treating it as one big complex problem. This simplified
+calculations greatly.
 
-We will now give a basic example of this in the form of a boundary
-value problem with differential equations. We will again look at a
-problem which we could solve explicitly, but instead use perturbation
-theory to analyze. In a boundary value problem, we have two boundary
-value conditions and, in a first approximation, they can't both be
-satisfied at the same time. The strategy we use is to split the
-problem in two - one where we are in a very thin region at $t=0$
-(where we have a boundary condition), the so called inner region, and
-one where we are in an outer region, which is everywhere else. This
-strategy is generalizable to multiple layers.
+We will now give a basic example of this in the form of a
+\textit{boundary value problem} with differential equations. Recall
+that a boundary value problem is one where we have some set of
+constraints that have to be fulfilled, called boundary conditions. We
+will again look at a problem which we could solve explicitly, but
+which we will instead use perturbation theory to analyze. In a
+boundary value problem, we have two boundary value conditions and, in
+a first approximation, they can't both be satisfied at the same
+time. The strategy we use is to split the problem in two - one where
+we are in a very thin region at $t=0$ (where we have a boundary
+condition), the so called ``inner region'', and one where we are in an
+``outer region'', which is everywhere else. This strategy is
+generalizable to multiple layers.
 
 We start by looking for the outer solution, then the inner solution,
 then we match them together into one unified solution.
@@ -315,7 +314,6 @@ We are now going to look at a differential equation
 \begin{equation}
 \epsilon y'' + 2 y' + y, \enskip y(0)=0, \enskip y(1)=1, \enskip 0 < x < 1.
 \end{equation}
-
 If we naively set $\epsilon = 0$ we see that the resulting equation $2 y' + y$
 has the general solution $C e^{- \frac{1}{2}x}$. This can't satisfy both
 boundary conditions at once. If it satisfies $y(0)=0$ we have $y=0$ as the only
@@ -323,10 +321,9 @@ solution, and if it satisfies $y(1)=1$ we have
 \begin{equation}
 y_O=e^{\frac{1}{2} (1 - x)}.
 \end{equation}
-
-We are going to assume this is a good approximation somewhere. We are also going
-to assume this is valid for the $y(1)=1$ boundary condition. We call this out
-outer solution.
+We are going to assume this is a good approximation somewhere. It is
+valid for the $y(1)=1$ boundary condition, so we call this the
+\textit{outer solution}.
 
 Like the example in the last section, we missed something when we set $\epsilon
 = 0$. We have found one of the two solutions and now we want to the find the
@@ -339,47 +336,38 @@ $\delta(\epsilon)$. We introduce a re-scaling variable
 \begin{equation}
 \overline{x} = \frac{x}{\delta}.
 \end{equation}
-
 Having two scales like this is typical for singular perturbation problems. Our
 original equation (31) becomes
 \begin{equation}
 \frac{\epsilon}{\delta^2} \frac{d^2y}{d\overline{x}^2} + \frac{2}{\delta}
 \frac{dy}{d\overline{x}} + y = 0.
 \end{equation}
-
-We now do pairwise balancing. We have the following orders of
-magnitude
+We now do pairwise balancing, as before. Looking at the coefficients
+of the above equation, we have the following orders of magnitude
 \begin{equation}
-\frac{\epsilon}{\delta^2}, \frac{1}{\delta}, 1.
+O\Big(\frac{\epsilon}{\delta^2}\Big), O\Big(\frac{1}{\delta}\Big), O(1).
 \end{equation}
-
-We must have $\frac{\epsilon}{\delta^2}$ present, so the question is if it
-balance one of the other terms with one being insignificant, and if so, which one
-is insignificant. There are two cases.
-
-\textbf{Case 1}
+We must have $\frac{\epsilon}{\delta^2}$ present, so the question is
+if it balance one of the other terms with one being insignificant, and
+if so, which one is insignificant. There are two possibilities. Either
+we have
 \begin{equation}
-\frac{\epsilon}{\delta^2} ~ 1 \implies \delta = \epsilon^{\frac{1}{2}},
+\frac{\epsilon}{\delta^2} \sim 1 \implies \delta = \epsilon^{\frac{1}{2}},
 \end{equation}
-
-but then $\frac{1}{\delta}$ is big compared to 1.
-
-\textbf{Case 2}
+but then $\frac{1}{\delta}$ is big compared to 1. Or we have
 \begin{equation}
-\frac{\epsilon}{\delta^2} ~ \frac{1}{\delta} \implies \delta = \epsilon,
+\frac{\epsilon}{\delta^2} \sim \frac{1}{\delta} \implies \delta = \epsilon,
 \end{equation}
-
 in which case 1 is indeed insignificant.
 
 We have, multiplying by $\epsilon$, the inner equation
 \begin{equation}
-\frac{\delta^2 y}{\delta \overline{x}^2} + 2 \frac{dy}{d\overline{x}} + \epsilon
+\frac{d^2 y}{d \overline{x}^2} + 2 \frac{dy}{d\overline{x}} + \epsilon
 y = 0.
 \end{equation}
-
 To a first approximation we can neglect the last term, so we have
 \begin{equation}
-\frac{\delta^2 y}{\delta \overline{x}^2} + 2 \frac{dy}{d\overline{x}} = 0.
+\frac{d^2 y}{d \overline{x}^2} + 2 \frac{dy}{d\overline{x}} = 0.
 \end{equation}
 
 Together with the other initial condition $y(0)=0$ we get the general inner
@@ -387,14 +375,14 @@ solution, valid in a region of thickness $\epsilon$ close to $x=0$,
 \begin{equation}
 y_I = C(1 - e^{-2\overline{x}}).
 \end{equation}
+We now have an outer and inner solution, and we turn to matching these
+to determine the value of the constant $C$.
 
-We now have an outer and inner solution, and we turn to matching these to
-determine the constant $C$.
-
-\subsection{Matching}
-
-The idea behind matching is that there is some edge or region between the inner
-and outer solution. A region where both solutions are valid approximations.
+\newpage
+\subsection{Matching and uniform approximation}
+The idea behind matching is that there is some edge or region between
+the inner and outer solution, a region where both solutions are valid
+approximations.
 
 If we imagine a particle tracing the x-axis rightward, as we exit the boundary
 layer, i.e. as $\overline{x} \to \infty$, the value of $y_I$ should be equal to
@@ -403,30 +391,30 @@ the value of $y_O$ as $x \to 0$, that is
 \lim_{\overline{x} \to \infty} y_I = \lim_{x\to 0+} y_O \iff 
 \lim_{\overline{x} \to \infty} C(1 - e^{-2\overline{x}}) = \lim_{x \to 0+} e^{\frac{1}{2}(1-x)}.
 \end{equation}
-
-This is called a \textit{matching condition}. The right-hand side is
+This is called a \textit{matching condition}. The right-hand side equals
 $e^{\frac{1}{2}}$, and thus the left-hand side gives us that $C =
 e^{\frac{1}{2}}$.
 
-\subsection{Uniform approximation}
-
-We now have two separate approximations. We would like to have one single
-approximation that is valid everywhere. We do this by adding the two
-approximations together and removing their common part:
+We now have two separate approximations. We would like to have one
+single approximation that is valid everywhere. We do this by adding
+the two approximations together and removing their common part to
+avoid double counting. Intuitively, one of the approximations is great
+close to one of the boundary conditions, ok in the middle, and
+terrible close to the other boundary conditions. The other
+approximation is exactly the opposite. By combining them, we get a
+smooth approximation of the whole solution:
 \begin{equation}
-y_U = y_o(x) + y_I(\frac{x}{\delta}) - e^{\frac{1}{2}}.
+y_U = y_o(x) + y_I\Big(\frac{x}{\delta}\Big) - e^{\frac{1}{2}}.
 \end{equation}
-
-The common part comes from the matching condition in the previous section. In
-the inner region the other terms are negliable, and vice versa in the outer
-region
+The common part comes from the matching condition earlier in this
+section. In the inner region the other terms are negliable, and vice
+versa in the outer region,
 \begin{align}
-y_U &= e^{\frac{1}{2}(1-x)} e^{\frac{1}{2}}(1 - e^{\frac{-2x}{\epsilon}}) -
-e^{\frac{1}{2}} \\
-    &=  e^{\frac{1}{2}}(e^{\frac{-x}{2}} - e^{\frac{-2x}{\epsilon}}),
+  y_U &= e^{\frac{1}{2}(1-x)} + e^{\frac{1}{2}}(1 - e^{\frac{-2x}{\epsilon}}) -
+        e^{\frac{1}{2}} \\
+      &=  e^{\frac{1}{2}}(e^{\frac{-x}{2}} - e^{\frac{-2x}{\epsilon}}).
 \end{align}
-
-which is our uniform approximation for the whole solutions. We can
+This is our uniform approximation for the whole solution. We can
 compare this to the exact solution and see that it is indeed a good
 approximation.
 
@@ -442,31 +430,26 @@ $\frac{-1 \pm \sqrt{1-\epsilon}}{\epsilon}$. We have that
 y_{\epsilon}(x)=c_1 e^{\frac{-1 + \sqrt{1-\epsilon}}{\epsilon} x} + c_2
 e^{\frac{-1 - \sqrt{1-\epsilon}}{\epsilon} x}.
 \end{equation}
-
 With the help of the boundary conditions $y(0)=0, y(1)=1$ we see that
 \begin{equation}
   c2 = - c1 = - \frac{1}{e^{\frac{-1 + \sqrt{1-\epsilon}}{\epsilon}}
     - e^{\frac{-1 - \sqrt{1-\epsilon}}{\epsilon}}}.
 \end{equation}
-
 We use a Taylor expansion as before and define
 \begin{align}
   \alpha_1 &= \frac{1 - \sqrt{1-\epsilon}}{\epsilon} = \frac{1}{2} + O(\epsilon), \\
   \alpha_2 &= 1+ \sqrt{1-\epsilon} = 2 + O(\epsilon).
 \end{align}
-
 We can then express the solution as
 \begin{equation}
   y_{\epsilon}(x) = \frac{1}{e^{-\alpha_1(\epsilon)} - e^{\frac{-\alpha_2(\epsilon)}{\epsilon}}} \Big(e^{-\alpha_1(\epsilon)x} - e^{\frac{-\alpha_2(\epsilon)x}{\epsilon}}\Big).
 \end{equation}
-
 There are two terms in this solution. As $\epsilon \to 0+$, for fixed
-$x \in (0,1)$, all the expression involving a division with $\epsilon$
-disappears. The solution becomes
+$x \in (0,1)$, all the expressions involving division by $\epsilon$
+disappear, i.e. all the $a_2$ terms. The solution becomes
 \begin{equation}
   y_{\epsilon}(x) \to \frac{e^{\frac{-x}{2}}}{e^{\frac{-1}{2}}} = e^{\frac{1}{2}(1-x)}.
 \end{equation}
-
 This is exactly the outer solution we got before, satisfying $y(1)=1$
 but not $y(0)=0$.
 
@@ -479,24 +462,9 @@ y_{\epsilon}(x) \approx e^{\frac{1}{2}}(e^{-\frac{x}{2}} -
   e^{-\frac{2x}{\epsilon}}), \quad 0 < \epsilon \ll 1.
 \end{equation}
 
-\begin{figure}[ht!]
-\centering
-\includegraphics[width=120mm]
-{tmp_ode-outer.png}
-\caption{The full line is the outer approximation, $\epsilon=0.1$.}
-\label{overflow}
-\end{figure}
 When we graph (50) and (51) for any given $\epsilon$ we see that,
 outside of a small region near 0, the outer approximation is indeed a
 good approximation. We get the second graph by doing the same thing for the inner solution.
-
-\begin{figure}[ht!]
-\centering
-\includegraphics[width=120mm]
-{tmp_ode-inner.png}
-\caption{The full line is the inner approximation, $\epsilon=0.1$.}
-\label{overflow}
-\end{figure}
 
 For the first graph, note that the outer approximation starts at
 $y(0)=e^{\frac{1}{2}}$, and thus misses the contribution $\epsilon$
@@ -505,6 +473,23 @@ has on the solution for very small x values.
 For the second graph, notice the agreement between the exact and inner
 approximation in a region close to $x=0$ (which we can move
 arbitrarily closer by using a smaller $\epsilon$).
+
+\newpage
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=120mm]
+{tmp_ode-outer.png}
+\caption{The full line is the outer approximation, $\epsilon=0.1$.}
+\label{overflow}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=120mm]
+{tmp_ode-inner.png}
+\caption{The full line is the inner approximation, $\epsilon=0.1$.}
+\label{overflow}
+\end{figure}
 
 \section{Total Quasi Steady State}
 \subsection{A biological problem}
@@ -1099,7 +1084,7 @@ which is our inner solution for c. Note that this is a different
 result from what Khoo and Heglund got. At present time it's unclear
 why there is a discrepancy.
 
-\subsection{Matching}
+\subsection{Matching and uniform approximation}
 
 As before in section 4.3, we are looking for a common limit, and our
 matching condition as
@@ -1180,9 +1165,8 @@ We note that Khoo finds the following for equation (153):
 \approx \frac{2}{1+\sqrt{1-4\gamma}}.
 \end{equation}
 
-\subsection{Uniform approximation}
-
-We proceed as we did before in section 4.4, taking the common part and
+Now we turn to the matter of finding an uniform approximation. We
+proceed as we did before in section 4.3, taking the common part and
 subtracting the difference:
 \begin{align}
 s_u &= s_O + s_I - 1 = s_O, \\
@@ -1192,6 +1176,7 @@ c_u &= c_O + c_I - 2(1 + \sqrt{1+4\gamma})^{-1}.
 This is our uniform solution to the problem posed in the beginning of
 this section.
 
+\newpage
 \section{Appendix}
 
 \subsection{TQSSA XPP code}
@@ -1232,6 +1217,7 @@ Plot[{h[x], g[x]}, {x, 0, 1}, PlotRange -> {0, 2},
  PlotStyle -> {Dashing, Directive[Dashed], Directive[Thick]}]
 \end{verbatim}
 
+\newpage
 \bibliography{references}
 
 \end{document}
