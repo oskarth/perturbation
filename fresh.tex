@@ -424,8 +424,9 @@ We saw in the previous section what a good approximation to the
 solution is. Our original equation (31) can however be solved exactly,
 so let's do that.
 
-The characteristic polynomial $\epsilon r^2 +2r + 1 = 0$ has the solutions
-$\frac{-1 \pm \sqrt{1-\epsilon}}{\epsilon}$. We have that
+The \textit{characteristic polynomial} $\epsilon r^2 +2r + 1 = 0$ has
+the solutions $\frac{-1 \pm \sqrt{1-\epsilon}}{\epsilon}$. We have
+that
 \begin{equation}
 y_{\epsilon}(x)=c_1 e^{\frac{-1 + \sqrt{1-\epsilon}}{\epsilon} x} + c_2
 e^{\frac{-1 - \sqrt{1-\epsilon}}{\epsilon} x}.
@@ -450,21 +451,23 @@ disappear, i.e. all the $a_2$ terms. The solution becomes
 \begin{equation}
   y_{\epsilon}(x) \to \frac{e^{\frac{-x}{2}}}{e^{\frac{-1}{2}}} = e^{\frac{1}{2}(1-x)}.
 \end{equation}
-This is exactly the outer solution we got before, satisfying $y(1)=1$
-but not $y(0)=0$.
+This is exactly the outer solution we got before in (32), satisfying
+$y(1)=1$ but not $y(0)=0$.
 
-If we instead take (49) and notice that, for arbitrarily small
-$\epsilon$, $e^{-\frac{\alpha_2(\epsilon)}/{\epsilon}}$ is 0. The
-exact solution is thus (we distinguish between an approximation of the
-exact solution, and the outer approximation):
+Notice that the above is just valid for a fixed x, as we will see
+below. If we instead take (49) and notice that, for arbitrarily small
+$\epsilon$, $e^{-\frac{\alpha_2(\epsilon)}{\epsilon}}$ is 0. The exact
+solution is thus (we distinguish between an approximation of the exact
+solution, and the outer approximation):
 \begin{equation}
-y_{\epsilon}(x) \approx e^{\frac{1}{2}}(e^{-\frac{x}{2}} -
+  y_{\epsilon}(x) \approx e^{\frac{1}{2}}(e^{-\frac{x}{2}} -
   e^{-\frac{2x}{\epsilon}}), \quad 0 < \epsilon \ll 1.
 \end{equation}
 
 When we graph (50) and (51) for any given $\epsilon$ we see that,
 outside of a small region near 0, the outer approximation is indeed a
-good approximation. We get the second graph by doing the same thing for the inner solution.
+good approximation. We get the second graph by doing the same thing
+for the inner solution.
 
 For the first graph, note that the outer approximation starts at
 $y(0)=e^{\frac{1}{2}}$, and thus misses the contribution $\epsilon$
@@ -473,6 +476,8 @@ has on the solution for very small x values.
 For the second graph, notice the agreement between the exact and inner
 approximation in a region close to $x=0$ (which we can move
 arbitrarily closer by using a smaller $\epsilon$).
+
+In both figures the x- and y-axis are in their customary direction.
 
 \newpage
 \begin{figure}[ht!]
@@ -498,11 +503,11 @@ In enzyme kinetics we often come across chemical reactions like
 \begin{equation}
 E + S \leftarrow_{k_1} \rightarrow_{k_{-1}} C \rightarrow_{k_2} E + P.
 \end{equation}
-
-This is an enzyme E and substrate S that combine, reversibly, to form a complex
-C, which in turn gives us a product and enzyme back. $k_1, k_{-1}, k_2$ are rate
-constants. We won't bother with the biological details too much, but instead look
-at how we can analyze the above as a dynamical system.
+This is an enzyme E and substrate S that combine, reversibly, to form
+a complex C, which in turn gives us a product and enzyme back.
+$k_1, k_{-1}, k_2$ are rate constants. We won't bother with the
+biological details too much, but will instead look at how we can
+analyze the above as a dynamical system.
 
 The \textit{law of mass action} tells us that two molecules A and B forming
 complex C, $A+B \rightarrow_k C$ are governed by $\frac{dC}{dt} = kAB$. That is,
@@ -510,15 +515,14 @@ the more concentration of A or B we have, the faster they turn into complex C.
 This has been experimentally verified by Guldberg and Waage in 1867, and many
 times since.
 
-With this law, we can translate our chemical reaction to a system of differential
-equations:
+With this law, we can translate our chemical reaction into a system of
+differential equations:
 \begin{align}
-\frac{dE}{dt} &= -k_1(E*S) + k_{-1}C + k_2C, \\
-\frac{dS}{dt} &= -k1(E*S) + k_{-1}C, \\
-\frac{dC}{dt} &= k_1(E*S) - k_{-1}C - k_2C, \\
+\frac{dE}{dt} &= -k_1ES + k_{-1}C + k_2C, \\
+\frac{dS}{dt} &= -k_1ES + k_{-1}C, \\
+\frac{dC}{dt} &= k_1ES - k_{-1}C - k_2C, \\
 \frac{dP}{dt} &= k_2C.
 \end{align}
-
 In the study of enzyme kinetics, we normally have some initial conditions to help
 us out: $S(0) = S_0, E(0) = E_0, C(0)=0, P(0)=0$.
 
@@ -526,7 +530,6 @@ We see immediately that
 \begin{equation}
 \frac{dE}{dt} + \frac{dC}{dt} = 0.
 \end{equation}
-
 Together with the initial conditions we get that
 \begin{equation}
 E + C = E_0,
@@ -538,32 +541,29 @@ equations. We are left with
 \frac{dS}{dt} &= -k_1(E_0 - C)S + k_{-1}C, \\
 \frac{dC}{dt} &= k_1(E_0 - C)S - k_{-1}C - k_2 C.
 \end{align}
-
 This is a two-dimensional system, which is much easier to deal with. Can we do
 better? It turns out we can.
 
-Very often, in practice, the substrate has a much higher concentration than enzyme. This
-means that C can be treated as constant after a short initial period. By
-exploiting this fact, we can reduce the system to one equation. This is called
-the \textit{Quasi-Steady State approximation}.
+Very often, in practice, the substrate has a much higher concentration
+than the enzyme. This means that C can be treated as constant after a
+short initial period. By exploiting this fact, we can reduce the
+system to one equation. This is called the \textit{Quasi-Steady State
+  approximation}.
 
-Assume that C is constant $\iff \frac{dC}{dt} = 0$ after a short period of time.
-Then we can could write, as $\frac{dC}{dt}$ can be treated as 0,
+Assume that C is constant $\iff \frac{dC}{dt} = 0$ after a short
+period of time. Then we write
 \begin{equation}
-\frac{dS}{dt} = -k2 C
+\frac{dS}{dt} = -k_2 C
 \end{equation}
-
 with
 \begin{equation}
 C = \frac{E_0 S}{K_m +S},
 \end{equation}
-
 where $K_m = \frac{k_{-1} + k_2}{k_1}$ is the so called {Michaelis-Menten
 constant}. We have
 \begin{equation}
-\frac{dS}{dt} = \frac{-k_2 E_0 S}{K_m + S}
+\frac{dS}{dt} = - \frac{k_2 E_0 S}{K_m + S}
 \end{equation}
-
 together with $S(0) = S_0$ as initial condition. This is what is
 normally considered the QSSA, valid after some short amount of time
 has passed.
@@ -582,7 +582,6 @@ The basic idea behind TQSSA is to perform a change of variable
 \begin{equation}
 \overline{S} = S + C.
 \end{equation}
-
 This change of variable makes the approximation valid for a wider
 range of parameters. We get the following system of equations from
 (59), (60) and (64)
@@ -590,7 +589,6 @@ range of parameters. We get the following system of equations from
 \frac{d\overline{S}}{dt} &= - k_2 C, \\
 \frac{dC}{dt} &= k_1(E_0-C)(\overline{S}-C)-(k_{-1}+ k_2) C.
 \end{align}
-
 Together with initial conditions $\overline{S}(0)=S_0, C(0)=0$, these
 are the rate equations for the TQSSA.
 \begin{figure}[ht!]
@@ -598,16 +596,17 @@ are the rate equations for the TQSSA.
 \includegraphics[width=120mm]
 {tqssa-phase-plane-b.png}
 \caption{TQSSA phase plane. Initial state is $\overline{S}(0)=0.1,
-  C(0)=0$. $E=0.01, k_1=10, k={-1}=1, k_2=0.1$.}
+  C(0)=0$. $E=0.01, k_1=10, k_{-1}=1, k_2=0.1$.}
 \label{overflow}
 \end{figure}
 
 We get some intuition of the behavior by inspecting the phase plane of
 the above equations. With the help of XPP (see appendix for the source
-code used), we can numerically simulate the system, as seen in figure
+code used), we can numerically simulate the system, as seen in Figure
 3. There are two things to note: (1) the steady state is at (0,0) (not
-shown in graph due to numerical rounding error) and (2) from the initial
-condition there's a rapid increase of concentration in complexity C,
+shown in graph due to a numerical rounding error, but this can be
+confirmed by basic simulation in XPP) and (2) from the initial
+condition there's a rapid increase of concentration in the complex C,
 after which it slowly decrease (quasi-steady state) until it reached
 steady state.
 
@@ -637,34 +636,29 @@ get
 \begin{equation}
   \frac{dC}{dt} = k_1E_0 S_0 - (k_1 S_0 + k_{-1} + k_2)C.
 \end{equation}
-
 With the help of the initial condition $C(0)=0$, we get the solution
 \begin{equation}
   C(t) = A(1 -  e^{\lambda x}), \quad
   \lambda = (-S_0 k_1 + k_{-1} + k_2), \quad
   A =\frac{k1 E_0 S_0}{S_0 k1 + k_{-1} + k_2}.
 \end{equation}
-
-The timescale here is $t_C = \lambda^{-1}$, which we can rewrite as
+The timescale here is $t_C = |\lambda^{-1}|$, which we can rewrite as
 \begin{equation}
   t_C = \frac{1}{k_1(S_0+K_m)}.
 \end{equation}
 
 To get the other time scale we first use that $dC/dt = 0$ after some
-period of time, which is the time scale we care about. We then use
-(61) and (62) as before to get (63):
-\begin{equation}
-  \frac{dS}{dt} = -\frac{k_2 E_0 S}{K_m + S}.
-\end{equation}
-
-We now get $t_s$ with the help of an estimation technique by Segel
+period of time, which is the time scale we care about. We get $t_s$
+with the help of an estimation technique by Segel
 \cite{segel1984modeling} that tells us to take
-$S_{max} - S_{min} = S_0$ divided by the maximum of
-$|dS/dt|$ using $S=S_0$ in the previous equation. This gives us
+$S_{max} - S_{min} = S_0$ divided by the maximum of $|dS/dt|$ using
+$S=S_0$ in (63). This gives us
 \begin{align}
   t_s &= \frac{S_0}{|dS/dt|_{max}} \\
       &= \frac{K_m + S_0}{k_2 E_0}.
 \end{align}
+
+TODO: QQQ HERE ATM
 
 So far we have only derived timescales for the normal QSSA. To get the
 timescales for TQSSA, Borghans et al. use the rewrite
