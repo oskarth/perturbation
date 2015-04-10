@@ -18,7 +18,7 @@
 
 \title{Perturbation theory and TQSSA}
 \author{Oskar Thor\'{e}n}
-\date{2015-04-08}
+\date{2015-04-10}
 
 \begin{document}
 
@@ -433,7 +433,7 @@ e^{\frac{-1 - \sqrt{1-\epsilon}}{\epsilon} x}.
 \end{equation}
 With the help of the boundary conditions $y(0)=0, y(1)=1$ we see that
 \begin{equation}
-  c2 = - c1 = - \frac{1}{e^{\frac{-1 + \sqrt{1-\epsilon}}{\epsilon}}
+  c_2 = - c_1 = - \frac{1}{e^{\frac{-1 + \sqrt{1-\epsilon}}{\epsilon}}
     - e^{\frac{-1 - \sqrt{1-\epsilon}}{\epsilon}}}.
 \end{equation}
 We use a Taylor expansion as before and define
@@ -501,7 +501,8 @@ In both figures the x- and y-axis are in their customary direction.
 
 In enzyme kinetics we often come across chemical reactions like
 \begin{equation}
-E + S \leftarrow_{k_1} \rightarrow_{k_{-1}} C \rightarrow_{k_2} E + P.
+E + S \underset{k_{-1}}{\overset{k_{1}}\rightleftharpoons} C
+ \overset{k_2}\longrightarrow E + P
 \end{equation}
 This is an enzyme E and substrate S that combine, reversibly, to form
 a complex C, which in turn gives us a product P and enzyme E back.
@@ -510,7 +511,7 @@ biological details too much, but will instead look at how we can
 analyze the above as a dynamical system.
 
 The \textit{law of mass action} tells us that two molecules A and B
-forming complex C, $A+B \rightarrow_k C$ are governed by
+forming complex C, $A+B \overset{k}\longrightarrow C$ are governed by
 $\frac{dC}{dt} = kAB$. That is, the greater concentration of A or B we
 have, the faster the complex C is formed. This has been
 experimentally verified by Guldberg and Waage in 1867, and many times
@@ -652,18 +653,16 @@ To get the other time scale we first use that $dC/dt = 0$ after some
 period of time, which is the time period we care about. We get $t_s$
 with the help of an estimation technique by Segel
 \cite{segel1984modeling}. This technique tells us to take
-$S_{max} - S_{min} = S_0$ divided by the maximum of $|dS/dt|$ using
+$S_{\max} - S_{\min} = S_0$ divided by the maximum of $|dS/dt|$ using
 $S=S_0$ in (63). This gives us
 \begin{align}
-  t_s &= \frac{S_0}{|dS/dt|_{max}} \\
+  t_s &= \frac{S_{\max} - S_{\min}}{|dS/dt|_{\max}} \\
       &= \frac{K_m + S_0}{k_2 E_0}.
 \end{align}
 
 So far we have only derived timescales for the normal QSSA. To get the
-timescales for TQSSA, Borghans et al. use the substitution
-$\overline{S} = S + C$ from (64). By doing so, and assuming
-$\frac{dC}{dt}=0$ as before, the $\frac{dC}{dt}$ equation gets a
-quadratic term
+timescales for TQSSA, we use the substitution from (64). By doing so,
+and assuming $\frac{dC}{dt}=0$ as before, (66) becomes
 \begin{equation}
   C^2 - (E_0 + K_m + \overline{S})C + E_0 \overline{S} = 0.
 \end{equation}
@@ -697,7 +696,7 @@ Using the Intermediate Value Theorem for continuous functions, there
 must be a number $c_1 \in (0,E_0)$, such that $f(c_1) = 0$ is a
 solution. Moreover, since we are dealing with a real polynomial, the
 Complex Conjugate Root Theorem says that the complex roots appear in
-pairs. Together with what we saw above, this implies that both $c_1$
+pair. Together with what we saw above, this implies that both $c_1$
 and $c_2$ are positive.
 
 With this we get the following inequalities. First, the discriminant
@@ -1046,8 +1045,8 @@ We then have:
        {(\sqrt{1+4\gamma} + 1) e^{\sqrt{1+4\gamma} \tau} + \sqrt{1+4\gamma} - 1},
 \end{align}
 which is our inner solution for c. Note that this is a different
-result from what Khoo and Heglund got. At present time it's unclear
-why there is a discrepancy.
+result from what Khoo and Heglund got. It seems as if their result is
+incorrect.
 
 \subsection{Matching and uniform approximation}
 
