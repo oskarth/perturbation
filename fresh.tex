@@ -26,12 +26,12 @@
 \maketitle
 
 \begin{abstract}
-  Perturbation theory has a long history, and recent decades has seen
-  applications in enzyme kinetics. We start with some basic polynomial
-  examples of perturbation theory, progress to a boundary-value
-  problem in a differential equation, and then tackle a real
-  application in the form of Total Quasi Steady State from enzyme
-  kinetics.
+  Perturbation theory has a long history. In recent decades we have
+  seen many applications in enzymatic kinetics. We start with some
+  basic polynomial examples of regular perturbation theory, progress
+  to singular perturbation and a boundary-value problem of
+  differential equation, and then tackle a real application in the
+  form of Total Quasi Steady State from enzyme kinetics.
 \end{abstract}
 
 \clearpage
@@ -46,13 +46,14 @@ perturbation theory has enabled. The first was the discovery of
 Neptune, and the second was the theoretical foundation for
 aerodynamics.
 
-The promise of perturbation theory is that it allows us to solve a
-larger class of problems, for example, in differential equations, than
-we could otherwise with analytical methods. It does this by giving us
-approximate but rigorous solutions. In this article we will guide
-the reader from a very simple and familiar example, a quadratic
-equation, all the way to a useful research example in system biology:
-the total quasi steady state in enzyme kinetics.
+The promise of perturbation theory is that it allows us to find
+approximate solutions to a larger class of problems, for example, in
+differential equations, than we could otherwise with analytical
+methods. It does this by giving us approximate but rigorous
+solutions. In this article we will guide the reader from a very simple
+and familiar example, a quadratic equation, all the way to a useful
+research example in system biology: the total quasi steady state in
+enzyme kinetics.
 
 The article has been written with the goal that any student with a
 basic understanding of calculus, differential equations and linear
@@ -67,18 +68,18 @@ imaginable, a quadratic equation:
 \begin{equation}
 x^2 - 2x + \epsilon = 0.
 \end{equation}
-We know how to solve this analytically. The roots of the equation are
+We know how to solve this analytically. The roots of the equation are\\
 $x_1 = 1 + \sqrt{1 - \epsilon}$ and $x_2 = 1 - \sqrt{1 - \epsilon}$.
 
 The case we are interested in is the one where $\epsilon$ is very
 small. In this case, we can see that setting $\epsilon=0$ produces the
 roots $x=0$ and $x=2$ respectively. In fact, for any given small
-$\epsilon$ we notice that solution changes very little. In that sense
-it's a very "boring" and predictable problem.
+$\epsilon$ we notice that the solution changes very little. In that
+sense it's a very "boring" and predictable problem.
 
-Can we make this observation, that a small change in $\epsilon$ only
-brings about a small change in the solution, more rigorous? One way is
-to rewrite the part of the solution containing $\epsilon$ as a
+Can we make more rigorous the observation that a small change in
+$\epsilon$ only brings about a small change in the solution? One way
+is to rewrite the part of the solution containing $\epsilon$ as a
 \textit{Taylor series}. Recall the definition of a Taylor series for a
 function $f(x)$ around a point a is
 \begin{equation}
@@ -91,19 +92,21 @@ The Taylor series for $f(\epsilon) = (1 - \epsilon)^{1/2}$ around 0
 \sqrt{1 - \epsilon} = 1 - \frac{\epsilon}{2} - \frac{\epsilon^2}{8} + O(\epsilon^3),
 \end{equation}
 where $O(\epsilon^3)$ is some expression with a term $\epsilon^3$ in
-it. If we take the limit of this expression as $\epsilon \to 0$, it's
-obvious that our intuition is correct. That is, a small change in
-$\epsilon$ only brings about a small change in the solution. We get
+it. This is called \textit{Big-Oh} notation and it is commonly used to
+describe the limiting behaviour of a function. If we take the limit of
+this expression as $\epsilon \to 0$, it's obvious that our intuition
+is correct. That is, a small change in $\epsilon$ only brings about a
+small change in the solution. We get
 \begin{align}
 x_1 &= 2 - \frac{\epsilon}{2} - \frac{\epsilon^2}{8} + O(\epsilon^3), \\
 x_2 &= \frac{\epsilon}{2} + \frac{\epsilon^2}{8} + O(\epsilon^3).
 \end{align}
 
 What is the point of all this? We said in the beginning that
-perturbation theory allows us to solve a larger class of problems, but
-what we have done so far hasn't given any indication of that being
-true. After all, we already have an analytical formula for the
-quadratic equation.
+perturbation theory allows us to find approximate solutions to a
+larger class of problems, but what we have done so far hasn't given
+any indication of that being true. After all, we already have an
+analytical formula for the quadratic equation.
 
 Let's start over, but this time let's assume we don't have the
 quadratic formula at our disposal. We will outline a method which
@@ -172,7 +175,15 @@ problem. In this section we will deal with a singular perturbation
 problem. What is the difference? In a singular perturbation problem,
 the small $\epsilon$ \textit{matters} for the solution. In general,
 singular problems are interesting precisely because their solutions
-can change significantly with just a small change in circumstances.
+can change significantly with just a small change in
+circumstances. More precisely, a singular perturbation problem is one
+where setting $\epsilon$ to 0 doesn't give us a good approixmate
+solution.
+
+A way to get some intuition in the matter is to imagine balancing a
+pen on a table. It's possible to get the pen to stay upright, but just
+a slight perturbation of the pen results in it falling in one of many
+directions.
 
 As before, we will use a quadratic equation to illustrate how this
 works,
@@ -218,8 +229,8 @@ x_1 = \frac{1}{2} + \frac{1}{8} \epsilon + O(\epsilon^2).
 Note that the $a_2$ coefficient is included in the $O(\epsilon^2)$
 expression. By the \textit{Fundamental Theorem of Algebra}, we would
 expect to see two solutions. What happened to the other root? We
-missed it because it's not on the form of a perturbation series. So
-what do we do?
+missed it because it's not on the form of a perturbation series. That
+is, the other solution diverges as $\epsilon \to 0$. So what do we do?
 
 The key here is that we can do a change in variable to turn the
 problem into a regular perturbation problem:
@@ -282,14 +293,13 @@ into a regular perturbation problem.
 \section{ODE and boundary theory}
 
 Boundary layer theory has its origins in aerodynamics and the work of
-Prandtl. He discovered that the way fluids, like air around a plane
-and water around some obstacle, flow is almost completely void of
-viscosity, or stickiness, except for in a very thin region near the
-boundary of the plane of the obstacle. This observation meant that one
-could treat these two phenomena as separate problems - one where
-viscosity can be discarded, and one where it matters a lot - as
-opposed to treating it as one big complex problem. This simplified
-calculations greatly.
+Prandtl. He discovered that fluids, like air around a plane and water
+around some obstacle flow, are almost completely void of viscosity, or
+stickiness, except for in a very thin region near the boundary of the
+plane of the obstacle. This observation meant that one could treat
+these two phenomena as separate problems - one where viscosity can be
+discarded, and one where it matters a lot - as opposed to treating it
+as one big complex problem. This simplified calculations greatly.
 
 We will now give a basic example of this in the form of a
 \textit{boundary value problem} with differential equations. Recall
@@ -331,8 +341,14 @@ other one with the help of pairwise balancing.
 
 \subsection{Inner solution}
 
-We are assuming the boundary layer is near 0, and that it has a thickness
-$\delta(\epsilon)$. We introduce a re-scaling variable
+We are assuming the boundary layer is near 0, and that it has a
+thickness $\delta(\epsilon)$. By thickness we simply mean the order of
+magnitude where the approximation is valid. For example, in Figure 2
+(see section 4.4) we can see that at $x=\delta(\epsilon)=\epsilon$
+(not derived until later in this section), the difference between the
+approximation and the solution is negliable.
+
+We introduce a re-scaling variable
 \begin{equation}
 \overline{x} = \frac{x}{\delta}.
 \end{equation}
@@ -382,7 +398,10 @@ to determine the value of the constant $C$.
 \subsection{Matching and uniform approximation}
 The idea behind matching is that there is some edge or region between
 the inner and outer solution, a region where both solutions are valid
-approximations.
+approximations. The procedure we will follow works in this case, but
+it's worth noting that it's not always this straightforward. For more
+details, consult a good textbook such as Bender and Orszag
+\cite{bender1999advanced}.
 
 If we imagine a particle tracing the x-axis rightward, as we exit the boundary
 layer, i.e. as $\overline{x} \to \infty$, the value of $y_I$ should be equal to
