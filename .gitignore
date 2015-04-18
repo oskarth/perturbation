@@ -8,3 +8,4 @@ auto
 *.log
 *.out
 *.pdf
+!oskarthoren_perturbation_20150418.pdf
