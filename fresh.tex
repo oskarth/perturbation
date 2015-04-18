@@ -18,7 +18,7 @@
 
 \title{Perturbation theory and TQSSA}
 \author{Oskar Thor\'{e}n}
-\date{2015-04-11}
+\date{2015-04-18}
 
 \begin{document}
 
@@ -396,12 +396,16 @@ to determine the value of the constant $C$.
 
 \newpage
 \subsection{Matching and uniform approximation}
-The idea behind matching is that there is some edge or region between
-the inner and outer solution, a region where both solutions are valid
-approximations. The procedure we will follow works in this case, but
-it's worth noting that it's not always this straightforward. For more
-details, consult a good textbook such as Bender and Orszag
-\cite{bender1999advanced}.
+The idea behind \textit{matching} is that there is some edge or region
+between the inner and outer solution, a region where both solutions
+are valid approximations. We find a \textit{uniform approximation} by
+piecing together our inner and outer solution, so that we have one
+single expression of the solution that is valid everywhere in our
+interval.
+
+The procedure we will follow works in this case, but it's worth noting
+that it's not always this straightforward. For more details, consult a
+good textbook such as Bender and Orszag \cite{bender1999advanced}.
 
 If we imagine a particle tracing the x-axis rightward, as we exit the boundary
 layer, i.e. as $\overline{x} \to \infty$, the value of $y_I$ should be equal to
@@ -496,13 +500,11 @@ For the second graph, notice the agreement between the exact and inner
 approximation in a region close to $x=0$ (which we can move
 arbitrarily closer by using a smaller $\epsilon$).
 
-In both figures the x- and y-axis are in their customary direction.
-
 \newpage
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=120mm]
-{tmp_ode-outer.png}
+{tmp_ode-outer_axis.png}
 \caption{The full line is the outer approximation, $\epsilon=0.1$.}
 \label{overflow}
 \end{figure}
@@ -510,7 +512,7 @@ In both figures the x- and y-axis are in their customary direction.
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=120mm]
-{tmp_ode-inner.png}
+{tmp_ode-inner_axis.png}
 \caption{The full line is the inner approximation, $\epsilon=0.1$.}
 \label{overflow}
 \end{figure}
@@ -603,9 +605,13 @@ The basic idea behind TQSSA is to perform a change of variable
 \begin{equation}
 \overline{S} = S + C.
 \end{equation}
-This change of variable makes the approximation valid for a wider
-range of parameters. We get the following system of equations from
-(59), (60) and (64)
+This change of variable makes the approximation valid not just when
+the substrate has a much higher concentration than the enzyme, but
+also, under certain conditions, when they are roughly equal. This
+makes the TQSSA valid for a wider range of parameters. We will see in
+the next few sections what those conditions are.
+
+We get the following system of equations from (59), (60) and (64)
 \begin{align}
 \frac{d\overline{S}}{dt} &= - k_2 C, \\
 \frac{dC}{dt} &= k_1(E_0-C)(\overline{S}-C)-(k_{-1}+ k_2) C.
@@ -615,7 +621,7 @@ are the rate equations for the TQSSA.
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=120mm]
-{tqssa-phase-plane-b.png}
+{tqssa-phase-plane-b_axis.png}
 \caption{TQSSA phase plane. Initial state is $\overline{S}(0)=0.1,
   C(0)=0$. $E=0.01, k_1=10, k_{-1}=1, k_2=0.1$.}
 \label{overflow}
@@ -625,11 +631,16 @@ We get some intuition of the behavior by inspecting the phase plane of
 the above equations. With the help of XPP (see appendix for the source
 code used), we can numerically simulate the system, as seen in Figure
 3. There are two things to note: (1) the steady state is at (0,0) (not
-shown in graph due to numerical rounding error, but this can be
-confirmed by basic simulation in XPP) and (2) from the initial state
+shown in graph due to numerical rounding error, but this can easily be
+seen looking at the equations above) and (2) from the initial state
 there's a rapid increase of concentration in the complex C, after
 which it slowly decreases (quasi-steady state) until it reaches steady
-state.
+state
+
+The rapid increase of concentration in the complex C is just barely
+visible in the top right corner. It can also be seen by looking at the
+initial conditions, and then noticing that right after that the line
+is in the top right corner.
 
 \subsection{Timescales}
 
@@ -648,7 +659,10 @@ observation in a rigorous fashion.
 
 We are first going to calculate the timescales for the normal QSSA, to
 get some intuition for the concept. We will then extend this to the
-TQSSA.
+TQSSA. Exactly why these timescales are good is not obviously, but as
+we move into the next section on Scaling the reasons will hopefully
+become more clear. Essentially it's about finding good approximations
+for when the (T)QSSA is valid.
 
 To get the fast time scale, we can estimate S as $S_0$ since in that
 time period the substrate concentration won't change much and we just
@@ -697,12 +711,12 @@ into $(x - x_1)(x - x_2)$, where
   x_1 x_2 = c.
 \end{equation}
 
-Is there a unique positive solution to (74)? No. We know $f(0) = E_0
-\overline{S} > 0$, since a concentration can never be less than 0, and
-we know from the above identity that $c_1 c_2 = E_0
-\overline{S}$. Thus, assuming $c_1$, $c_2$ are solutions, $c_1 c_2 >
-0$, which in turn implies that either both roots are positive or they
-are both negative.
+Is there a unique positive solution to (74)? No. We know
+$f(0) = E_0 \overline{S} > 0$, since a concentration can never be less
+than 0, and we know from the above identity that
+$c_1 c_2 = E_0 \overline{S}$. Thus, assuming $c_1$, $c_2$ are
+solutions, $c_1 c_2 > 0$, which in turn implies that both roots are
+positive or both roots are negative.
 
 Are there positive solutions? Yes. We have:
 \begin{align}
@@ -727,7 +741,7 @@ of f(c) is positive:
 For a quadratic equation $x^2 + bx + c$, we have another identity for
 its roots:
 \begin{align}
-  x_1 + x_2 &= \frac{-b + \sqrt{\Delta}}{2} + \frac{-b - \sqrt{\Delta}}{2} = -b.
+  x_1 + x_2 &= \frac{-b + \sqrt{b^2-4c}}{2} + \frac{-b - \sqrt{b^2-4c}}{2} = -b.
 \end{align}
 
 Hence
@@ -751,8 +765,8 @@ If $E_0 < K_m + \overline{S}$ there is only one solution that
 satisfies the conservation law (58), since for $c_2$ we would have a
 contradiction (since E can't be negative):
 \begin{align}
-  0 < E_0 &= E + c_2, \\
-  E_0 < K_m + \overline{S} &< c_2 \implies E < 0.
+  0 < E_0, \enskip E_0 &= E + c_2, \\
+  E_0 < K_m + \overline{S} < c_2 &\implies E < 0.
 \end{align}
 
 Assuming that the condition above holds, we thus have as our only solution
@@ -901,6 +915,7 @@ We now have an equation of the form
 \begin{equation}
   \epsilon \frac{dc}{dT} = \gamma c^2 - \frac{E_0+S_0 s+K_m}{E_0 + S_0 + K_m} c+ s.
 \end{equation}
+We also note that as $\gamma \to 0$, $\epsilon \to 0$.
 
 Similarly to what we saw in Section 3, as $\epsilon \to 0$, we have that
 \begin{equation}
@@ -1152,7 +1167,18 @@ c_u &= c_O + c_I - 2(1 + \sqrt{1+4\gamma})^{-1}.
 \end{align}
 
 This is our uniform solution to the problem posed in the beginning of
-this section.
+this section. We have thus found a single approximation of to
+substrate S and complex C in equation (52), valid when
+$0 < \epsilon \ll 1$.
+
+Chemical reactions like (52) arise all the time in the field of enzyme
+kinetics, and $0 < \epsilon \ll 1$ is surprisingly often true in
+practice, or \textit{in vivo}, which is what biologists call
+observations of living organisms. By simplifying a system of
+differential equations into (163) and (164) as we have done,
+calculations are greatly simplified in a rigorous fashion. This has
+many practical applications, but these are outside the scope of this
+article.
 
 \newpage
 \bibliography{references}
